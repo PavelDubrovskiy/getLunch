@@ -127,10 +127,6 @@
             <DependentUpon>MainPage.xaml</DependentUpon>
         </Compile>
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Page Include="Plugins\org.apache.cordova.contacts\ContactPicker.xaml">
-            <SubType>Designer</SubType>
-            <Generator>MSBuild:Compile</Generator>
-        </Page>
     </ItemGroup>
     <ItemGroup>
         <ApplicationDefinition Include="App.xaml">
@@ -230,24 +226,6 @@
         <Compile Include="Plugins\org.apache.cordova.console\DebugConsole.cs" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.contacts\Contacts.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.contacts\ContactsHelper.cs" />
-    </ItemGroup>
-    <ItemGroup />
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.contacts\ContactPicker.xaml.cs">
-            <DependentUpon>ContactPicker.xaml</DependentUpon>
-        </Compile>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.contacts\ContactPickerTask.cs" />
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.inappbrowser\InAppBrowser.cs" />
-    </ItemGroup>
-    <ItemGroup>
         <Content Include="www\plugins\org.apache.cordova.device-orientation\www\CompassError.js" />
     </ItemGroup>
     <ItemGroup>
@@ -267,36 +245,6 @@
     </ItemGroup>
     <ItemGroup>
         <Content Include="www\plugins\org.apache.cordova.console\www\logger.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\contacts.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\Contact.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactAddress.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactError.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactField.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactFindOptions.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactName.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactOrganization.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactFieldType.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.inappbrowser\www\inappbrowser.js" />
     </ItemGroup>
     <ItemGroup>
         <Content Include="www\cordova_plugins.js" />

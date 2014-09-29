@@ -112,42 +112,6 @@
         <Content Include="www\plugins\org.apache.cordova.console\www\console-via-logger.js" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\contacts.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\Contact.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactAddress.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactError.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactField.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactFindOptions.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactName.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactOrganization.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\www\ContactFieldType.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.contacts\src\windows8\ContactProxy.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.inappbrowser\www\inappbrowser.js" />
-    </ItemGroup>
-    <ItemGroup>
-        <Content Include="www\plugins\org.apache.cordova.inappbrowser\www\windows8\InAppBrowserProxy.js" />
-    </ItemGroup>
-    <ItemGroup>
         <Content Include="www\cordova_plugins.js" />
     </ItemGroup>
 </Project>
