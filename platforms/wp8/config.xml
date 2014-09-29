@@ -18,4 +18,10 @@
     <feature name="Console">
         <param name="wp-package" value="DebugConsole" />
     </feature>
+    <feature name="Contacts">
+        <param name="wp-package" value="Contacts" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="wp-package" value="InAppBrowser" />
+    </feature>
 </widget>
