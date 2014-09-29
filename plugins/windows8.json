@@ -29,6 +29,12 @@
         },
         "org.apache.cordova.console": {
             "PACKAGE_NAME": "getLunch"
+        },
+        "org.apache.cordova.contacts": {
+            "PACKAGE_NAME": "getLunch"
+        },
+        "org.apache.cordova.inappbrowser": {
+            "PACKAGE_NAME": "getLunch"
         }
     },
     "dependent_plugins": {}

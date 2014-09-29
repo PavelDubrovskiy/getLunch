@@ -24,22 +24,54 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-1.7.2.min.js"></script>
         <title>getLunch</title>
     </head>
     <body>
         <div class="app">
-            <h1>getLunch ver 0.0008 (21.07.2014)</h1>
-            <div id="compasRow" style="background: url(i/row.svg); width:200px;height:200px"></div>
-            <div id="heading">info</div>
-            <input type="button" onclick="tryAll()" value="try">
+            <h2>getLunch</h2>
+            ver 0.00417 (25.08.2014)
+            <div id="workArea">
+	            <div style="width:100%;height:200px;text-align: center;">
+	            	<img id="compasRow" src="i/row.svg" style="width:200px;height:200px;">
+	            </div>
+	            <div id="headingInfo">headingInfo</div>
+	            <div id="coordsInfo">coordsInfo</div>
+	            <input type="button" onclick="tryCoords()" value="tryCoords">
+	            <input type="button" onclick="tryCompass()" value="tryCompass">
+	            <br><br>
+	            <div id="YMaps" style="width:100%;height: 600px;"></div>
+				<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"> </script>
+				<script>
+					var map;
+					function init(){
+						map = new ymaps.Map("YMaps", {
+							center: [55.753676,37.619899],
+							zoom: 16,
+						});
+						map.controls.add("zoomControl").add("typeSelector").add("mapTools");
+					}
+					ymaps.ready(init);	
+				</script>
+				<br>
+				<div style="width:100%;">
+					<div id="lunchList" style="background: #FFF;border: 2px solid #999999; border-radius:5px;">
+						<table>
+							<colgroup><col width="100%"><col width="50px"></colgroup>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<a id="buttonFriends" href="friends.html">Contacts</a>
+			</div>
         </div>
-        
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/compass.js"></script>
-        <script type="text/javascript" src="js/CompassError.js"></script>
-        <script type="text/javascript" src="js/CompassHeading.js"></script>
+        <script type="text/javascript" src="lib/index.js"></script>
+        <script type="text/javascript" src="lib/compass.js"></script>
+        <script type="text/javascript" src="lib/CompassError.js"></script>
+        <script type="text/javascript" src="lib/CompassHeading.js"></script>
         <script type="text/javascript" src="js/application.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
