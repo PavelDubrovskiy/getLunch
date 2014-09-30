@@ -1,76 +1,116 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script type="text/javascript" src="lib/jquery-1.7.2.min.js"></script>
-        <title>getLunch</title>
-    </head>
-    <body>
-        <div class="app" id="card">
-            <h3 id="name"></h3>
-            <div style="width:100%;height:200px;text-align: center;">
-            	<img id="compasRow" src="i/row.svg" style="width:200px;height:200px;">
-            	<img id="compasRowCard" src="i/row.svg" style="width:200px;height:200px;">
-            </div>
-            <h3><span id="metres"></span> m</h3>
-            <br><br>
-            <div id="YMaps" style="width:100%;height: 400px;"></div>
-			<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"> </script>
-			<script>
-				var map;
-				function init(){
-					map = new ymaps.Map("YMaps", {
-						center: [55.753676,37.619899],
-						zoom: 16,
-					});
-					map.controls.add("zoomControl").add("typeSelector").add("mapTools");
-				}
-				ymaps.ready(init);	
-			</script>
-			<br>
-			<h3 id="address"></h3>
-			<h3 id="time"></h3>
-			<div style="width:100%;">
-				<div id="menuList" style="background: #FFF;border: 2px solid #999999; border-radius:5px;">
-					<table>
-						<colgroup><col width="100%"><col width="50px"></colgroup>
-						<tbody>
-						</tbody>
-					</table>
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left">
+			<a href="#" class="link icon-only back">
+				<i class="icon icon-arrow-back"></i>
+			</a>
+		</div>
+		<div class="center p_card_header">
+			Цурцум Кафе
+		</div>
+		<div class="right">
+			<a href="#" class="link icon-only p_card_favourite_toggle">
+				<i class="icon icon-star"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="pages navbar-through">
+	<div data-page="card" class="page">
+		
+		<div class="page-content">
+			<div class="b_map_btn b_compass">
+				<span class="b_compass_arr"><i class="icon icon-geolocation-small"></i>
+				</span>
+				<span class="b_compass_tx">300 м</span>
+			</div>
+			
+			<div id="cardMap" class="b_map m_xsmall">
+				<span class="preloader"></span>
+			</div>
+			
+			<div class="b_white-bg">
+				<div class="b_content-block">
+					<div class="b_address">
+						<i class="icon icon-geotag"></i>
+						Москва, Шелапутинский переулок, дом&nbsp;10, строение&nbsp;2
+					</div>
+					<div class="b_underground m_1">
+						Таганская
+					</div>
+					<div class="b_time">
+						<i class="icon icon-clock"></i>
+						12:00–16:00
+					</div>
+				</div>
+				
+				<div class="b_cards_list list-block">
+					<ul>
+						<li>
+							<div class="b_lunch-combo b_cards_item_inner">
+								<div class="row">
+									<div class="col-75">
+										<span class="b_cards_h">3 блюда + напиток</span>
+										<div class="b_lunch-combo_list">
+											<span class="b_lunch-combo_item m_salad">салат</span>
+											<span class="b_lunch-combo_item m_red">суп</span>
+											<span class="b_lunch-combo_item m_vinous">горячее</span>
+											<span class="b_lunch-combo_item m_yellow">гарнир</span>
+										</div>
+									</div>
+									<div class="col-25">
+										<span class="b_cards_price">270<span class="f_rouble">p</span></span>
+									</div>
+								</div>
+							</div>
+						</li>
+						
+						<li>
+							<div class="b_lunch-combo b_cards_item_inner">
+								<div class="row">
+									<div class="col-75">
+										<span class="b_cards_h">2 блюда + напиток</span>
+										<div class="b_lunch-combo_list">
+											<span class="b_lunch-combo_item m_salad m_half-red">салат или суп</span>
+											<span class="b_lunch-combo_item m_vinous">горячее</span>
+										</div>
+									</div>
+									<div class="col-25">
+										<span class="b_cards_price">250<span class="f_rouble">p</span></span>
+									</div>
+								</div>
+							</div>
+						</li>					
+						
+					</ul>
+				</div>
+				
+				<a href="menu.html" class="b_wide-btn">
+					<i class="icon icon-menu"></i>
+					Меню заведения
+				</a>
+				
+				<div class="b_btn_row">
+					<div class="buttons-row">
+						<a href="#" class="button b_btn">Позвать друзей</a>
+						<a href="#" class="button b_btn">Я тут ем</a>
+					</div>
+				</div>
+				
+				<div class="b_desc">
+					<i class="icon icon-torus"></i>
+					Цурцум Кафе&nbsp;— формат уютного европейского кафе, где&nbsp;вам не&nbsp;мешает громкая музыка, официанты&nbsp;— ваши добрые приятели, а&nbsp;у&nbsp;половины гостей есть любимые столики. Длина текста составляет не&nbsp;более 300 символов.
+				</div>
+				
+				<div class="b_gallery">
+					<a href="i/materials/card/1.jpg"><img src="i/materials/card/1s.jpg" alt=""></a>
+					<a href="i/materials/card/2.jpg"><img src="i/materials/card/2s.jpg" alt=""></a>
+					<a href="i/materials/card/3.jpg"><img src="i/materials/card/3s.jpg" alt=""></a>
+					<a href="i/materials/card/4.jpg"><img src="i/materials/card/4s.jpg" alt=""></a>
+					<a href="i/materials/card/5.jpg"><img src="i/materials/card/5s.jpg" alt=""></a>
 				</div>
 			</div>
-			<h3 id="site"></h3>
-			<p id="comment"></p>
-			<a id="buttonFriends" href="">������� ������</a>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="lib/index.js"></script>
-        <script type="text/javascript" src="lib/compass.js"></script>
-        <script type="text/javascript" src="lib/CompassError.js"></script>
-        <script type="text/javascript" src="lib/CompassHeading.js"></script>
-        <script type="text/javascript" src="js/application.js"></script>
-        <script type="text/javascript" src="js/card.js"></script>
-    </body>
-</html>
+		</div>
+	
+	</div>
+</div>
