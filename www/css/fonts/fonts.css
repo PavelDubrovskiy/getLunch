@@ -1,0 +1,38 @@
+﻿/* $ROUBLE */
+@font-face {
+	font-family: 'rouble';
+	src: url('rouble/rouble.eot');
+	src: local('ALS Rubl'),
+	local('Ruble'),
+	url('rouble/rouble.woff') format('woff'),
+	url('rouble/rouble.svg') format('svg'),
+	url('rouble/rouble.otf') format('opentype');
+}
+
+/* HELVETICA */
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: 	local("Helvetica Neue"), 
+			local("HelveticaNeue"),
+			url('HelveticaNeueCyr-Light.otf') format("opentype");
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: 	local("Helvetica Neue"), 
+			local("HelveticaNeue"),
+			url('HelveticaNeueCyr-Roman.otf') format("opentype");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: 	local("Helvetica Neue"), 
+			local("HelveticaNeue"),
+			url('HelveticaNeueCyr-Medium.otf') format("opentype");
+	font-weight: 600;
+	font-style: normal;
+}
