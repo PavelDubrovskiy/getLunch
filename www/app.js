@@ -24,11 +24,14 @@ define('app', ['js/router'], function(Router) {
 	var mainView = f7.addView('.view-main', {
 		dynamicNavbar: true
 	});
-	
+	var config={
+		source:'http://getlunch.ru'
+	};
 	return {
 		f7: f7,
 		mainView: mainView,
 		router: Router,
+		config:config,
 		
 		enablePanel: function() {
 			f7.allowPanelOpen = true;

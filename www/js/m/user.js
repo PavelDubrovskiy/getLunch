@@ -1,7 +1,11 @@
 define(["js/utilities/validate"], function( validate ) {
 	function User(values) {
+		try{
+			tempValues=JSON.parse(localStorage.getItem('User'));
+			values=tempValues;
+		}catch(e){}
 		values = values || {};
-		this.id = values['id'] || Math.floor((Math.random() * 100000) + 5).toString();
+		this.id = values['id'] || '';
 
 		this.name = values['name'] || '';
 		this.email = values['email'] || '';
@@ -9,6 +13,9 @@ define(["js/utilities/validate"], function( validate ) {
 	}
 
 	User.prototype.setValues = function( formInput ) {
+		if(formInput['id']){
+			localStorage.setItem('User',JSON.stringify(formInput));
+		}
 		for( var field in formInput ){
 			if ( this[field] !== undefined ) {
 				this[field] = formInput[field];

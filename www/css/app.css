@@ -712,6 +712,7 @@ body{
 	margin-top: 0;
 	margin-bottom: 0;
 	border-top: 1px solid #e1e7cd;
+	-webkit-overflow-scrolling: touch;
 }
 	.b_cards_list ul{
 		border-top: 0;
@@ -1056,11 +1057,13 @@ body{
 
 /* b_gallery */
 .b_gallery{
-	overflow-x: scroll;
-	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+	/*overflow-x: scroll;*/
+	overflow: hidden;
 	white-space: nowrap;
 	padding: 0 8px;
 	font-size: 0;
+	margin: 0 0 21px;
 }
 
 .b_gallery a{
@@ -1111,7 +1114,29 @@ body{
 	-webkit-transform: rotate(-45deg);
 	transform: rotate(-45deg);
 }
-	
+
+/* $b_features */
+.b_features{
+	padding: 0 8px;
+}
+
+.b_features_item{
+	display: inline-block;
+	vertical-align: top;
+	white-space: nowrap;
+	color: #666;
+	height: 31px;
+	line-height: 31px;
+	border: 1px solid #e1e7cd;
+	border-radius: 14px;
+	margin: 0 2px 7px 0;
+	padding: 0 15px 0 9px;
+}
+
+.b_features_item .icon{
+	color: #ffb516;
+}
+
 /* $FONT DECOR */
 /* $f = font */
 .f_rouble{
@@ -1243,6 +1268,22 @@ body{
 	position: relative;
 	left: -2px;
 	top: -2px;
+}
+
+.icon-wifi{
+	font-size: 15px;
+}
+
+.icon-vegan{
+	font-size: 20px;
+}
+
+.icon-parking{
+	font-size: 16px;
+}
+
+.icon-terrace{
+	font-size: 15px;
 }
 
 /*

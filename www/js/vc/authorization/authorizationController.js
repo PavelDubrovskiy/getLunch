@@ -1,7 +1,7 @@
 define(["app","js/vc/authorization/authorizationView", "js/m/user", "js/utilities/forms"], function(app, view, User, forms) {
 	var user = new User();
 	var formFilled = false;
-	
+	var $ = Framework7.$;
 	var bindings = [
 		{
 			element: 'input',
@@ -25,16 +25,26 @@ define(["app","js/vc/authorization/authorizationView", "js/m/user", "js/utilitie
 		var formInput = app.f7.formToJSON('#authorizationForm'),
 			validateResult
 		;
-		
 		user.setValues( formInput );
 		validateResult = user.validate(["name", "password"]);
 		
 		if( validateResult.isValid === true ){
 			forms.hideMessage();
-			//app.f7.alert("Авторизация прошла бы успешно, если бы здесь был обработчик формы, сораняющий ваши данные хоть куда-нибудь!");
-			
-			ymaps.ready(function () {
-				app.mainView.loadPage('main.html');
+			$.ajax({
+				type: "POST",
+				async: false,
+				url: app.config.source+"/api/login/",
+				data: formInput,
+				success: function(msg){
+					if(msg!='error'){
+						user.setValues(JSON.parse(msg));
+						ymaps.ready(function () {
+							app.mainView.loadPage('main.html');
+						});
+					}else{
+						forms.showMessage('Неправильно введены логин или пароль', "error");
+					}
+				}
 			});
 		}else{
 			forms.showMessage(validateResult.message, "error");

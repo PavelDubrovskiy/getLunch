@@ -1,5 +1,7 @@
-define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map"], function(app, view, forms, Map) {
-	var map = null;		
+define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", "js/m/user"], function(app, view, forms, Map, User) {
+	var map = null;
+	var user = new User();
+	var $ = Framework7.$;
 	var bindings = [	
 		// Функция переустановки значения инпута, чтобы решить баг с курсором всегда в начале поля ввода
 		{
@@ -44,16 +46,16 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map"],
 			handler: appExit
 		}
 	];
-		
 	// Разрешаем открывать меню
 	app.f7.allowPanelOpen = true;
-		
+
 	// Инициализация страницы
 	function init(query) {
 		initMap();
 		
 		view.render({
-			bindings: bindings
+			bindings: bindings,
+			user: user
 		});
 	}
 	
