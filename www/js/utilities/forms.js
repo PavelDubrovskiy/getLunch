@@ -50,7 +50,6 @@ define(function() {
 			$message.removeClass("st_active");
 			setTimeout( function() {
 				$message.remove();
-				console.log( callback );
 				if( callback ){
 					callback( 200 );
 				}

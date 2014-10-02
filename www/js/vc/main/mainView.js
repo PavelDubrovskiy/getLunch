@@ -12,8 +12,8 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 				app.mainView.hideNavbar();
 			}else{
 				app.mainView.showNavbar();
-			}	
-		});		
+			}
+		});
 	}
 	
 	// Переключение размера карты
@@ -62,7 +62,29 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 	function removePopupOverlay() {
 		$$(".popup-overlay").remove();
 	}
-
+	function attachLunches(values){
+		var html='',
+			template = $$('#lunchItem').html(),
+			date=new Date();
+		var fer=date.getHours()+""+date.getMinutes();
+		var compiledTemplate = Template7.compile(template);
+		
+		values.lunchList.forEach(function(element, index, array){
+			values.map.createMark([element.latitude*1,element.longitude*1], 'card.html', element.name);
+			element.metr=Math.round(element.metr);
+			element.inactive='';
+			element.inactiveText='';
+			if(element.lunchfrom>fer){
+				element.inactive='st_inactive';
+				element.inactiveText='Время ланча не началось';
+			}else if(fer>element.lunchto){
+				element.inactive='st_inactive';
+				element.inactiveText='Закончилось время ланча';
+			}
+			html+=compiledTemplate(element);
+		});
+		$$('#mainCardsList').html(html);
+	}
 	return {
 		render: render,
 		toggleMapSize: toggleMapSize,
@@ -70,6 +92,7 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		closeSearch: closeSearch,
 		closeSearchClick: closeSearchClick,
 		removePopupOverlay: removePopupOverlay,
-		toggleFavouriteState: utilities.toggleFavouriteState
+		toggleFavouriteState: utilities.toggleFavouriteState,
+		attachLunches: attachLunches
 	};
 });

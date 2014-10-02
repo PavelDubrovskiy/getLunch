@@ -32,7 +32,10 @@ define('app', ['js/router'], function(Router) {
 		mainView: mainView,
 		router: Router,
 		config:config,
-		
+		latitude:0,
+		longitude:0,
+		interval:0,
+		firstEnter:true,
 		enablePanel: function() {
 			f7.allowPanelOpen = true;
 		},

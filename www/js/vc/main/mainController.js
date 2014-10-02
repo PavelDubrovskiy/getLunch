@@ -1,6 +1,7 @@
-define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", "js/m/user"], function(app, view, forms, Map, User) {
+define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", "js/m/user", "js/utilities/api"], function(app, view, forms, Map, User, Api) {
 	var map = null;
 	var user = new User();
+	var api = new Api();
 	var $ = Framework7.$;
 	var bindings = [	
 		// Функция переустановки значения инпута, чтобы решить баг с курсором всегда в начале поля ввода
@@ -90,16 +91,44 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		map.map.events.add('mouseleave', app.enablePanel);
 		
 		// Создание меток
+		/*
 		map.createMark([55.76, 37.64], 'card.html', 'Итальянский ресторанчик Ля ПестоТестоСиесто');
 		map.createMark([55.757, 37.637], 'card.html', 'Шоколадница', true); // true — неактивная метка
 		map.createMark([55.759, 37.635], 'card.html', 'Тай-Чай');
 		map.createMark([55.756, 37.638], 'card.html', 'Цурцум Кафе');
+		*/
+		var itemList={};
+		if(app.latitude!=0 && app.longitude!=0){
+			var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
+			map.geolocation(values);
+			if(app.firstEnter==true){
+				lunchList=api.getLunchByCoords(values);
+				if(typeof lunchList !== 'undefined'){
+					var valuesItem={lunchList:lunchList,map:map};
+					view.attachLunches(valuesItem);
+					app.firstEnter=false;
+				}
+			}
+			
+		}
 		
-		// Установление позиции пользователя на определённые координаты
-		map.setUserPosition([55.759, 37.638]);
-		
+		window.clearInterval(app.interval);
+		window.setInterval(function(){
+			if(app.latitude!=0 && app.longitude!=0){
+				var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
+				map.geolocation(values);
+				if(app.firstEnter==true){
+					lunchList=api.getLunchByCoords(values);
+					if(typeof lunchList !== 'undefined'){
+						var valuesItem={lunchList:lunchList,map:map};
+						view.attachLunches(valuesItem);
+						app.firstEnter=false;
+					}
+				}
+			}
+		},5000);
 		// Изменение состояния метки (если вторым параметром передано true, 1, "active" — метка становится активной, если false, 0, "inactive" или параметр не передан — неактивной)
-		map.changeMarkState( map.marks.get(0), "inactive");
+		//map.changeMarkState( map.marks.get(0), "inactive");
 	}
 	
 	// Геолокация
@@ -107,7 +136,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		//app.f7.alert("Мы бы определили ваше местоположение, но у нас пока не написана функция, которая это делает");
 		
 		// Перемещаем карту к найденной точке
-		map.setUserPosition([55.757, 37.634], true);
+		map.setUserPosition([app.latitude, app.longitude], true);
 	}
 	
 	// Функция управления избранным

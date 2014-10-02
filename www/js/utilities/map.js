@@ -176,5 +176,9 @@
 		this.map.setBounds( this.marks.getBounds(), {zoomMargin: [48, 21, 8, 21]});
 	};
 	
+	// Геолокация
+	Map.prototype.geolocation = function (values) {
+		this.setUserPosition([values.latitude, values.longitude], values.panTo);
+	}
 	return Map;
 });

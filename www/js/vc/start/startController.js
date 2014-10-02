@@ -16,7 +16,17 @@ define(["app", "js/vc/start/startView", "js/m/user"], function(app, view, User) 
 			handler: exitToStart
 		}
 	];
-
+	
+	app.watchID = navigator.geolocation.watchPosition(function(position){
+			try{
+				app.latitude=position.coords.latitude;
+				app.longitude=position.coords.longitude;
+			}catch(e){}
+		}, 
+		function(){}, 
+		{timeout: 10000, enableHighAccuracy: true}
+	);
+	
 	function init() {
 		if(user.id!=''){
 			$('.p_start_buttons').hide();
