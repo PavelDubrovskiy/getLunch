@@ -9,7 +9,14 @@ body{
 
 a{
 	color: #5d8900;
+	-webkit-transition: opacity .3s ease-in-out;
+	transition: opacity .3s ease-in-out;
 }
+	a.active-state{
+		-webkit-transition: none;
+		transition: none;
+		opacity: .7;
+	}
 
 /* $navbar */
 .navbar {
@@ -204,16 +211,6 @@ a{
 	border-bottom: 1px solid #e1e7cd;
 }
 
-.list-block a{
-		-webkit-transition: opacity .3s ease-in-out;
-		transition: opacity .3s ease-in-out;
-	}
-		.list-block a.active-state{
-			-webkit-transition: none;
-			transition: none;
-			opacity: .7;
-		}
-
 /* $panel */
 .panel{
 	background: rgba(255,255,255,.88);
@@ -360,7 +357,7 @@ a{
 	bottom: 5px; left: 0;
 	width: 100%; height: auto;
 }
-	
+
 /* $b_btn */
 .b_btn{
 	background: #fbffef;
@@ -585,6 +582,7 @@ a{
 }
 	.b_map_btn.active-state{
 		background: #f7f7f7;
+		opacity: 1;
 	}
 	.b_map_btn .icon{
 		position: absolute;
@@ -658,6 +656,7 @@ a{
 	.b_map_balloon a.active-state,
 	.b_map_balloon a.active-state + .b_map_balloon_arrow{
 		background: #f7f7f7;
+		opacity: 1;
 	}
 	
 .b_map_balloon .icon{
@@ -692,12 +691,14 @@ a{
 	}
 
 /* YMAPS HACK */
-.ymaps-2-1-15-map-ru {
+.ymaps-2-1-15-map-ru ,
+.ymaps-2-1-16-map-ru {
 	background: none !important;
 	z-index: 2 !important;
 }
 
-.ymaps-2-1-15-copyright{
+.ymaps-2-1-15-copyright,
+.ymaps-2-1-16-copyright{
 	display: none !important;
 }
 
@@ -1016,7 +1017,6 @@ a{
 .b_wide-btn{
 	display: block;
 	text-align: center;
-	color: #5d8900;
 	font-size: 21.5px;
 	padding: 18px 15px 16px;
 }
@@ -1238,6 +1238,7 @@ a{
 .b_reviews_toolbar{
 	padding: 0 8px;
 	overflow: hidden;
+	margin: 0 0 22px;
 }
 
 .b_reviews_toolbar .b_rating{
@@ -1284,7 +1285,78 @@ a{
 
 /* $b_friends */
 .b_friends{
-	padding: 0 8px 0 44px;
+	padding: 0 8px 10px 44px;
+}
+
+.b_friends_count{
+	font-weight: 600;
+	font-size: 15px;
+	margin: 0 0 12px;
+}
+
+.b_friends_item{
+	display: inline-block;
+	vertical-align: top;
+	width: 40px; height: 40px;
+	border-radius: 50%;
+	margin: 0 6px 40px 0;
+	
+	position: relative;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+	
+	background-color: #ffeab7;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+	.b_friends_item.st_active:before{
+		content: '';
+		position: absolute;
+		top: 0; left: 0;
+		bottom: 0; right: 0;
+		border-radius: 50%;
+		border: 2px solid #f30;
+	}
+	.b_friends_item.st_active:after{
+		content: 'Сейчас тут';
+		color: #c03;
+		font-size: 12px;
+		line-height: 13px;
+		text-align: center;
+		width: 50px;
+		position: absolute;
+		top: 52px;
+		left: -5px;
+	}
+	
+	.b_friends_item .icon{
+		color: #333;
+		font-size: 21px;
+		position: absolute;
+		top: 50%; left: 50%;
+		width: 30px;
+		text-align: center;
+		margin: -0.5em 0 0 -15px;
+	}
+
+.b_friends_item span{
+	display: block;
+	position: absolute;
+	top: 33px; left: 21px;
+	
+	line-height: 18px; height: 24px;
+	border-radius: 12px;
+	min-width: 18px;
+	
+	padding: 0 3px;
+	background: #fff;
+	font-weight: 700;
+	font-size: 11px;
+}
+
+.b_friends_item span:before{
+	content: 'x';
 }
 
 /* $FONT DECOR */

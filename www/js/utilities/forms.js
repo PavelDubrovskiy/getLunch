@@ -1,5 +1,5 @@
 define(function() {
-	var $$ = Framework7.$;
+	var $ = Framework7.$;
 	
 	// ---------------------------- //
 	// Утилиты для работы с формами //
@@ -7,18 +7,18 @@ define(function() {
 	
 	// Сделать элемент доступным
 	function enableElement( element ) {
-		$$(element).removeClass('st_disabled').prop('disabled',false);
+		$(element).removeClass('st_disabled').prop('disabled',false);
 	}
 	
 	// Сделать элемент недоступным
 	function disableElement( element ) {
-		$$(element).addClass('st_disabled').prop('disabled',true);
+		$(element).addClass('st_disabled').prop('disabled',true);
 	}
 	
 	// Проверка формы на заполненность
 	function isFormFilled( form ) {
 		var filled = true;
-		$$(form).find(".st_required").each( function(){
+		$(form).find(".st_required").each( function(){
 			if( this.value === '' ){
 				filled = false;
 			}
@@ -29,7 +29,7 @@ define(function() {
 	// Показ сообщения
 	function showMessage( message, type ) {
 		hideMessage( function( duration ) {
-			var	$cnt = $$(".page-on-center .page-content"),
+			var	$cnt = $(".page-on-center .page-content"),
 				element = document.createElement("div")	
 			;
 
@@ -38,14 +38,14 @@ define(function() {
 			
 			$cnt.append( element );
 			setTimeout( function(){
-				$$(element).addClass("st_active");
+				$(element).addClass("st_active");
 			}, duration );
 		});
 	}
 	
 	// Скрытие сообщения
 	function hideMessage( callback ) {
-		var $message = $$(".b_form_message");
+		var $message = $(".b_form_message");
 		if( $message.length ){
 			$message.removeClass("st_active");
 			setTimeout( function() {
@@ -68,7 +68,7 @@ define(function() {
 	
 	// Вызов клика по элементу
 	function triggerClick() {
-		$$(this).trigger('click');
+		$(this).trigger('click');
 	}
 	
 	// Загрузка картинки "на лету"
@@ -78,7 +78,7 @@ define(function() {
 				img = document.createElement("img"),
 				reader = new FileReader(),
 		
-				$upic = $$(".b_upic_face"),
+				$upic = $(".b_upic_face"),
 				$tx = $upic.find(".b_upic_tx"),
 				$preloader = $upic.find(".preloader")
 		;

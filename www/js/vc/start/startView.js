@@ -1,6 +1,6 @@
 define(["js/utilities/common"], function( utilities ) {
-	var 	$$ = Framework7.$,
-			$body = $$("body")
+	var 	$ = Framework7.$,
+			$body = $("body")
 	;
 
 	function render(params) {

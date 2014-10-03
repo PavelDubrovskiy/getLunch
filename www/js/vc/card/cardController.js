@@ -1,6 +1,6 @@
-define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", "js/utilities/gallery"], function(app, view, forms, Map, Gallery) {
-	var $$ = Framework7.$;
-	
+define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", "js/utilities/gallery", "js/utilities/api"], function(app, view, forms, Map, Gallery, Api) {
+	var $ = Framework7.$;
+	var api = new Api();
 	var map = null;
 	var gallery = null;
 	var interval = null;
@@ -27,29 +27,24 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	
 	// Инициализация страницы
 	function init(query) {
-		// Создание карты
-		map = new Map({ mapId: 'cardMap', initZoom: 17, offset: {top: 13, left: 0} });
-		gallery = new Gallery({wrapper: '.b_gallery', items: 'a'});
-		
-		initMap();
-		
+		var values={latitude:app.latitude, longitude:app.longitude, source:app.config.source, id:localStorage.getItem("currentId")};
+		lunch=api.getLunch(values);
+		lunch.mainSource=app.config.source;
 		view.render({
-			bindings: bindings
+			bindings: bindings,
+			card:lunch
 		});
+		map = new Map({ mapId: 'cardMap', initZoom: 17, offset: {top: 13, left: 0} });
+		initMap({latitude:lunch.latitude,longitude:lunch.longitude});
+		map.setUserPosition([app.latitude, app.longitude], true);
 		
-		// Крутим компас
-		/*var i = 0;		
-		if( !interval ) {
-			(function animloop(){
-				i++;
-				view.setCompassState(i, i + " м");
-				$$.requestAnimationFrame(animloop);
-			})();
-		}*/
+		gallery = new Gallery({wrapper: '.b_gallery', items: 'a'});
+		window.clearInterval(app.intervalCompass);
+		app.intervalCompass=window.setInterval(tryCompass, 100);
 	}
 	
 	// Инициализация карты
-	function initMap() {
+	function initMap(values) {
 		// Предотвращение открытия меню по свайпу при перетаскивании карты
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
@@ -57,7 +52,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		// Создание метки и центрирование карты на ней
 		map.map.setCenter(
 			map.getOffset( // Получаем координаты со сдвигом, заданным при инициализации карты
-				map.createMark([55.7585, 37.64], 'card.html').geometry.getCoordinates()
+				map.createMark([values.latitude, values.longitude], 'card.html').geometry.getCoordinates()
 			)
 		);
 	}
@@ -66,7 +61,9 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	function toggleFavouriteState() {
 		view.toggleFavouriteState(this);
 	}
-
+	function tryCompass(){
+		//navigator.compass.getCurrentHeading(onSuccessHeading, onErrorHeading);
+	}
 	return {
 		init: init
 	};

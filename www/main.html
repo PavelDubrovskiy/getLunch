@@ -79,7 +79,7 @@
 		</div>
 		<script id="lunchItem" type="text/template">
 			<li class="swipeout">
-				<a href="card.html" class="b_cards_item {{inactive}} swipeout-content">
+				<a href="card.html" data-id="{{id}}" class="b_cards_item {{inactive}} swipeout-content">
 					<i class="icon icon-star-small"></i>
 					<div class="b_cards_item_inner">
 						<div class="row">
@@ -94,7 +94,7 @@
 					</div>
 				</a>
 				<div class="swipeout-actions-right">
-					<a href="#" class="p_main_favourite_toggle b_favourite">
+					<a href="#" class="p_main_favourite_toggle b_favourite" data-id="{{id}}">
 						<i class="icon icon-star"></i>
 					</a>
 				</div>

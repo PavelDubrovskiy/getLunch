@@ -60,6 +60,9 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		});
 	}
 	
+	// Вешаем инициализацию карты на окончание анимации страницы
+	//app.f7.onPageAfterAnimation('main', initMap);
+	
 	// Инициализация карты
 	function initMap() {
 		// Создание карты
@@ -106,6 +109,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				if(typeof lunchList !== 'undefined'){
 					var valuesItem={lunchList:lunchList,map:map};
 					view.attachLunches(valuesItem);
+					$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
 					app.firstEnter=false;
 				}
 			}
@@ -122,11 +126,12 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 					if(typeof lunchList !== 'undefined'){
 						var valuesItem={lunchList:lunchList,map:map};
 						view.attachLunches(valuesItem);
+						$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
 						app.firstEnter=false;
 					}
 				}
 			}
-		},5000);
+		},1000);
 		// Изменение состояния метки (если вторым параметром передано true, 1, "active" — метка становится активной, если false, 0, "inactive" или параметр не передан — неактивной)
 		//map.changeMarkState( map.marks.get(0), "inactive");
 	}

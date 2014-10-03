@@ -1,11 +1,11 @@
 define(function() {
-	var $$ = Framework7.$;
+	var $ = Framework7.$;
 
 	/**
 	 * Init router, that handle page events
 	 */
     function init() {
-		$$(document).on('pageBeforeInit', function (e) {
+		$(document).on('pageBeforeInit', function (e) {
 			var page = e.detail.page;
 			load(page.name, page.query);
 		});

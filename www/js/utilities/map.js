@@ -46,7 +46,6 @@
 		{
 			minZoom: 3
 		});
-		
 		this.projection = this.map.options.get('projection');
 		
 		// Предотвращение двойного клика по карте

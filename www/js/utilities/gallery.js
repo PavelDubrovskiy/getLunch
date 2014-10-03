@@ -1,10 +1,10 @@
 define(["app"], function(app) {
-	var $$ = Framework7.$;
+	var $ = Framework7.$;
 	
 	function Gallery(values) {
 		values = values || {};
 				
-		this.wrapper = $$( values.wrapper );
+		this.wrapper = $( values.wrapper );
 		this.items = this.wrapper.find( values.items );
 		this.length = this.items.length;
 		this.zoom = values.zoom || true;
@@ -14,7 +14,7 @@ define(["app"], function(app) {
 		
 		this.photos = [];
 		for( i = 0; i < this.items.length; i++ ) {
-			this.photos.push($$(this.items[i]).attr('href'));
+			this.photos.push($(this.items[i]).attr('href'));
 		}
 		
 		this.photoBrowser = app.f7.photoBrowser({
@@ -23,8 +23,8 @@ define(["app"], function(app) {
 			maxZoom: this.maxZoom,
 			photos: this.photos,
 			onOpen: (function(pb) {
-				$$(".photo-browser-current").text( pb.openIndex + 1 );
-				$$(".photo-browser-total").text( this.length );
+				$(".photo-browser-current").text( pb.openIndex + 1 );
+				$(".photo-browser-total").text( this.length );
 			}).bind(this),
 			toolbar: false,
 			exposition: false,
@@ -42,7 +42,7 @@ define(["app"], function(app) {
 	}
 	
 	Gallery.prototype.open = function(e) {
-		this.photoBrowser.open( $$(e.target).parent().index() );
+		this.photoBrowser.open( $(e.target).parent().index() );
 		return false;
 	};
 	

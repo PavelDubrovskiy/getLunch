@@ -35,6 +35,7 @@ define('app', ['js/router'], function(Router) {
 		latitude:0,
 		longitude:0,
 		interval:0,
+		intervalCompass:0,
 		firstEnter:true,
 		enablePanel: function() {
 			f7.allowPanelOpen = true;

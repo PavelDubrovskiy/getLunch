@@ -1,13 +1,13 @@
 define(["app", "js/utilities/common"], function( app, utilities ) {
-	var $$ = Framework7.$;
-	var $cnt = $$(".page-content");
-	var $map = $$(".b_map");
+	var $ = Framework7.$;
+	var $cnt = $(".page-content");
+	var $map = $(".b_map");
 	var fullscreen = false;
 
 	function render(params) {
 		utilities.bindEvents(params.bindings);
 		
-		$$(".page-main").on("pageBeforeAnimation", function() {
+		$(".page-main").on("pageBeforeAnimation", function() {
 			if( checkSearchOpened() === true ) {
 				app.mainView.hideNavbar();
 			}else{
@@ -37,7 +37,7 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 	// Показать поиск
 	function openSearch() {
 		app.mainView.hideNavbar();
-		$$(".p_main_search_input").focus();
+		$(".p_main_search_input").focus();
 	}
 	
 	// Скрыть поиск
@@ -47,7 +47,7 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 	
 	// Проверить, открыт ли поиск
 	function checkSearchOpened() {
-		if( $$(".searchbar-popup.modal-in").length ) {
+		if( $(".searchbar-popup.modal-in").length ) {
 			return true;
 		}
 		return false;
@@ -55,16 +55,16 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 	
 	// Триггер нажатия на кнопку скрытия поиска
 	function closeSearchClick() {
-		$$(".p_main_search_close").click();
+		$(".p_main_search_close").click();
 	}
 	
 	// Удалить оверлей попапа
 	function removePopupOverlay() {
-		$$(".popup-overlay").remove();
+		$(".popup-overlay").remove();
 	}
 	function attachLunches(values){
 		var html='',
-			template = $$('#lunchItem').html(),
+			template = $('#lunchItem').html(),
 			date=new Date();
 		var fer=date.getHours()+""+date.getMinutes();
 		var compiledTemplate = Template7.compile(template);
@@ -83,7 +83,7 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 			}
 			html+=compiledTemplate(element);
 		});
-		$$('#mainCardsList').html(html);
+		$('#mainCardsList').html(html);
 	}
 	return {
 		render: render,

@@ -13,23 +13,23 @@ define(function() {
 			data: "longitude="+values.longitude+"&latitude="+values.latitude+"&app=true",
 			success: function(msg){
 				lunchList=JSON.parse(msg);
-				
-				/*setPoints(jQuery.parseJSON(msg));
-				
-				map.panTo([position.coords.latitude, position.coords.longitude],{delay: 1000});
-				myMark = new ymaps.Placemark([position.coords.latitude,position.coords.longitude], {},{
-			            iconLayout: 'default#image',
-			            iconImageHref: 'i/myloc.png',
-			            iconImageSize: [97,97],
-			            iconImageOffset: [-48, -48]
-				});
-				map.geoObjects.add(myMark);
-			    text= 'Latitude: '          + position.coords.latitude          + '<br>' +
-			          'Longitude: '         + position.coords.longitude         + '<br>';
-				$('#coordsInfo').html(text);*/
 			}
 		});
 		return lunchList;
+	}
+	Api.prototype.getLunch = function(values) {
+		var values = values || {};
+		var lunch={};
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: values.source+"/api/getLunch/",
+			data: "id="+values.id+"&app=true",
+			success: function(msg){
+				lunch=JSON.parse(msg);
+			}
+		});
+		return lunch;
 	}
 	return Api;
 });
