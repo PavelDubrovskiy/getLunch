@@ -101,20 +101,22 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		map.createMark([55.756, 37.638], 'card.html', 'Цурцум Кафе');
 		*/
 		var itemList={};
-		if(app.latitude!=0 && app.longitude!=0){
-			var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
-			map.geolocation(values);
-			if(app.firstEnter==true){
-				lunchList=api.getLunchByCoords(values);
-				if(typeof lunchList !== 'undefined'){
-					var valuesItem={lunchList:lunchList,map:map};
-					view.attachLunches(valuesItem);
-					$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
-					app.firstEnter=false;
+		
+		setTimeout( function(){
+			if(app.latitude!=0 && app.longitude!=0){
+				var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
+				map.geolocation(values);
+				if(app.firstEnter==true){
+					lunchList=api.getLunchByCoords(values);
+					if(typeof lunchList !== 'undefined'){
+						var valuesItem={lunchList:lunchList,map:map};
+						view.attachLunches(valuesItem);
+						$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
+						app.firstEnter=false;
+					}
 				}
 			}
-			
-		}
+		}, 400);
 		
 		window.clearInterval(app.interval);
 		window.setInterval(function(){

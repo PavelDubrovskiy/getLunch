@@ -1,7 +1,7 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="left">
-			<a href="#" class="back link">
+			<a href="#" class="back link f_cancel">
 				Отменить
 			</a>
 		</div>
@@ -18,38 +18,73 @@
 <div class="pages navbar-through">
 	<div data-page="filter" class="page">
 			
-		<div class="page-content">				
-				<form id="filterForm" class="list-block store-data m_gray">
+		<div class="page-content">
+		
+			<form id="filterForm" class="store-data">
+				<div class="content-block-title">Время ланча</div>
+				<div class="list-block m_gray">
+					<ul>
+						<li>
+							<label class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">Начало</div>
+									<div class="item-input">
+										<input name="timeStart" type="time">
+									</div>									
+								</div>
+							</label>
+						</li>
+						<li>
+							<label class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">Конец</div>
+									<div class="item-input">
+										<input name="timeEnd" type="time">
+									</div>									
+								</div>
+							</label>
+						</li>
+					</ul>
+				</div>
+						
+				<div class="content-block-title">Цена</div>
+				<div class="list-block m_gray">
+					<ul>
+						<li>
+							<label class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">От</div>
+									<div class="item-input b_price">
+										<input name="priceStart" min="1" max="999" type="number">
+									</div>
+								</div>
+							</label>
+						</li>
+						<li>
+							<label class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">До</div>
+									<div class="item-input b_price">
+										<input name="priceEnd" min="1" max="999" type="number">
+									</div>
+								</div>
+							</label>
+						</li>						
+					</ul>
+				</div>
+						
+				<div class="content-block-title">Другие параметры</div>
+				<div class="list-block m_gray">
 					<ul>
 						<li>
 							<div class="item-content">
 								<div class="item-inner">
-									<div class="item-title">Начало</div>
-									<div class="item-after">
-										<div class="item-input">
-											<input name="timeStart" type="time" style="background: #ccc;">
-										</div>
-									</div>										
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="item-content">
-								<div class="item-inner">
-									<div class="item-title">Конец</div>
-									<div class="item-after">
-										<div class="item-input">
-											<input name="timeEnd" type="time" style="background: #ccc;">
-										</div>
-									</div>										
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="item-content">
-								<div class="item-inner">
-									<div class="item-input">
-										<input name="email" type="text" placeholder="Адрес электронной почты" class="st_required">
+									<div class="item-title label">Вегетарианская кухня</div>
+									<div class="item-input b_switch">
+										<label class="label-switch">
+											<input type="checkbox">
+											<div class="checkbox"></div>
+										</label>
 									</div>
 								</div>
 							</div>
@@ -57,16 +92,45 @@
 						<li>
 							<div class="item-content">
 								<div class="item-inner">
-									<div class="item-input">
-										<input name="password" type="password" placeholder="Пароль" class="st_required">
+									<div class="item-title label">Wi-Fi</div>
+									<div class="item-input b_switch">
+										<label class="label-switch">
+											<input type="checkbox">
+											<div class="checkbox"></div>
+										</label>
 									</div>
 								</div>
 							</div>
 						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">Парковка</div>
+									<div class="item-input b_switch">
+										<label class="label-switch">
+											<input type="checkbox">
+											<div class="checkbox"></div>
+										</label>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">Терраса</div>
+									<div class="item-input b_switch">
+										<label class="label-switch">
+											<input type="checkbox">
+											<div class="checkbox"></div>
+										</label>
+									</div>
+								</div>
+							</div>
+						</li>						
 					</ul>
-				</form>
-				
-			</div>
+				</div>
+			</form>
 
 		</div>
 	

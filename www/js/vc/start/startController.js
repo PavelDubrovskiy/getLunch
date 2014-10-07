@@ -1,4 +1,4 @@
-define(["app", "js/vc/start/startView", "js/m/user"], function(app, view, User) {
+define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], function(app, view, User, fb) {
 	var user = new User();
 	var $ = Framework7.$;
 	var bindings = [
@@ -38,7 +38,7 @@ define(["app", "js/vc/start/startView", "js/m/user"], function(app, view, User) 
 	}
 	
 	function loginFacebook (){
-		app.f7.alert("Логинимся через Фейсбук!");
+		fb.LoginFB()
 	}
 	
 	function loginVK (){

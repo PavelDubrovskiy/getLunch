@@ -1,7 +1,7 @@
 define(["app","js/vc/registration/registrationView", "js/m/user", "js/utilities/forms"], function(app, view, User, forms) {
 	var user = new User();
 	var formFilled = false;
-	
+	var $ = Framework7.$;
 	var bindings = [
 		{
 			element: 'input',
@@ -44,13 +44,24 @@ define(["app","js/vc/registration/registrationView", "js/m/user", "js/utilities/
 			
 			user.setValues( formInput );
 			validateResult = user.validate(["name", "email", "password"]);
-			
+			formInput.uploadName=$('.b_upic_input').val();
 			if( validateResult.isValid === true ){
 				forms.hideMessage();
-				app.f7.alert("Регистрация прошла бы успешно, если бы здесь был обработчик формы, сораняющий ваши данные хоть куда-нибудь!");
-			
-				ymaps.ready(function () {
-					app.mainView.loadPage('main.html');
+				$.ajax({
+					type: "POST",
+					async: false,
+					url: app.config.source+"/api/registration/",
+					data: formInput,
+					success: function(msg){
+						if(msg!='error'){
+							user.setValues(JSON.parse(msg));
+							ymaps.ready(function () {
+								app.mainView.loadPage('main.html');
+							});
+						}else{
+							forms.showMessage('Неправильно введены логин или пароль', "error");
+						}
+					}
 				});
 			}else{
 				forms.showMessage(validateResult.message);

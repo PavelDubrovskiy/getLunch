@@ -77,10 +77,12 @@ define(function() {
 				imageType = /image.*/,
 				img = document.createElement("img"),
 				reader = new FileReader(),
-		
+				src='',
+				
 				$upic = $(".b_upic_face"),
 				$tx = $upic.find(".b_upic_tx"),
-				$preloader = $upic.find(".preloader")
+				$preloader = $upic.find(".preloader"),
+				$upic_return= $(".b_upic_return")
 		;
 		
 		if ( !file.type.match(imageType) ) {
@@ -102,6 +104,7 @@ define(function() {
 					});
 					$tx.text("Изменить фото");
 					$preloader.hide();
+					$upic_return.val(e.target.result);					
 				};
 			})( img );
 			reader.readAsDataURL( file );

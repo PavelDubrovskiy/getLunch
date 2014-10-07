@@ -35,6 +35,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			card:lunch
 		});
 		map = new Map({ mapId: 'cardMap', initZoom: 17, offset: {top: 13, left: 0} });
+		
 		initMap({latitude:lunch.latitude,longitude:lunch.longitude});
 		map.setUserPosition([app.latitude, app.longitude], true);
 		

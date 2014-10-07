@@ -1,5 +1,5 @@
 ﻿define(function() {
-	function Map(values) {
+	function Menu(values) {
 		values = values || {};
 		
 		// Шаблон балуна
