@@ -50,6 +50,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 		localStorage.removeItem('plugin_fb_token');
 		localStorage.removeItem('plugin_fb_exp');
 		localStorage.removeItem('plugin_fb_perms');
+		alert('exit');
 		document.location.href='index.html';
 	}
 	

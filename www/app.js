@@ -79,6 +79,7 @@ Function.prototype.bind = function (scope) {
 		return fn.apply(scope, arguments);
 	};
 };
+
 var url_parser={
 	get_args: function (s) {
 	    var tmp=new Array();

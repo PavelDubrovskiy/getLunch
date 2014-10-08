@@ -1,7 +1,8 @@
 define(["app","js/vc/filter/filterView"], function(app, view) {
 	var $ = Framework7.$;
-	var $days = $('.b_menu_pagination .b_btn');
 	var currentDayIndex = getCurrentDay();
+	var daysSlider = null;
+	var $days = null;
 	var bindings = [
 	];
 
@@ -15,10 +16,13 @@ define(["app","js/vc/filter/filterView"], function(app, view) {
 	
 	function initMenu() {
 		var imagesSlider = [];
+		
+		$days = $('.b_menu_pagination .b_btn');
+		
 		// Создаём слайдер дней и устанавливаем на текущий день
-		var daysSlider = app.f7.slider('.p_menu_days', {
+		daysSlider = app.f7.slider('.p_menu_days', {
 			initialSlide: currentDayIndex,
-			onSlideChangeEnd: setActiveDay
+			onSlideChangeStart: setActiveDay
 		});
 		setActiveDay({activeSlideIndex: currentDayIndex});
 	
@@ -29,6 +33,9 @@ define(["app","js/vc/filter/filterView"], function(app, view) {
 				paginationHide: false
 			}));
 		}
+		
+		// Вешаем клик на дни недели
+		$days.on("click", daysClickHandler);
 	}
 	
 	
@@ -64,6 +71,11 @@ define(["app","js/vc/filter/filterView"], function(app, view) {
 	// Устанавливаем активный день
 	function setActiveDay(slider) {
 		$days.removeClass("st_active").eq(slider.activeSlideIndex).addClass("st_active");
+	}
+	
+	// Переход на нужный день по тапу
+	function daysClickHandler() {
+		daysSlider.slideTo( $(this).index(), 400 );
 	}
 	
 	return {
