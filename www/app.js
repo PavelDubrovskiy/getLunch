@@ -39,10 +39,11 @@ define('app', ['js/router'], function(Router) {
 	        }
 	    },
 	    auth_event_url: function (event) {
-	    	alert('auth_event_url done');
 	        var tmp=(event.url).split("#");
 	        if (tmp[0]=='http://getlunch.ru/api/fbauth/' || tmp[0]=='https://getlunch.ru/api/fbauth/') {
-	            LoginFB.wwwref.close();
+	            app.LoginFB.wwwref.close();
+	            alert('if done');
+	            alert(tmp['access_token']);
 	            var tmp=url_parser.get_args(tmp[1]);
 	            window.localStorage.setItem("plugin_fb_token", tmp['access_token']);
 	            window.localStorage.setItem("plugin_fb_exp", tmp['expires_in']);

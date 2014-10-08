@@ -1474,6 +1474,22 @@ a{
 	line-height: 36px;
 }
 
+.b_menu_pagination .b_btn.st_active{
+	background: #ffeab7;
+	color: #000;
+	position: relative;
+}
+
+.b_menu_pagination .b_btn.st_active:after{
+	content: '';
+	position: absolute;
+	top: 100%; left: 0;
+	width: 100%; height: 2px;
+	background: #ffd162;
+	border-radius: 0 0 2px 2px;
+	margin: 1px 0 0;
+}
+
 .b_menu_cnt{
 	padding-top: 44px;
 }

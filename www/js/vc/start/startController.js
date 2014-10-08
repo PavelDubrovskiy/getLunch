@@ -47,6 +47,9 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	
 	function exitToStart(){
 		localStorage.removeItem('User');
+		localStorage.removeItem('plugin_fb_token');
+		localStorage.removeItem('plugin_fb_exp');
+		localStorage.removeItem('plugin_fb_perms');
 		document.location.href='index.html';
 	}
 	
