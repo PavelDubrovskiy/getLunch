@@ -1199,6 +1199,9 @@ a{
 	border-radius: 14px;
 	margin: 0 2px 7px 0;
 	padding: 0 15px 0 9px;
+	
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 
 .b_features_item .icon{
