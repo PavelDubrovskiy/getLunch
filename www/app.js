@@ -27,6 +27,29 @@ define('app', ['js/router'], function(Router) {
 	var config={
 		source:'http://getlunch.ru'
 	};
+	var LoginFB = {
+	    wwwref: false,
+	    plugin_perms: "publish_actions,email,user_friends,offline_access",
+	    
+	    auth: function (force) {
+	        if (!window.localStorage.getItem("plugin_fb_token") || force || window.localStorage.getItem("plugin_fb_perms")!=LoginFB.plugin_perms) {
+	            var authURL="https://www.facebook.com/dialog/oauth?client_id=281560105368956&scope="+this.plugin_perms+"&redirect_uri=http://getlunch.ru/api/fbauth/&response_type=token";
+	            this.wwwref = window.open(encodeURI(authURL), '_blank', 'location=no');
+	            this.wwwref.addEventListener('loadstop', this.auth_event_url);
+	        }
+	    },
+	    auth_event_url: function (event) {
+	        var tmp=(event.url).split("#");
+	        if (tmp[0]=='https://getlunch.ru/api/fbauth/' || tmp[0]=='https://getlunch.ru/api/fbauth/') {
+	            LoginFB.wwwref.close();
+	            var tmp=url_parser.get_args(tmp[1]);
+	            window.localStorage.setItem("plugin_fb_token", tmp['access_token']);
+	            window.localStorage.setItem("plugin_fb_exp", tmp['expires_in']);
+	            window.localStorage.setItem("plugin_fb_perms", LoginFB.plugin_perms);
+	        }
+	
+	    }
+	};
 	return {
 		f7: f7,
 		mainView: mainView,
@@ -42,7 +65,8 @@ define('app', ['js/router'], function(Router) {
 		},
 		disablePanel: function() {
 			f7.allowPanelOpen = false;
-		}
+		},
+		LoginFB:LoginFB
 	};
 });
 
@@ -53,21 +77,23 @@ Function.prototype.bind = function (scope) {
 		return fn.apply(scope, arguments);
 	};
 };
-
- // Load the SDK asynchronously
-  window.fbAsyncInit = function() {
-	  FB.init({
-	    appId      : '281560105368956',
-	    cookie     : true,  // enable cookies to allow the server to access 
-	                        // the session
-	    xfbml      : true,  // parse social plugins on this page
-	    version    : 'v2.1' // use version 2.1
-	  });
-  };
- (function(d, s, id) {
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) return;
-   js = d.createElement(s); js.id = id;
-   js.src = "//connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
+var url_parser={
+	get_args: function (s) {
+	    var tmp=new Array();
+	    s=(s.toString()).split('&');
+	    for (var i in s) {
+	        i=s[i].split("=");
+	        tmp[(i[0])]=i[1];
+	    }
+	    return tmp;
+	},
+	get_args_cookie: function (s) {
+	    var tmp=new Array();
+	    s=(s.toString()).split('; ');
+	    for (var i in s) {
+	        i=s[i].split("=");
+	        tmp[(i[0])]=i[1];
+	    }
+	    return tmp;		
+	}
+};

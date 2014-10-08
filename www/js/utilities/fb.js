@@ -10,7 +10,7 @@ define( function() {
 	    });
 	}
 	function LoginFB(){
-		FB.getLoginStatus(function(response) {
+		/*FB.getLoginStatus(function(response) {
 	    	if(response.status=='connected'){
 				LoginFBResponse(response);
 			}else{
@@ -20,7 +20,7 @@ define( function() {
 		    		}
 	    		}, {scope: 'publish_actions,email,user_friends'});
 	    	}
-		});
+		});*/
 	}
 	function LoginFBResponse(response){
 		$.ajax({
