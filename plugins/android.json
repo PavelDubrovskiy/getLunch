@@ -78,7 +78,7 @@
             "PACKAGE_NAME": "com.example.hello"
         },
         "org.apache.cordova.inappbrowser": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "getLunch"
         }
     },
     "dependent_plugins": {}

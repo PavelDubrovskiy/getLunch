@@ -245,9 +245,6 @@
         <Compile Include="Plugins\org.apache.cordova.contacts\ContactPickerTask.cs" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Plugins\org.apache.cordova.inappbrowser\InAppBrowser.cs" />
-    </ItemGroup>
-    <ItemGroup>
         <Content Include="www\plugins\org.apache.cordova.device-orientation\www\CompassError.js" />
     </ItemGroup>
     <ItemGroup>
@@ -300,5 +297,8 @@
     </ItemGroup>
     <ItemGroup>
         <Content Include="www\cordova_plugins.js" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Plugins\org.apache.cordova.inappbrowser\InAppBrowser.cs" />
     </ItemGroup>
 </Project>
