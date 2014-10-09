@@ -1,4 +1,4 @@
-define(["app","js/vc/filter/filterView"], function(app, view) {
+define(["app","js/vc/menu/menuView"], function(app, view) {
 	var $ = Framework7.$;
 	var currentDayIndex = getCurrentDay();
 	var daysSlider = null;
@@ -7,11 +7,12 @@ define(["app","js/vc/filter/filterView"], function(app, view) {
 	];
 
 	function init(query) {
-		initMenu();
-		
+		lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
 		view.render({
-			bindings: bindings
+			bindings: bindings,
+			menu:lunch.menu
 		});
+		initMenu();
 	}
 	
 	function initMenu() {

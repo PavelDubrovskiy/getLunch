@@ -28,7 +28,12 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	// Инициализация страницы
 	function init(query) {
 		var values={latitude:app.latitude, longitude:app.longitude, source:app.config.source, id:localStorage.getItem("currentId")};
-		lunch=api.getLunch(values);
+		if(localStorage.getItem('lunch'+localStorage.getItem("currentId"))===null){
+			lunch=api.getLunch(values);
+			localStorage.setItem('lunch'+localStorage.getItem("currentId"),JSON.stringify(lunch));
+		}else{
+			lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
+		}
 		lunch.mainSource=app.config.source;
 		view.render({
 			bindings: bindings,

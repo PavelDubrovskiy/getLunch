@@ -1,7 +1,6 @@
 define(["app", "js/utilities/common"], function( app, utilities ) {
 	var $ = Framework7.$;
 	function render(params) {
-		console.log(params.card);
 		$('.p_card_header').text(params.card.name);
 		var html='',
 			template = $('#lunchCard').html(),

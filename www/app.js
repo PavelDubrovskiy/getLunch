@@ -16,7 +16,11 @@ define('app', ['js/router'], function(Router) {
 	var f7 = new Framework7({
 		modalTitle: ' ',
 		animateNavBackIcon: true,
-		swipePanel: 'left'
+		swipePanel: 'left',
+		pushState: true,
+		
+		sortable: false,
+		swipeBackPageBoxShadow: false
 	});
 	
 	f7.allowPanelOpen = false;
@@ -40,7 +44,9 @@ define('app', ['js/router'], function(Router) {
 	    },
 	    auth_event_url: function (event) {
 	        var tmp=(event.url).split("#");
+	        console.log(tmp);
 	        if (tmp[0]=='http://getlunch.ru/api/fbauth/' || tmp[0]=='https://getlunch.ru/api/fbauth/') {
+	        	alert('if done');
 	            app.LoginFB.wwwref.close();
 	            alert('if done');
 	            alert(tmp['access_token']);

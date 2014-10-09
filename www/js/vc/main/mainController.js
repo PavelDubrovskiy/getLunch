@@ -107,7 +107,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
 				map.geolocation(values);
 				if(app.firstEnter==true){
-					lunchList=api.getLunchByCoords(values);
+					var lunchList=api.getLunchByCoords(values);
 					if(typeof lunchList !== 'undefined'){
 						var valuesItem={lunchList:lunchList,map:map};
 						view.attachLunches(valuesItem);
@@ -124,7 +124,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
 				map.geolocation(values);
 				if(app.firstEnter==true){
-					lunchList=api.getLunchByCoords(values);
+					var lunchList=api.getLunchByCoords(values);
 					if(typeof lunchList !== 'undefined'){
 						var valuesItem={lunchList:lunchList,map:map};
 						view.attachLunches(valuesItem);

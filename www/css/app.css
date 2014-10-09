@@ -230,10 +230,18 @@ a{
 	color: #000;
 }
 
-.list-block .swipeout-actions-left a, .list-block .swipeout-actions-right a,
-.list-block .swipeout-actions-left a:after, .list-block .swipeout-actions-right a:after{
+.list-block .swipeout-actions-left a,
+.list-block .swipeout-actions-right a,
+.list-block .swipeout-actions-left a:after,
+.list-block .swipeout-actions-right a:after{
 	border-bottom: 1px solid #e1e7cd;
 }
+	.list-block .swipeout:last-child .swipeout-actions-left a,
+	.list-block .swipeout:last-child .swipeout-actions-right a,
+	.list-block .swipeout:last-child .swipeout-actions-left a:after,
+	.list-block .swipeout:last-child .swipeout-actions-right a:after{
+		border-bottom: 0;
+	}
 
 .list-block .item-title.label{
 	width: auto;
@@ -498,6 +506,7 @@ a{
 
 /* $b_upic */
 .b_upic{
+	display: block;
 	height: 28.5%;
 	position: relative;
 	overflow: hidden;
@@ -550,10 +559,11 @@ a{
 .b_upic_tx{
 	position: absolute;
 	display: block;
-	width: 100%;
+	width: 200%;
 	left: 0; top: 100%;
 	text-align: center;
 	padding: 11px 0 0;
+	margin: 0 -50%;
 	line-height: 17px;
 }
 
@@ -606,6 +616,11 @@ a{
 	top: 0; left: 0;
 	
 	overflow: hidden;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 	.b_map.m_small{
 		height: 32.5%;
@@ -860,6 +875,46 @@ a{
 	display: block;
 	font-weight: 300;
 	margin: -2px 0 0;
+}
+
+.b_cards_address{
+	color: #666;
+	font-size: 14px;
+	line-height: 16.5px;
+	padding: 1px 0 0;
+	height: 33px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+	
+.b_cards_date{  
+	text-align: center;
+	color: #333;
+	font-size: 22px;
+	line-height: 16px;
+	font-weight: 300;
+	
+	width: 25px;
+	margin: 17px 0 0;
+	float: right;
+}
+
+.b_cards_date span{
+	display: block;
+	font-weight: 400;
+	font-size: 11px;
+}
+
+.b_address_list .b_cards_item.st_favourite .icon-star-small{
+	top: 15px;
+}
+
+.b_address_list .b_cards_item_inner{
+	height: 58px;
 }
 
 /* $b_sidebar */
@@ -1619,17 +1674,45 @@ a{
 }
 
 /* $p_searchplace */
-.navbar .p_searchplace_header{
+.navbar .header-wide{
 	overflow: visible;
 	z-index: -1;
 }
 
-.p_searchplace_header span{
-	margin: 0 -30px;
+.header-wide span{
+	margin: 0 -25px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	display: block;
+}
+
+/* $p_profile */
+.p_profile_upic{
+	height: 29.5%;
+	color: #000;
+}
+
+.p_profile_upic_large{
+	content: '';
+	z-index: 1;
+	-webkit-filter: blur(10px);
+	filter: blur(10px);
+	background-position: center center;
+	
+	display: block;
+	position: absolute;
+	top: 0; left: 0;
+	bottom: 0; right: 0;
+	opacity: .3;
+}
+
+.p_profile_upic .b_upic_face{
+	margin-top: -55px;
+}
+
+.p_profile_form .list-block:first-child{
+	margin-top: 25px;
 }
 
 /* ------ */
@@ -1699,6 +1782,10 @@ a{
 
 .icon-terrace{
 	font-size: 16px;
+}
+
+.icon-options{
+	font-size: 24px;
 }
 
 /*
