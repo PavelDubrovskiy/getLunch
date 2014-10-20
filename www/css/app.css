@@ -2018,7 +2018,15 @@ a{
 
 .b_index-nav_panel{
 	position: absolute;
-	top: 0; right: 0;
+	top: 88px; right: 17px;
+	bottom: 0;
+	background: #fff;
+	
+	color: #6c9f00;
+}
+
+.b_index-nav_link{
+	display: block;
 }
 
 /* $FONT DECOR */

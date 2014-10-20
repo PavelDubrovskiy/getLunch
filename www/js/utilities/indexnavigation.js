@@ -17,7 +17,7 @@
 			alphabet += '<span class="b_index-nav_link">' + $(this).text() + '</span>';
 		});
 		
-		console.log(this.container);
+		panel.append(alphabet);
 		
 		//this.sections.on('touchmove', this.onTouchMove.bind(this));
 	}
