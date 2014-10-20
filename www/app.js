@@ -47,7 +47,7 @@ define('app', ['js/router'], function(Router) {
 	        if(tmp[0]=='http://getlunch.ru/api/fbauth/?' || tmp[0]=='https://getlunch.ru/api/fbauth/?'){
 	            LoginFB.wwwref.close();
 	            var tmp=url_parser.get_args(tmp[1]);
-	            $.ajax({
+	            f7.$.ajax({
 					type: "POST",
 					async: false,
 					url: config.source+"/api/fbauth/",

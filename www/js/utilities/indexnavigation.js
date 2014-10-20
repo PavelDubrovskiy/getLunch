@@ -8,7 +8,7 @@
 		values = values || {};
 		
 		this.container = $(values['container'] || '.b_index-nav');
-		this.scrollContainer = $(values['scrollContainer'] || '.page-content');
+		this.scrollContainer = this.container.parents(values['scrollContainer'] || '.page-content');
 		this.sections = this.container.find(values['sections'] || '.list-group-title');
 		
 		this.panel = $(document.createElement('div'));
@@ -23,20 +23,16 @@
 		
 		this.panel.append(alphabet);
 		
-		this.panel.on('click', '.b_index-nav_link', this.touchMove.bind(this));
+		this.panel.on('touchmove', this.touchMove.bind(this));
 		this.scrollContainer.on('scroll', this.fixPanelPosition.bind(this));
 	}
 	
 	IndexNavigation.prototype.touchMove = function(e) {
 		e.stopPropagation();
-		var target = e.target;//document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY);
-		//if($(target).hasClass('b_index-nav_link')) {
-			//this.scrollContainer.scrollTop(, 400);
-		//}
-		
-		console.log(this.scrollContainer.scrollTop());
-		
-		this.scrollContainer.scrollTop($('#'+$(target).data('id')).offset().top - this.scrollContainer[0].scrollTop);
+		var target = document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY);
+		if($(target).hasClass('b_index-nav_link')) {
+			this.scrollContainer.scrollTop($('#'+$(target).data('id')).offset().top + this.scrollContainer.scrollTop());
+		}		
 	};
 	
 	IndexNavigation.prototype.fixPanelPosition = function(e) {
