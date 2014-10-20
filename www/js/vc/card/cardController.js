@@ -4,6 +4,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	var map = null;
 	var gallery = null;
 	var interval = null;
+	var lunch = null;
 	var bindings = [
 		// Управление избранным
 		{
@@ -28,25 +29,34 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	// Инициализация страницы
 	function init(query) {
 		var values={latitude:app.latitude, longitude:app.longitude, source:app.config.source, id:localStorage.getItem("currentId")};
+		
 		if(localStorage.getItem('lunch'+localStorage.getItem("currentId"))===null){
 			lunch=api.getLunch(values);
+			
 			localStorage.setItem('lunch'+localStorage.getItem("currentId"),JSON.stringify(lunch));
 		}else{
 			lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
 		}
+		lunch.metres=getDistance();		
 		lunch.mainSource=app.config.source;
+		
 		view.render({
 			bindings: bindings,
 			card:lunch
 		});
+		
 		map = new Map({ mapId: 'cardMap', initZoom: 17, offset: {top: 13, left: 0} });
 		
 		initMap({latitude:lunch.latitude,longitude:lunch.longitude});
-		map.setUserPosition([app.latitude, app.longitude], true);
 		
 		gallery = new Gallery({wrapper: '.b_gallery', items: 'a'});
 		window.clearInterval(app.intervalCompass);
 		app.intervalCompass=window.setInterval(tryCompass, 100);
+	}
+	
+	// Получение расстояния между пользователем и кафе
+	function getDistance() {
+		return Math.round(Math.sqrt(Math.pow(lunch.longitude*Math.cos(app.latitude)-app.longitude*Math.cos(app.latitude),2)+Math.pow(lunch.latitude-app.latitude,2))*10000*11.12);
 	}
 	
 	// Инициализация карты
@@ -55,12 +65,20 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
 		
-		// Создание метки и центрирование карты на ней
-		map.map.setCenter(
-			map.getOffset( // Получаем координаты со сдвигом, заданным при инициализации карты
-				map.createMark([values.latitude, values.longitude], 'card.html').geometry.getCoordinates()
-			)
-		);
+		// Если расстояние от пользователя до кафе меньше 700 метров, показываем карту так, чтобы вместить точку пользователя и точку кафе, иначе показываем только кафе
+		if( lunch.metres < 700 ) {
+			map.createMark([values.latitude, values.longitude], 'card.html');
+			map.setUserPosition([app.latitude, app.longitude]);
+			map.autoBounds();
+		}else{
+			map.map.setCenter(
+				map.getOffset( // Получаем координаты со сдвигом, заданным при инициализации карты
+					map.createMark([values.latitude, values.longitude], 'card.html').geometry.getCoordinates()
+				)
+			);
+			map.setUserPosition([app.latitude, app.longitude]);
+		}
+		
 	}
 			
 	// Функция управления избранным

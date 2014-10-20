@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('icomoon.eot?-abyo8g');
-	src:url('icomoon.eot?#iefix-abyo8g') format('embedded-opentype'),
-		url('icomoon.woff?-abyo8g') format('woff'),
-		url('icomoon.ttf?-abyo8g') format('truetype'),
-		url('icomoon.svg?-abyo8g#icomoon') format('svg');
+	src:url('icomoon.eot?uh6ud1');
+	src:url('icomoon.eot?#iefixuh6ud1') format('embedded-opentype'),
+		url('icomoon.woff?uh6ud1') format('woff'),
+		url('icomoon.ttf?uh6ud1') format('truetype'),
+		url('icomoon.svg?uh6ud1#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -76,9 +76,6 @@
 }
 .icon-sidebar-star:before {
 	content: "\31";
-}
-.icon-message:before {
-	content: "\e600";
 }
 .icon-exit:before {
 	content: "\32";

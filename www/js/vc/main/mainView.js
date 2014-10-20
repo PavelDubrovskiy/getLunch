@@ -10,8 +10,6 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		$(".page-main").on("pageBeforeAnimation", function() {
 			if( checkSearchOpened() === true ) {
 				app.mainView.hideNavbar();
-			}else{
-				app.mainView.showNavbar();
 			}
 		});
 	}

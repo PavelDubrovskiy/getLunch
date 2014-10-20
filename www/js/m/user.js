@@ -10,6 +10,8 @@ define(["js/utilities/validate"], function( validate ) {
 		this.name = values['name'] || '';
 		this.email = values['email'] || '';
 		this.password = values['password'] || '';
+		this.avatar = values['avatar'] || '';
+		this.code = values['code'] || '';
 	}
 
 	User.prototype.setValues = function( formInput ) {

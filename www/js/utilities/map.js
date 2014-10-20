@@ -172,7 +172,7 @@
 	
 	// Автопозиционирование карты для показа всех добавленных точек
 	Map.prototype.autoBounds = function() {
-		this.map.setBounds( this.marks.getBounds(), {zoomMargin: [48, 21, 8, 21]});
+		this.map.setBounds( this.map.geoObjects.getBounds(), {zoomMargin: [48, 21, 8, 21]});
 	};
 	
 	// Геолокация

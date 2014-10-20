@@ -6,7 +6,7 @@
 			</a>
 		</div>
 		<div class="right">
-			<a href="#" class="link f_update">
+			<a href="#" class="back link">
 				Сохранить
 			</a>
 		</div>
@@ -14,17 +14,17 @@
 </div>
 <div class="pages navbar-through">
 	<div data-page="editprofile" class="page">
-		<div class="page-content" id="editprofilePage">
-		</div>
-		<script id="editprofileCard" type="text/template">
+			
+		<div class="page-content">
+		
 			<form id="profileForm" class="store-data p_profile_form">
 				<div class="list-block">
 					<ul>
 						<li class="b_upic">
 							<input class="b_upic_input" type="file">
-							<div class="b_upic_face" style="background-image: url({{#if avatar}}{{avatar}}{{else}}i/svg/face-big.svg{{/if}});background-size:cover;">
+							<div class="b_upic_face" style="background-image: url(i/svg/face-big.svg);">
 								<span class="preloader"></span>
-								<span class="b_upic_tx"><span>{{#if avatar}}Изменить{{else}}Добавить{{/if}}</span></span>
+								<span class="b_upic_tx"><span>Добавить</span></span>
 							</div>
 						</li>
 						<li>
@@ -32,7 +32,7 @@
 								<div class="item-media"><i class="icon icon-face"></i></div>
 								<div class="item-inner">
 									<div class="item-input">
-										<input name="name" type="text" placeholder="Ник" value="{{name}}">
+										<input name="name" type="text" placeholder="Ник" value="advtouch">
 									</div>
 								</div>
 							</div>
@@ -42,13 +42,14 @@
 								<div class="item-media"><i class="icon icon-mail"></i></div>
 								<div class="item-inner">
 									<div class="item-input">
-										<input name="email" type="text" placeholder="Адрес почты" value="{{email}}" disabled>
+										<input name="email" type="text" placeholder="Адрес почты" value="adv@one-touch.ru">
 									</div>
 								</div>
 							</div>
 						</li>
 					</ul>
 				</div>
+						
 				<div class="content-block-title">Авторизация в соцсетях</div>
 				<div class="list-block">
 					<ul>
@@ -76,6 +77,7 @@
 						</li>
 					</ul>
 				</div>
+
 				<div class="list-block">
 					<ul>
 						<li>
@@ -89,7 +91,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#" class="item-link no-arrow item-link-exit">
+							<a href="#" class="item-link no-arrow">
 								<div class="item-content">
 									<div class="item-media"><i class="icon icon-exit"></i></div>
 									<div class="item-inner">
@@ -100,8 +102,9 @@
 						</li>
 					</ul>
 				</div>
-				<input class="b_upic_return" type="hidden" name="upload" value="">
 			</form>
-		</script>
+
+		</div>
+	
 	</div>
 </div>

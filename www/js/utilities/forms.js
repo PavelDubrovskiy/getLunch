@@ -80,7 +80,7 @@ define(function() {
 				src='',
 				
 				$upic = $(".b_upic_face"),
-				$tx = $upic.find(".b_upic_tx"),
+				$tx = $upic.find(".b_upic_tx span"),
 				$preloader = $upic.find(".preloader"),
 				$upic_return= $(".b_upic_return")
 		;
@@ -102,7 +102,7 @@ define(function() {
 						backgroundImage: "url(" + e.target.result + ")",
 						backgroundSize: "cover"
 					});
-					$tx.text("Изменить фото");
+					$tx.text("Сменить");
 					$preloader.hide();
 					$upic_return.val(e.target.result);					
 				};

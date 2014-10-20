@@ -1,0 +1,145 @@
+commit 0a0090596e83962f05723849af8cc2fd17cc7ebf
+Author: getlunch.ru <getlup@dedi797.your-server.de>
+Date:   Thu Oct 9 15:56:44 2014 +0200
+
+    added menu
+
+commit 7d11687e2271eeb708b27487aa67b9e4ead9befe
+Author: getlunch.ru <getlup@dedi797.your-server.de>
+Date:   Wed Oct 8 16:43:54 2014 +0200
+
+    Some edit
+
+commit 5b2e7319fc5969d607c43b3a04bcc0c63e633f3f
+Author: getlunch.ru <getlup@dedi797.your-server.de>
+Date:   Wed Oct 8 16:38:51 2014 +0200
+
+    added acceleration
+
+commit bab97b4f35e3b2b601dd157ee9ce424546ccb7e5
+Author: getlunch.ru <getlup@dedi797.your-server.de>
+Date:   Wed Oct 8 14:36:22 2014 +0200
+
+    remove hardware
+
+commit 59efbb1a57e2386bc0e912782038ab10e5715d55
+Author: getlunch.ru <getlup@dedi797.your-server.de>
+Date:   Wed Oct 8 13:58:55 2014 +0200
+
+    Changed version
+
+commit b49d4f4073fa1add8a0fd983c43f93cc68f384d6
+Author: getlunch.ru <getlup@dedi797.your-server.de>
+Date:   Wed Oct 8 13:38:39 2014 +0200
+
+    Added FB oauth
+
+commit 440b5ba72943181f53d3d38b8dffaa72eb81c321
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Tue Oct 7 16:13:13 2014 +0200
+
+    registration completed, FB added, Menu added
+
+commit 7e4ac3eb2ba2a65c7baede914dd02b0805f1817d
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Mon Oct 6 11:32:19 2014 +0200
+
+    ndroid:hardwareAccelerated="true"
+
+commit 1cbd54c809fefe2c69e4dacf1ac840732d756db9
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Mon Oct 6 10:04:08 2014 +0200
+
+    android:hardwareAccelerated="false"
+
+commit 88e8606ff8761453ff7a1ebfb1a5b670fc21013f
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Fri Oct 3 15:16:04 2014 +0200
+
+    Added card.html
+
+commit a9b9e889c4aa5b083956c9ca8d01eeb0ad70c1b3
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Thu Oct 2 10:14:34 2014 +0200
+
+    Lunch list added
+
+commit 49cf2564b3c07c79140a85107783884cba053ed4
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Thu Oct 2 10:13:39 2014 +0200
+
+    Lunch List added
+
+commit 975797d4563d0f362daa17bec41bca13390324fa
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Tue Sep 30 16:12:54 2014 +0200
+
+    Added login and exit
+
+commit 3882cefb16320b624e4c9d7fbe34ab4e4de37f13
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Tue Sep 30 12:14:47 2014 +0200
+
+    Commit with new files
+
+commit a14936fb4f08979737a9c5e033ccbbed03bd55f6
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Tue Sep 30 12:10:43 2014 +0200
+
+    First commit with design
+
+commit cdf527134b20e2f2ad3b85edd4f3e24ec6e1e5a8
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Mon Sep 29 09:56:51 2014 +0200
+
+    Try to commit 2
+
+commit 28765fc34fed8aa6d4f7db8fb7ebfb28c7fcbef0
+Author: one-touch.ru <onetouch@dedi3142.your-server.de>
+Date:   Mon Sep 29 09:51:18 2014 +0200
+
+    Try to commit from server
+
+commit 6060c81d6b5a2e3a89c5fb4287b72aa5fcd9c23b
+Author: PavelDubrovskiy <freecrus@gmail.com>
+Date:   Mon Sep 29 11:28:48 2014 +0400
+
+    Third Commit
+    
+    Nesting
+
+commit fc61ee11cd5ae8a57edb6e8dc6c4337d3f98337c
+Author: PavelDubrovskiy <freecrus@gmail.com>
+Date:   Mon Sep 29 11:27:12 2014 +0400
+
+    Revert "Second Commit"
+    
+    This reverts commit 3002844a4f11b179e6fce6e93beb6fc169dab5a1.
+
+commit 3002844a4f11b179e6fce6e93beb6fc169dab5a1
+Author: PavelDubrovskiy <freecrus@gmail.com>
+Date:   Mon Sep 29 11:02:08 2014 +0400
+
+    Second Commit
+
+commit cc08f5991fb047dd0264230d076d57d8e14c8a8b
+Author: PavelDubrovskiy <freecrus@gmail.com>
+Date:   Mon Jul 21 16:12:36 2014 +0400
+
+    First Commit
+    
+    Compass
+
+commit aa2e106d8ab78fce8e3d5152c6e3994aaad359ff
+Author: PavelDubrovskiy <freecrus@gmail.com>
+Date:   Mon Jul 21 16:06:31 2014 +0400
+
+    Revert "Initial commit"
+    
+    This reverts commit 997628f4a95de4c67848c1679e86069157deee8d.
+
+commit 997628f4a95de4c67848c1679e86069157deee8d
+Author: PavelDubrovskiy <freecrus@gmail.com>
+Date:   Mon Jul 21 11:37:00 2014 +0400
+
+    Initial commit

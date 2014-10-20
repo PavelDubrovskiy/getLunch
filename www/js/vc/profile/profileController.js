@@ -1,4 +1,6 @@
-define(["app","js/vc/profile/profileView"], function(app, view) {
+define(["app","js/vc/profile/profileView","js/m/user"], function(app, view, User) {
+	var $ = Framework7.$;
+	var user = new User();
 	var bindings = [
 		// Управление избранным
 		{
@@ -9,9 +11,25 @@ define(["app","js/vc/profile/profileView"], function(app, view) {
 	];
 
 	function init(query) {
-		view.render({
-			bindings: bindings
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: app.config.source+"/api/getCheckins/",
+			data: 'code='+user.code,
+			success: function(msg){
+				if(msg!='error'){
+					checkins=JSON.parse(msg);
+				}else{
+					checkins='';
+				}
+			}
 		});
+		view.render({
+			bindings: bindings,
+			user:user,
+			checkins:checkins
+		});
+		$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
 	}
 	
 	// Функция управления избранным
