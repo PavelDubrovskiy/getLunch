@@ -2,18 +2,19 @@
 	var $ = Framework7.$;
 	
 	function IndexNavigation(values) {
+		var panel = $(document.createElement('div'));
+		var alphabet = '';
+		
 		values = values || {};
 		
 		this.container = $(values['container'] || '.b_index-nav');
 		this.sections = this.container.find(values['sections'] || '.list-group-title');
 		
-		var panel = $(document.createElement('div'));
 		panel.addClass('b_index-nav_panel');
 		this.container.append(panel);
 		
 		this.sections.each(function() {
-			console.log(panel);
-			panel.append($(this).text());
+			alphabet += '<span class="b_index-nav_link">' + $(this).text() + '</span>';
 		});
 		
 		console.log(this.container);
