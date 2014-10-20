@@ -12,6 +12,7 @@ define(["js/utilities/common"], function( utilities ) {
 				break;
 		}
 	}
+	
 	return {
 		render: render
 	};

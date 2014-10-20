@@ -45,17 +45,14 @@ define('app', ['js/router'], function(Router) {
 	    auth_event_url: function (event) {
 	        var tmp=(event.url).split("#");
 	        console.log(tmp);
-	        if (tmp[0]=='http://getlunch.ru/api/fbauth/' || tmp[0]=='https://getlunch.ru/api/fbauth/') {
-	        	alert('if done');
+	        if(tmp[0]=='http://getlunch.ru/api/fbauth/?' || tmp[0]=='https://getlunch.ru/api/fbauth/?'){
 	            app.LoginFB.wwwref.close();
-	            alert('if done');
-	            alert(tmp['access_token']);
 	            var tmp=url_parser.get_args(tmp[1]);
-	            window.localStorage.setItem("plugin_fb_token", tmp['access_token']);
-	            window.localStorage.setItem("plugin_fb_exp", tmp['expires_in']);
-	            window.localStorage.setItem("plugin_fb_perms", LoginFB.plugin_perms);
+	            console.log(tmp);
+	            //window.localStorage.setItem("plugin_fb_token", tmp['access_token']);
+	            //window.localStorage.setItem("plugin_fb_exp", tmp['expires_in']);
+	            //window.localStorage.setItem("plugin_fb_perms", LoginFB.plugin_perms);
 	        }
-	
 	    }
 	};
 	return {
