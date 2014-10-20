@@ -4,6 +4,7 @@
 	function IndexNavigation(values) {
 		var panel = $(document.createElement('div'));
 		var alphabet = '';
+		var i = 0;
 		
 		values = values || {};
 		
@@ -13,9 +14,10 @@
 		panel.addClass('b_index-nav_panel');
 		this.container.append(panel);
 		
-		this.sections.each(function() {
-			alphabet += '<span class="b_index-nav_link">' + $(this).text() + '</span>';
-		});
+		for(i = 0; i < this.sections.length; i++) {
+			$(this.sections[i]).attr('id', 'indexNavSection_' + i);
+			alphabet += '<span class="b_index-nav_link" data-id="indexNavSection_' + i + '">' + $(this.sections[i]).text() + '</span>';
+		}
 		
 		panel.append(alphabet);
 		

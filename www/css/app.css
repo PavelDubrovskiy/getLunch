@@ -2018,16 +2018,32 @@ a{
 
 .b_index-nav_panel{
 	position: absolute;
-	top: 88px; right: 17px;
-	bottom: 0;
-	background: #fff;
+	top: 0; right: 0;
 	
+	width: 15px;
+	font-size: 11.5px; line-height: 14px;
+	font-weight: 600;
+	text-align: center;
+	background: #fff;	
 	color: #6c9f00;
+}
+
+.b_invite_contacts .b_index-nav_panel{
+	padding-top: 60px;
+	padding-bottom: 10px;
 }
 
 .b_index-nav_link{
 	display: block;
 }
+	.b_index-nav_link:after{
+		content: '•';
+		display: block;
+		font-size: 15px;
+	}
+	.b_index-nav_link:last-child:after{
+		display: none;
+	}
 
 /* $FONT DECOR */
 /* $f = font */
