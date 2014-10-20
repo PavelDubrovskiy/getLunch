@@ -19,7 +19,7 @@ define(["app","js/vc/invite_social/invite_socialView", "js/utilities/indexnaviga
 
 	function init(query) {
 		nav = new IndexNavigation({
-			selector: ".b_invite_contacts"
+			sections: '.b_invite_contacts .list-group-title'
 		});
 		
 		view.render({

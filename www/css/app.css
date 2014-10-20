@@ -1962,10 +1962,6 @@ a{
 	margin-top: 0;
 }
 
-.b_invite_contacts .item-inner{
-	padding-right: 27px;
-}
-
 .b_invite_contacts .item-title{
 	-webkit-flex-shrink: 100;
 	-ms-flex: 0 100 auto;
@@ -2014,6 +2010,16 @@ a{
 		-webkit-transform: scale(1);
 		transform: scale(1);
 	}
+	
+/* $b_index-nav */
+.b_index-nav .item-inner{
+	padding-right: 27px;
+}
+
+.b_index-nav_panel{
+	position: absolute;
+	top: 0; right: 0;
+}
 
 /* $FONT DECOR */
 /* $f = font */

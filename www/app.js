@@ -46,7 +46,7 @@ define('app', ['js/router'], function(Router) {
 	        var tmp=(event.url).split("#");
 	        console.log(tmp);
 	        if(tmp[0]=='http://getlunch.ru/api/fbauth/?' || tmp[0]=='https://getlunch.ru/api/fbauth/?'){
-	            app.LoginFB.wwwref.close();
+	            LoginFB.wwwref.close();
 	            var tmp=url_parser.get_args(tmp[1]);
 	            console.log(tmp);
 	            //window.localStorage.setItem("plugin_fb_token", tmp['access_token']);
