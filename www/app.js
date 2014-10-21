@@ -11,8 +11,10 @@ paths: {
 	}
 });*/
 
-define('app', ['js/router'], function(Router) {
+define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	Router.init();
+	var $ = Framework7.$;
+	var user = new User();
 	var f7 = new Framework7({
 		modalTitle: ' ',
 		animateNavBackIcon: true,
@@ -25,7 +27,7 @@ define('app', ['js/router'], function(Router) {
 	
 	f7.allowPanelOpen = false;
 	
-	var $ = Framework7.$;
+	
 	var mainView = f7.addView('.view-main', {
 		dynamicNavbar: true
 	});
@@ -57,7 +59,7 @@ define('app', ['js/router'], function(Router) {
 						if(msg!='error'){
 							user.setValues(JSON.parse(msg));
 							ymaps.ready(function () {
-								app.mainView.loadPage('main.html');
+								mainView.loadPage('main.html');
 							});
 						}else{
 							forms.showMessage('Ошибка аутентификации', "error");
