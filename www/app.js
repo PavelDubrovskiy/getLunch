@@ -52,22 +52,18 @@ define('app', ['js/router'], function(Router) {
 					type: "POST",
 					async: false,
 					url: config.source+"/api/fbauth/",
-					data: {token:tmp['access_token'],provider:'fb'},
+					data: {token:tmp['access_token'],provider:'fb',fb_exp:tmp['expires_in']},
 					success: function(msg){
-						console.log(msg);
-						/*if(msg!='error'){
+						if(msg!='error'){
 							user.setValues(JSON.parse(msg));
 							ymaps.ready(function () {
 								app.mainView.loadPage('main.html');
 							});
 						}else{
-							forms.showMessage('Неправильно введены логин или пароль', "error");
-						}*/
+							forms.showMessage('Ошибка аутентификации', "error");
+						}
 					}
 				});
-	            //window.localStorage.setItem("plugin_fb_token", tmp['access_token']);
-	            //window.localStorage.setItem("plugin_fb_exp", tmp['expires_in']);
-	            //window.localStorage.setItem("plugin_fb_perms", LoginFB.plugin_perms);
 	        }
 	    }
 	};
