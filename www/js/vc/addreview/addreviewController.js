@@ -1,12 +1,18 @@
-define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilities/dynamicarea"], function(app, view, forms, DynamicArea) {
+define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilities/dynamicarea","js/m/user"], function(app, view, forms, DynamicArea,User) {
 	var $ = Framework7.$;
-
+	var user = new User();
+	var lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
 	var bindings = [
 		{
-			element: 'b_review_block textarea',
+			element: '.b_review_block textarea',
 			event: 'focus',
 			handler: forms.resetInput
-		}
+		},
+		{
+			element: '.submitReview',
+			event: 'click',
+			handler: submitReview
+		},
 	];
 	
 	// Инициализация страницы
@@ -21,10 +27,28 @@ define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilit
 		});
 		
 		view.render({
-			bindings: bindings
+			bindings: bindings,
+			lunch:lunch
 		});
 	}
-	
+	function submitReview() {
+		var formInput = app.f7.formToJSON('#reviewForm');
+		formInput.code=user.code;
+		formInput.id=lunch.id;
+		console.log(formInput);
+		if(formInput.message!=''){
+			$.ajax({
+				type: "POST",
+				async: false,
+				url: app.config.source+"/api/addReview/",
+				data: formInput,
+				success: function(msg){
+					forms.showMessage('Рецензия успешно добавлена', 'success');
+					$('.f_cancel').click();
+				}
+			});
+		}
+	}
 	return {
 		init: init
 	};

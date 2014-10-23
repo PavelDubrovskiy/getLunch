@@ -19,6 +19,7 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 		modalTitle: ' ',
 		animateNavBackIcon: true,
 		swipePanel: 'left',
+		swipePanelThreshold: 50,
 		/*pushState: true,*/
 		
 		sortable: false,

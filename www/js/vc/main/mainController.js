@@ -3,6 +3,10 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	var user = new User();
 	var api = new Api();
 	var $ = Framework7.$;
+	var sought=[];
+	if(localStorage.getItem('sought')!==null){
+		sought=localStorage.getItem('sought').split('!__;__!');
+	}
 	var bindings = [	
 		// Функция переустановки значения инпута, чтобы решить баг с курсором всегда в начале поля ввода
 		{
@@ -29,7 +33,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		},
 		{
 			element: '.p_main_search_input',
-			event: 'search',
+			event: 'search change',
 			handler: searchHandler
 		},
 		
@@ -45,6 +49,12 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			element: '.app_exit',
 			event: 'click',
 			handler: appExit
+		},
+		{
+			element: '#soughtList',
+			event: 'click',
+			handler: soughtClick,
+			delegateTo: '.item-inner_sought'
 		}
 	];
 	// Разрешаем открывать меню
@@ -119,7 +129,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		}, 400);
 		
 		window.clearInterval(app.interval);
-		window.setInterval(function(){
+		var mainSetMePosInterval=window.setInterval(function(){
 			if(app.latitude!=0 && app.longitude!=0){
 				var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
 				map.geolocation(values);
@@ -151,12 +161,34 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		view.toggleFavouriteState( this );
 	}
 	
+	function soughtClick() {
+		$('.p_main_search_input').val($(this).text());
+		searchHandler();
+	}
 	// Поиск
 	function searchHandler() {
-		app.mainView.loadPage('searchplace.html?q=' + this.value);
-		setTimeout(view.closeSearchClick, 700);
+		if($('.p_main_search_input').val()!=''){
+			var values={source:app.config.source, map:map, address:$('.p_main_search_input').val()};
+			var msg=api.getLunchByAddress(values);
+			if(typeof msg !== 'undefined'){
+				sought.forEach(function(element, index, array){
+					if(element==$('.p_main_search_input').val()){
+						sought.splice(index,1);
+					}
+				});
+				sought.unshift($('.p_main_search_input').val());
+				localStorage.setItem('sought',sought.join('!__;__!'));
+				map.marks.removeAll();				
+				var valuesItem={lunchList:msg.list,map:map};
+				view.attachLunches(valuesItem);
+				$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
+				app.firstEnter=false;
+				map.autoBounds();
+				setTimeout(view.closeSearchClick, 700);
+				
+			}
+		}
 	}
-	
 	// Выход из приложения
 	function appExit() {
 		window.close();

@@ -31,6 +31,9 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 		if(user.id!=''){
 			$('.p_start_buttons').hide();
 			setTimeout( function(){ app.mainView.loadPage('main.html'); }, 1300);
+			/*ymaps.ready( function() {
+				app.mainView.loadPage('main.html');
+			});*/
 		}
 		view.render({
 			bindings: bindings

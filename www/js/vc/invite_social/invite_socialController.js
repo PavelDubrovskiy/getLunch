@@ -1,7 +1,6 @@
-define(["app","js/vc/invite_social/invite_socialView", "js/utilities/indexnavigation"], function(app, view, IndexNavigation) {
+define(["app","js/vc/invite_social/invite_socialView"], function(app, view) {
 	var $ = Framework7.$;
 	var invitePersonTemplate = Template7.compile( $("#t_invite_person").html() );
-	var nav = null;
 	
 	var bindings = [
 		{
@@ -18,8 +17,6 @@ define(["app","js/vc/invite_social/invite_socialView", "js/utilities/indexnaviga
 	];
 
 	function init(query) {
-		nav = new IndexNavigation();
-		
 		view.render({
 			query: query,
 			bindings: bindings
@@ -63,6 +60,7 @@ define(["app","js/vc/invite_social/invite_socialView", "js/utilities/indexnaviga
 	}
 	
 	return {
-		init: init
+		init: init,
+		invitePersonTemplate: invitePersonTemplate
 	};
 });

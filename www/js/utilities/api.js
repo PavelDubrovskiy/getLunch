@@ -17,6 +17,20 @@ define(function() {
 		});
 		return lunchList;
 	}
+	Api.prototype.getLunchByAddress = function(values) {
+		var values = values || {};
+		var lunchList={};
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: values.source+"/api/getLunchByAddress/",
+			data: "q="+values.address+"&app=true",
+			success: function(msg){
+				lunchList=JSON.parse(msg);
+			}
+		});
+		return lunchList;
+	}
 	Api.prototype.getLunch = function(values) {
 		var values = values || {};
 		var lunch={};

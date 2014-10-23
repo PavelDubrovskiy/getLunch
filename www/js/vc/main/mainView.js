@@ -34,6 +34,17 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 	
 	// Показать поиск
 	function openSearch() {
+		var sought=[];
+		if(localStorage.getItem('sought')!==null){
+			sought=localStorage.getItem('sought').split('!__;__!');
+		}
+		var html='',
+			template = $('#soughtItem').html();
+		var soughtTemplate = Template7.compile(template);
+		sought.forEach(function(element, index, array){
+			html+=soughtTemplate(element);
+		});
+		$('#soughtList').html(html);
 		app.mainView.hideNavbar();
 		$(".p_main_search_input").focus();
 	}
@@ -61,6 +72,29 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		$(".popup-overlay").remove();
 	}
 	function attachLunches(values){
+		var html='',
+			template = $('#lunchItem').html(),
+			date=new Date();
+		var fer=date.getHours()+""+date.getMinutes();
+		var compiledTemplate = Template7.compile(template);
+		
+		values.lunchList.forEach(function(element, index, array){
+			values.map.createMark([element.latitude*1,element.longitude*1], 'card.html', element.name);
+			element.metr=Math.round(element.metr);
+			element.inactive='';
+			element.inactiveText='';
+			if(element.lunchfrom>fer){
+				element.inactive='st_inactive';
+				element.inactiveText='Время ланча не началось';
+			}else if(fer>element.lunchto){
+				element.inactive='st_inactive';
+				element.inactiveText='Закончилось время ланча';
+			}
+			html+=compiledTemplate(element);
+		});
+		$('#mainCardsList').html(html);
+	}
+	function attachSearch(values){
 		var html='',
 			template = $('#lunchItem').html(),
 			date=new Date();
