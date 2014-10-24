@@ -1,0 +1,147 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'ios-deploy' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose cache add [ 'ios-deploy', null ]
+5 verbose cache add name=undefined spec="ios-deploy" args=["ios-deploy",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'ios-deploy',
+6 verbose parsed url   path: 'ios-deploy',
+6 verbose parsed url   href: 'ios-deploy' }
+7 silly lockFile 69149c11-ios-deploy ios-deploy
+8 verbose lock ios-deploy /Users/admin/.npm/69149c11-ios-deploy.lock
+9 silly lockFile 69149c11-ios-deploy ios-deploy
+10 silly lockFile 69149c11-ios-deploy ios-deploy
+11 verbose addNamed [ 'ios-deploy', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 9c508a6b-ios-deploy ios-deploy@
+14 verbose lock ios-deploy@ /Users/admin/.npm/9c508a6b-ios-deploy.lock
+15 silly addNameRange { name: 'ios-deploy', range: '*', hasData: false }
+16 verbose request where is /ios-deploy
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id e18aae8dc42d3840
+19 verbose url raw /ios-deploy
+20 verbose url resolving [ 'https://registry.npmjs.org/', './ios-deploy' ]
+21 verbose url resolved https://registry.npmjs.org/ios-deploy
+22 verbose request where is https://registry.npmjs.org/ios-deploy
+23 info trying registry request attempt 1 at 15:05:28
+24 http GET https://registry.npmjs.org/ios-deploy
+25 http 200 https://registry.npmjs.org/ios-deploy
+26 silly registry.get cb [ 200,
+26 silly registry.get   { date: 'Thu, 23 Oct 2014 11:02:04 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     etag: '"BB62XSL3VYLBISEC9N5VTUSEW"',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=60',
+26 silly registry.get     'content-length': '13835',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     'x-served-by': 'cache-fra1232-FRA',
+26 silly registry.get     'x-cache': 'HIT',
+26 silly registry.get     'x-cache-hits': '1',
+26 silly registry.get     'x-timer': 'S1414062124.198029,VS0,VE100',
+26 silly registry.get     vary: 'Accept',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly addNameRange number 2 { name: 'ios-deploy', range: '*', hasData: true }
+28 silly addNameRange versions [ 'ios-deploy',
+28 silly addNameRange   [ '1.0.1',
+28 silly addNameRange     '1.0.2',
+28 silly addNameRange     '1.0.3',
+28 silly addNameRange     '1.0.4',
+28 silly addNameRange     '1.0.5',
+28 silly addNameRange     '1.0.6',
+28 silly addNameRange     '1.0.7',
+28 silly addNameRange     '1.0.8',
+28 silly addNameRange     '1.0.9',
+28 silly addNameRange     '1.1.0',
+28 silly addNameRange     '1.2.0' ] ]
+29 verbose addNamed [ 'ios-deploy', '1.2.0' ]
+30 verbose addNamed [ '1.2.0', '1.2.0' ]
+31 silly lockFile b487543a-ios-deploy-1-2-0 ios-deploy@1.2.0
+32 verbose lock ios-deploy@1.2.0 /Users/admin/.npm/b487543a-ios-deploy-1-2-0.lock
+33 silly lockFile 18962015--ios-deploy-ios-deploy-1-2-0-tgz https://registry.npmjs.org/ios-deploy/-/ios-deploy-1.2.0.tgz
+34 verbose lock https://registry.npmjs.org/ios-deploy/-/ios-deploy-1.2.0.tgz /Users/admin/.npm/18962015--ios-deploy-ios-deploy-1-2-0-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/ios-deploy/-/ios-deploy-1.2.0.tgz',
+35 verbose addRemoteTarball   'cd90f0864c156fc679d1feb1b5b33c0601979158' ]
+36 info retry fetch attempt 1 at 15:05:29
+37 verbose fetch to= /var/folders/n7/zt7jlm110570s88k8x660mjr0000gn/T/npm-623-BnTCCIjz/registry.npmjs.org/ios-deploy/-/ios-deploy-1.2.0.tgz
+38 http GET https://registry.npmjs.org/ios-deploy/-/ios-deploy-1.2.0.tgz
+39 http 200 https://registry.npmjs.org/ios-deploy/-/ios-deploy-1.2.0.tgz
+40 silly lockFile 18962015--ios-deploy-ios-deploy-1-2-0-tgz https://registry.npmjs.org/ios-deploy/-/ios-deploy-1.2.0.tgz
+41 silly lockFile 18962015--ios-deploy-ios-deploy-1-2-0-tgz https://registry.npmjs.org/ios-deploy/-/ios-deploy-1.2.0.tgz
+42 silly lockFile b487543a-ios-deploy-1-2-0 ios-deploy@1.2.0
+43 silly lockFile b487543a-ios-deploy-1-2-0 ios-deploy@1.2.0
+44 silly lockFile 9c508a6b-ios-deploy ios-deploy@
+45 silly lockFile 9c508a6b-ios-deploy ios-deploy@
+46 silly resolved [ { name: 'ios-deploy',
+46 silly resolved     version: '1.2.0',
+46 silly resolved     description: 'launch iOS apps iOS devices from the command line (Xcode 6)',
+46 silly resolved     main: 'ios-deploy',
+46 silly resolved     scripts: { preinstall: 'make ios-deploy' },
+46 silly resolved     bin: { 'ios-deploy': './ios-deploy' },
+46 silly resolved     repository: { type: 'git', url: 'https://github.com/phonegap/ios-deploy' },
+46 silly resolved     keywords: [ 'ios-deploy', 'deploy to iOS device' ],
+46 silly resolved     author: { name: 'Greg Hughes' },
+46 silly resolved     license: 'GPLv3',
+46 silly resolved     gitHead: '0467b69fd837c9721b8388f6401bcb3e83411bf0',
+46 silly resolved     bugs: { url: 'https://github.com/phonegap/ios-deploy/issues' },
+46 silly resolved     homepage: 'https://github.com/phonegap/ios-deploy',
+46 silly resolved     _id: 'ios-deploy@1.2.0',
+46 silly resolved     _shasum: 'cd90f0864c156fc679d1feb1b5b33c0601979158',
+46 silly resolved     _from: 'ios-deploy@',
+46 silly resolved     _npmVersion: '1.4.14',
+46 silly resolved     _npmUser: { name: 'shazron', email: 'shazron@gmail.com' },
+46 silly resolved     maintainers: [ [Object] ],
+46 silly resolved     dist:
+46 silly resolved      { shasum: 'cd90f0864c156fc679d1feb1b5b33c0601979158',
+46 silly resolved        tarball: 'http://registry.npmjs.org/ios-deploy/-/ios-deploy-1.2.0.tgz' },
+46 silly resolved     directories: {},
+46 silly resolved     _resolved: 'https://registry.npmjs.org/ios-deploy/-/ios-deploy-1.2.0.tgz' } ]
+47 info install ios-deploy@1.2.0 into /usr/local/lib
+48 info installOne ios-deploy@1.2.0
+49 verbose lib/node_modules/ios-deploy unbuild
+50 verbose tar unpack /Users/admin/.npm/ios-deploy/1.2.0/package.tgz
+51 silly lockFile d4189100-ocal-lib-node-modules-ios-deploy tar:///usr/local/lib/node_modules/ios-deploy
+52 verbose lock tar:///usr/local/lib/node_modules/ios-deploy /Users/admin/.npm/d4189100-ocal-lib-node-modules-ios-deploy.lock
+53 silly lockFile a11ab1b8-npm-ios-deploy-1-2-0-package-tgz tar:///Users/admin/.npm/ios-deploy/1.2.0/package.tgz
+54 verbose lock tar:///Users/admin/.npm/ios-deploy/1.2.0/package.tgz /Users/admin/.npm/a11ab1b8-npm-ios-deploy-1-2-0-package-tgz.lock
+55 silly gunzTarPerm modes [ '755', '644' ]
+56 error Error: EACCES, mkdir '/usr/local/lib/node_modules/ios-deploy'
+56 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/ios-deploy']
+56 error   errno: 3,
+56 error   code: 'EACCES',
+56 error   path: '/usr/local/lib/node_modules/ios-deploy',
+56 error   fstream_type: 'Directory',
+56 error   fstream_path: '/usr/local/lib/node_modules/ios-deploy',
+56 error   fstream_class: 'DirWriter',
+56 error   fstream_stack:
+56 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+56 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+56 error      'Object.oncomplete (fs.js:107:15)' ] }
+57 error Please try running this command again as root/Administrator.
+58 error System Darwin 13.2.0
+59 error command "node" "/usr/local/bin/npm" "install" "-g" "ios-deploy"
+60 error cwd /Users/admin/getlunch/getLunch
+61 error node -v v0.10.32
+62 error npm -v 1.4.28
+63 error path /usr/local/lib/node_modules/ios-deploy
+64 error fstream_path /usr/local/lib/node_modules/ios-deploy
+65 error fstream_type Directory
+66 error fstream_class DirWriter
+67 error code EACCES
+68 error errno 3
+69 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/ios-deploy'
+70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+70 error fstream_stack Object.oncomplete (fs.js:107:15)
+71 verbose exit [ 3, true ]

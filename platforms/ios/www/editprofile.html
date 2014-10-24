@@ -1,0 +1,107 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left sliding">
+			<a href="#" class="back link f_cancel">
+				Отменить
+			</a>
+		</div>
+		<div class="right sliding">
+			<a href="#" class="link f_update">
+				Сохранить
+			</a>
+		</div>
+	</div>
+</div>
+<div class="pages navbar-through">
+	<div data-page="editprofile" class="page">
+		<div class="page-content" id="editprofilePage">
+		</div>
+		<script id="editprofileCard" type="text/template">
+			<form id="profileForm" class="store-data p_profile_form">
+				<div class="list-block">
+					<ul>
+						<li class="b_upic">
+							<input class="b_upic_input" type="file">
+							<div class="b_upic_face" style="background-image: url({{#if avatar}}{{avatar}}{{else}}i/svg/face-big.svg{{/if}});background-size:cover;">
+								<span class="preloader"></span>
+								<span class="b_upic_tx"><span>{{#if avatar}}Изменить{{else}}Добавить{{/if}}</span></span>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-media"><i class="icon icon-face"></i></div>
+								<div class="item-inner">
+									<div class="item-input">
+										<input name="name" type="text" placeholder="Ник" value="{{name}}">
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-media"><i class="icon icon-mail"></i></div>
+								<div class="item-inner">
+									<div class="item-input">
+										<input name="email" type="text" placeholder="Адрес почты" value="{{email}}" disabled>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="content-block-title">Авторизация в соцсетях</div>
+				<div class="list-block">
+					<ul>
+						<li>
+							<a href="#" class="item-link no-arrow st_checked">
+								<div class="item-content">
+									<div class="item-media"><i class="icon icon-facebook"></i></div>
+									<div class="item-inner">
+										<div class="item-title">Фейсбук</div>
+									</div>
+								</div>
+								<i class="icon icon-check-small"></i>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="item-link no-arrow">
+								<div class="item-content">
+									<div class="item-media"><i class="icon icon-vk"></i></div>
+									<div class="item-inner">
+										<div class="item-title">ВКонтакте</div>
+									</div>
+								</div>
+								<i class="icon icon-check-small"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="list-block">
+					<ul>
+						<li>
+							<a href="changepassword.html" class="item-link">
+								<div class="item-content">
+									<div class="item-media"><i class="icon icon-lock"></i></div>
+									<div class="item-inner">
+										<div class="item-title">Поменять пароль</div>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="item-link no-arrow item-link-exit">
+								<div class="item-content">
+									<div class="item-media"><i class="icon icon-exit"></i></div>
+									<div class="item-inner">
+										<div class="item-title">Выход</div>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<input class="b_upic_return" type="hidden" name="upload" value="">
+			</form>
+		</script>
+	</div>
+</div>

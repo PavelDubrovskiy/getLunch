@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="with-statusbar-overlay">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<title>GetLunch</title>
+	<link rel="stylesheet" href="css/fonts/fonts.css">
+	<link rel="stylesheet" href="css/icons/icons.css">
+	<link rel="stylesheet" href="lib/css/framework7.css">
+	<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+	<!-- САЙДБАР -->
+	<div class="panel-overlay"></div>
+	<div class="panel panel-left panel-reveal">
+		
+		<a class="b_sidebar_item close-panel" href="main.html">
+			<i class="icon icon-sidebar-eat"></i>
+			Поесть
+		</a>
+		
+		<a class="b_sidebar_item close-panel" href="reminder.html">
+			<i class="icon icon-sidebar-bell"></i>
+			Напоминание
+		</a>
+		
+		<!--<a class="b_sidebar_item close-panel" href="favourite.html">
+			<i class="icon icon-sidebar-star"></i>
+			Избранное
+		</a>-->
+		
+		<a class="b_sidebar_item close-panel" href="profile.html">
+			<i class="icon icon-sidebar-face"></i>
+			Профиль
+		</a>
+		
+		<a class="b_sidebar_item app_exit" href="#">
+			<i class="icon icon-exit"></i>
+			Выход
+		</a>		
+	
+	</div>
+	<!-- /САЙДБАР -->
+
+	<div class="statusbar-overlay"></div>
+	<div class="views">
+		<div class="view view-main hidden-navbar">
+			
+			<!-- НАВИГАЦИОННАЯ ПАНЕЛЬ -->
+			<div class="navbar">
+				<div class="navbar-inner">
+				</div>
+			</div>
+			<!-- /НАВИГАЦИОННАЯ ПАНЕЛЬ -->
+			
+			<!-- СТРАНИЦЫ -->
+			<div class="pages navbar-through">
+				<div class="b_bg_blurred"></div>
+				
+				<!-- СТРАНИЦА -->
+				<div data-page="start" class="page no-navbar page-transparent page-full-fade">
+					<div class="page-content">
+						
+						<div class="b_logo">
+							<img src="i/svg/logo.svg" alt="">
+							<div class="b_logo_slogan">Пора есть!</div>
+							<div class="b_logo_preloader"><span class="preloader"></span></div>
+						</div>
+						
+						<div class="p_start_buttons content-block">
+							<p class="p_start_item p_start_facebook-login">
+								<a href="#" class="button b_btn m_fb">
+									<i class="icon-facebook"></i>
+									Войти через Фейсбук
+								</a>
+							</p>
+							<p class="p_start_item p_start_vk-login">
+								<a href="#" class="button b_btn m_vk">
+									<i class="icon-vk"></i>
+									Войти через ВКонтакте
+								</a>
+							</p>
+							<p class="p_start_item">
+								<a href="registration.html" class="button b_btn m_reg">
+									<i class="icon-mail"></i>
+									Регистрация
+								</a>
+							</p>
+							<p class="p_start_login">
+								<a href="authorization.html" class="button b_btn m_login">
+									Вход
+								</a>
+							</p>
+						</div>
+						
+					</div>
+				</div>
+				<!-- /СТРАНИЦА -->
+				
+			</div>
+			<!-- /СТРАНИЦЫ -->
+			
+		</div>
+	</div>
+</body>
+</html>
+
+<!-- scripts -->
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="lib/framework7.js"></script>
+<script src="http://api-maps.yandex.ru/2.1.16/?lang=ru_RU&load=Map,geoObject.addon.balloon,Placemark,GeoObjectCollection,templateLayoutFactory" type="text/javascript"></script>
+<script data-main="app" src="lib/require.js"></script>
+<!-- /scripts -->

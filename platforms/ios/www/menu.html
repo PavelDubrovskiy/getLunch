@@ -1,0 +1,68 @@
+<div class="navbar">
+	<div class="navbar-inner no-border">
+		<div class="left sliding">
+			<a href="#" class="link icon-only back">
+				<i class="icon icon-arrow-back"></i>
+			</a>
+		</div>
+		<div class="center sliding">Меню</div>
+	</div>
+</div>
+<div class="pages navbar-through">
+	<div data-page="menu" class="page b_white-bg">
+		<div class="page-content" id="menuPage">
+			
+		</div>
+		<script id="lunchMenu" type="text/template">
+			<div class="b_btn_row b_menu_pagination">
+				<div class="buttons-row">
+					<a href="#" class="button b_btn">Пн</a>
+					<a href="#" class="button b_btn">Вт</a>
+					<a href="#" class="button b_btn">Ср</a>
+					<a href="#" class="button b_btn">Чт</a>
+					<a href="#" class="button b_btn">Пт</a>
+				</div>
+			</div>
+			<div class="slider-container b_menu_days p_menu_days">
+				<div class="slider-wrapper">
+					{{#each lunches}}
+						<div class="slider-slide">
+							<div class="page-content">
+								<div class="slider-container p_menu_images-{{this.day}}">
+									<span class="preloader"></span>
+									<div class="slider-pagination slider-pagination-{{this.day}}"></div>
+									<div class="slider-wrapper">
+										{{#each this.pics}}
+											<div class="slider-slide"><img src="{{this.path}}" alt=""></div>
+										{{/each}}
+									</div>
+								</div>
+								<div class="list-block b_menu_list">
+									<ul>
+										{{#each this.list}}
+											<li>
+												{{#if this.price}}<span class="b_cards_price">{{this.price}}<span class="f_rouble">p</span></span>{{/if}}
+												<strong class="b_menu_h">{{this.name}}</strong>
+												{{#each this.dishes}}
+													<div class="b_menu_dish">
+														{{this.name}}{{#if this.description}}<em>{{this.description}}</em>{{/if}}
+													</div>
+												{{/each}}
+											</li>
+										{{/each}}
+									</ul>								
+								</div>
+								<div class="b_btn_row">
+									<div class="buttons-row">
+										<a href="invite.html" class="button b_btn">Позвать друзей</a>
+										<a href="eat.html" class="button b_btn">Я тут ем</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					{{/each}}
+				</div>
+			</div>
+		</script>
+	</div>
+</div>

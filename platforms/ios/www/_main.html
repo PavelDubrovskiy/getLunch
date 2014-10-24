@@ -1,0 +1,257 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left">
+			<a href="#" class="link icon-only open-panel">
+				<i class="icon icon-sidebar"></i>
+			</a>
+		</div>
+		<div class="center">
+			<div class="b_logo_navbar">
+				<img src="i/svg/logo.svg">
+			</div>
+		</div>
+		<div class="right">
+			<a href="#" class="link icon-only p_main_search_open open-popup" data-popup=".searchbar-popup">
+				<i class="icon icon-search"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="pages navbar-through">
+	<div data-page="main" class="page no-swipeback page-main">
+	
+		<!-- ПОИСК -->
+		<form class="searchbar" data-search-list=".list-block-search" data-search-in=".item-title">
+			<div class="searchbar-input">
+				<input class="p_main_search_input" type="search" placeholder="Поиск по адресу"><a href="#" class="searchbar-clear"></a>
+			</div><a href="#" class="searchbar-cancel p_main_search_close close-popup" data-popup=".searchbar-popup">Отменить</a>
+		</form>
+		<div class="searchbar-overlay"></div>
+		
+		<div class="popup tablet-fullscreen searchbar-popup">
+			<div class="list-block list-block-search searchbar-found">
+				<ul>
+					<li class="item-content">
+						<a href="searchplace.html?q=улица СамаядлиннаянасветеНиколоямская, Москва" class="item-inner">
+							<div class="item-title">улица СамаядлиннаянасветеНиколоямская, Москва</div>
+						</a>
+					</li>
+					<li class="item-content">
+						<a href="searchplace.html?q=улица Николоямская, Москва" class="item-inner">
+							<div class="item-title">улица Николоямская, Москва</div>
+						</a>
+					</li>
+					<li class="item-content">
+						<a href="searchplace.html?q=Большой Николопесковский" class="item-inner">
+							<div class="item-title">Большой Николопесковский</div>
+						</a>
+					</li>
+					<li class="item-content">
+						<a href="searchplace.html?q=улица Никольская, Москва" class="item-inner">
+							<div class="item-title">улица Никольская, Москва</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /ПОИСК -->
+		
+		<div class="page-content page-no-scroll">
+			<a href="#" class="b_map_btn m_zoomin">
+				<i class="icon icon-plus"></i>
+			</a>
+			<a href="#" class="b_map_btn m_zoomout">
+				<i class="icon icon-minus"></i>
+			</a>
+			<a href="#" class="b_map_btn m_geolocation">
+				<i class="icon icon-geolocation"></i>
+			</a>
+		
+			<div id="mainMap" class="b_map">
+				<span class="preloader"></span>
+			</div>			
+			
+			<div class="b_cards_list list-block">
+				<ul>
+					<li class="swipeout">
+						<a href="card.html" class="b_cards_item st_favourite swipeout-content">
+							<i class="icon icon-star-small"></i>
+							<div class="b_cards_item_inner">
+								<div class="row">
+									<div class="col-75">
+										<span class="b_cards_h">Ресторанчик Ля ПестоТестоТоЕщёМесто  <span id="myNameIs"></span></span>
+										<span class="b_cards_distance">300 м</span>
+									</div>
+									<div class="col-25">
+										<span class="b_cards_price">270<span class="f_rouble">p</span></span>
+									</div>
+								</div>
+							</div>
+						</a>
+						<div class="swipeout-actions-right">
+							<a href="#" class="p_main_favourite_toggle b_favourite">
+								<i class="icon icon-star-filled"></i>
+							</a>
+						</div>
+					</li>
+			
+					<li class="swipeout">
+						<a href="card.html" class="b_cards_item st_inactive swipeout-content">
+							<i class="icon icon-star-small"></i>
+							<div class="b_cards_item_inner">
+								<div class="row">
+									<div class="col-75">
+										<span class="b_cards_h">Цурцум Кафе</span>
+										<span class="b_cards_distance">350 м</span>
+									</div>
+									<div class="col-25">
+										<span class="b_cards_price">250<span class="f_rouble">p</span></span>
+									</div>
+								</div>
+							</div>
+						</a>
+						<div class="swipeout-actions-right">
+							<a href="#" class="p_main_favourite_toggle b_favourite">
+								<i class="icon icon-star"></i>
+							</a>
+						</div>
+					</li>
+			
+					<li class="swipeout">
+						<a href="card.html" class="b_cards_item swipeout-content">
+							<i class="icon icon-star-small"></i>
+							<div class="b_cards_item_inner">
+								<div class="row">
+									<div class="col-75">
+										<span class="b_cards_h">Шоколадница</span>
+										<span class="b_cards_distance">500 м</span>
+									</div>
+									<div class="col-25">
+										<span class="b_cards_price">320<span class="f_rouble">p</span></span>
+									</div>
+								</div>
+							</div>						
+						</a>
+						<div class="swipeout-actions-right">
+							<a href="#" class="p_main_favourite_toggle b_favourite">
+								<i class="icon icon-star"></i>
+							</a>
+						</div>
+					</li>
+			
+					<li class="swipeout">
+						<a href="card.html" class="b_cards_item swipeout-content">
+							<i class="icon icon-star-small"></i>
+							<div class="b_cards_item_inner">
+								<div class="row">
+									<div class="col-75">
+										<span class="b_cards_h">Тай-Чай</span>
+										<span class="b_cards_distance">700 м</span>
+									</div>
+									<div class="col-25">
+										<span class="b_cards_price">310<span class="f_rouble">p</span></span>
+									</div>
+								</div>
+							</div>						
+						</a>
+						<div class="swipeout-actions-right">
+							<a href="#" class="p_main_favourite_toggle b_favourite">
+								<i class="icon icon-star"></i>
+							</a>
+						</div>
+					</li>
+			
+					<li class="swipeout">
+						<a href="card.html" class="b_cards_item swipeout-content">
+							<i class="icon icon-star-small"></i>
+							<div class="b_cards_item_inner">
+								<div class="row">
+									<div class="col-75">
+										<span class="b_cards_h">Ресторанчик Ля ПестоТестоТоЕщёМесто</span>
+										<span class="b_cards_distance">300 м</span>
+									</div>
+									<div class="col-25">
+										<span class="b_cards_price">270<span class="f_rouble">p</span></span>
+									</div>
+								</div>
+							</div>						
+						</a>
+						<div class="swipeout-actions-right">
+							<a href="#" class="p_main_favourite_toggle b_favourite">
+								<i class="icon icon-star"></i>
+							</a>
+						</div>
+					</li>
+			
+					<li class="swipeout">
+						<a href="card.html" class="b_cards_item st_inactive swipeout-content">
+							<i class="icon icon-star-small"></i>
+							<div class="b_cards_item_inner">
+								<div class="row">
+									<div class="col-75">
+										<span class="b_cards_h">Цурцум Кафе</span>
+										<span class="b_cards_distance">350 м</span>
+									</div>
+									<div class="col-25">
+										<span class="b_cards_price">250<span class="f_rouble">p</span></span>
+									</div>
+								</div>
+							</div>						
+						</a>
+						<div class="swipeout-actions-right">
+							<a href="#" class="p_main_favourite_toggle b_favourite">
+								<i class="icon icon-star"></i>
+							</a>
+						</div>
+					</li>
+			
+					<li class="swipeout">
+						<a href="card.html" class="b_cards_item swipeout-content">
+							<i class="icon icon-star-small"></i>
+							<div class="b_cards_item_inner">
+								<div class="row">
+									<div class="col-75">
+										<span class="b_cards_h">Шоколадница</span>
+										<span class="b_cards_distance">500 м</span>
+									</div>
+									<div class="col-25">
+										<span class="b_cards_price">320<span class="f_rouble">p</span></span>
+									</div>
+								</div>
+							</div>						
+						</a>
+						<div class="swipeout-actions-right">
+							<a href="#" class="p_main_favourite_toggle b_favourite">
+								<i class="icon icon-star"></i>
+							</a>
+						</div>
+					</li>
+			
+					<li class="swipeout">
+						<a href="card.html" class="b_cards_item swipeout-content">
+							<i class="icon icon-star-small"></i>
+							<div class="b_cards_item_inner">
+								<div class="row">
+									<div class="col-75">
+										<span class="b_cards_h">Тай-Чай</span>
+										<span class="b_cards_distance">700 м</span>
+									</div>
+									<div class="col-25">
+										<span class="b_cards_price">310<span class="f_rouble">p</span></span>
+									</div>
+								</div>
+							</div>						
+						</a>
+						<div class="swipeout-actions-right">
+							<a href="#" class="p_main_favourite_toggle b_favourite">
+								<i class="icon icon-star"></i>
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	
+	</div>
+</div>
