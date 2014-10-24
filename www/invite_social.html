@@ -1,14 +1,14 @@
 <div class="navbar">
 	<div class="navbar-inner">
-		<div class="left">
+		<div class="left sliding">
 			<a href="#" class="link icon-only back">
 				<i class="icon icon-arrow-back"></i>
 			</a>
 		</div>
-		<div class="center p_invite_social_header">
+		<div class="center p_invite_social_header sliding">
 		</div>
-		<div class="right">
-			<a href="invite_submit.html" class="link">
+		<div class="right sliding">
+			<a href="#" class="link p_invite_social_forward st_disabled">
 				<span>Далее</span>
 				<i class="icon icon-arrow-forward"></i>
 			</a>
@@ -16,10 +16,10 @@
 	</div>
 </div>
 <div class="pages navbar-through">
-	<div data-page="invite_social" class="page">
+	<div data-page="invite_social" class="page page-gray">
 	
 		<div class="page-content">
-			<div class="b_invite_sel_list"></div>
+			<div class="b_invite_sel_list p_invite_social_list"></div>
 			
 			<form class="b_invite_search searchbar" data-search-list=".b_invite_contacts" data-search-in=".item-title">
 				<div class="searchbar-input">
@@ -272,7 +272,7 @@
 		</div>
 		
 		<script id="t_invite_person" type="text/template7">
-			<a href="#" class="b_invite_sel_item" id="{{id}}">
+			<a href="#" class="b_invite_sel_item" data-check-id="{{id}}">
 				<span>{{firstName}} {{lastName}}</span><i class="icon icon-cross-small"></i>
 			</a>
 		</script>

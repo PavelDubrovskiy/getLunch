@@ -2,10 +2,10 @@
 /* $THEME ( override F7 styles ) */
 /* ----------------------------- */
 
-body *{
+/*body *{
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-}
+}*/
 
 body{
 	background: url("../i/bg_main_blur.jpg") center top no-repeat;
@@ -87,6 +87,10 @@ a{
 .page{	
 	background: #f7f7f7;
 	z-index: 2;
+}
+
+.page-gray{
+	background: #f0f0f0;
 }
 
 .page > .preloader{
@@ -696,7 +700,7 @@ a{
 	top: 44px; left: 0;
 	width: 100%;
 	padding: 5px 15px 4px;
-	z-index: 100;
+	z-index: 103;
 		
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -711,6 +715,11 @@ a{
 	transition:			transform .3s ease-out,
 						opacity .3s ease-out;
 }
+	.b_form_message.m_inline{
+		-webkit-transition: none;
+		transition:			none;
+		opacity: 1;
+	}
 	.b_form_message.st_active{
 		-webkit-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);
@@ -1913,12 +1922,15 @@ a{
 	
 /* $b_invite_sel */
 .b_invite_sel_list{
-	background: #f0f0f0;
 	padding: 0 4px;
 }
 	.b_invite_sel_list.st_hascontent{
 		padding: 9px 4px 5px;
 	}
+	
+.b_invite_sel_list + .content-block-title{
+	margin-top: 24px;
+}
 
 .b_invite_sel_item{
 	display: inline-block;
@@ -1944,7 +1956,7 @@ a{
 .b_invite_sel_item span{
 	display: inline-block;
 	vertical-align: top;
-	max-width: 140px;
+	max-width: 120px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -1969,6 +1981,36 @@ a{
 	-webkit-flex-shrink: 100;
 	-ms-flex: 0 100 auto;
 	flex-shrink: 100;
+}
+
+/* $b_invite_message */
+.b_invite_message textarea{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	font-size: 17px;
+	line-height: 20px;
+	resize: none;
+	
+	border: 1px solid #e1e7cd;
+	background: #fff;
+	
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	
+	display: block;	
+	margin: 0;
+	width: 100%;
+	height: 103px;
+	padding: 11px;
+}
+
+.b_invite_message{
+	margin: 0 4px;
+}
+
+.b_invite_message + .content-block-title{
+	margin-top: 33px;
 }
 
 /* $b_checkbox */
@@ -2015,7 +2057,7 @@ a{
 	}
 	
 /* $b_index-nav */
-.b_index-nav .item-inner{
+/*.b_index-nav .item-inner{
 	padding-right: 27px;
 }
 
@@ -2046,7 +2088,7 @@ a{
 	}
 	.b_index-nav_link:last-child:after{
 		display: none;
-	}
+	}*/
 
 /* $FONT DECOR */
 /* $f = font */
@@ -2326,10 +2368,8 @@ html.android .label-switch input[type="checkbox"] + .checkbox:after {
 /* -------------- */
 /* spinning wheel */
 /* -------------- */
-/*#sw-wrapper {
-	position:absolute; z-index:5001;
-	left:0;
-	width:100%;
+#sw-wrapper {
+	position: relative;
 	font-family:helvetica, sans-serif;
 	background:rgba(0,0,0,0.7);
 	text-align:left;
@@ -2412,4 +2452,4 @@ html.android .label-switch input[type="checkbox"] + .checkbox:after {
 	left:0; right:0; bottom:0;
 	height:183px;
 	border-width:16px;
-}*/
+}

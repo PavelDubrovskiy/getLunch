@@ -172,7 +172,12 @@
 	
 	// Автопозиционирование карты для показа всех добавленных точек
 	Map.prototype.autoBounds = function() {
-		this.map.setBounds( this.marks.getBounds(), {zoomMargin: [48, 21, 8, 21]});
+		this.map.setBounds( this.marks.getBounds(), {zoomMargin: [48, 21, 8, 21], checkZoomRange: true});
+	};
+	
+	// Автопозиционирование карты для показа всех добавленных точек и пользователя
+	Map.prototype.autoBoundsUser = function() {
+		this.map.setBounds( this.map.geoObjects.getBounds(), {zoomMargin: [28, 21, 8, 21], checkZoomRange: true});
 	};
 	
 	// Геолокация

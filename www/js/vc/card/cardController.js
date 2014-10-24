@@ -69,7 +69,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		if( lunch.metres < 700 ) {
 			map.createMark([values.latitude, values.longitude], 'card.html');
 			map.setUserPosition([app.latitude, app.longitude]);
-			map.autoBounds();
+			map.autoBoundsUser();
 		}else{
 			map.map.setCenter(
 				map.getOffset( // Получаем координаты со сдвигом, заданным при инициализации карты
@@ -77,8 +77,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 				)
 			);
 			map.setUserPosition([app.latitude, app.longitude]);
-		}
-		
+		}		
 	}
 			
 	// Функция управления избранным

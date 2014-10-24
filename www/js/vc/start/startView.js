@@ -5,7 +5,7 @@ define(["js/utilities/common"], function( utilities ) {
 
 	function render(params) {
 		utilities.bindEvents(params.bindings);
-		setTimeout( loadedHandler, 100);
+		loadedHandler();
 	}
 	
 	function loadedHandler(){

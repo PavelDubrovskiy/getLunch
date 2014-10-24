@@ -27,18 +27,22 @@ define(function() {
 	}
 	
 	// Показ сообщения
-	function showMessage( message, type ) {
+	function showMessage( message, type, inline ) {
 		hideMessage( function( duration ) {
 			var	$cnt = $(".page-on-center .page-content"),
 				element = document.createElement("div")	
 			;
 
-			element.className = "b_form_message m_" + ( type || "error" );
+			element.className = "b_form_message m_" + ( type || "error" ) + (inline ? " m_inline" : "");
 			element.innerHTML = message;
 			
 			$cnt.append( element );
 			setTimeout( function(){
-				$(element).addClass("st_active");
+				if( inline ) {
+					$(element).parent().transition(300).transform('translate3d(0,' + $(element).outerHeight() + 'px,0)');
+				}else{
+					$(element).addClass("st_active");
+				}
 			}, duration );
 		});
 	}
@@ -47,7 +51,7 @@ define(function() {
 	function hideMessage( callback ) {
 		var $message = $(".b_form_message");
 		if( $message.length ){
-			$message.removeClass("st_active");
+			$message.removeClass("st_active").parent().transform('translate3d(0,0,0)');
 			setTimeout( function() {
 				$message.remove();
 				if( callback ){

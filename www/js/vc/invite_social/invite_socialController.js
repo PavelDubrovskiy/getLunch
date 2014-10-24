@@ -1,66 +1,42 @@
-define(["app","js/vc/invite_social/invite_socialView"], function(app, view) {
+define(["app","js/vc/invite_social/invite_socialView","js/utilities/invite", "js/utilities/forms"], function(app, view, invite, forms) {
 	var $ = Framework7.$;
-	var invitePersonTemplate = Template7.compile( $("#t_invite_person").html() );
-	
+
 	var bindings = [
 		{
 			element: ".b_invite_contacts input",
 			event: "change",
-			handler: personToggle
+			handler: invite.personToggle
 		},
 		{
-			element: ".b_invite_sel_list",
+			element: ".p_invite_social_list",
 			event: "click",
-			handler: personUncheck,
+			handler: invite.personUncheck,
 			delegateTo: ".b_invite_sel_item"
+		},{
+			element: ".p_invite_social_forward",
+			event: "click",
+			handler: forward
 		}
 	];
 
 	function init(query) {
+		invite.checkSelectedContent();
+	
 		view.render({
 			query: query,
 			bindings: bindings
 		});
 	}
 	
-	function personToggle(e) {
-		var $item = $(this).parents(".item-checkbox");
-		
-		if( e.target.checked === true ) {
-			$(".b_invite_sel_list").append(
-				invitePersonTemplate({
-					id: $item.data('id'),
-					firstName: $item.find(".b_invite_firstName").text(),
-					lastName: $item.find(".b_invite_lastName").text()
-				})
-			);
+	function forward() {
+		if($(this).hasClass("st_disabled")) {
+			forms.showMessage("Вы не выбрали ни одного человека","error",true);
 		}else{
-			$("#" + $item.data('id')).remove();
-		}
-		
-		checkSelectedContent();
-	}
-	
-	function personUncheck() {
-		$("[data-id=" + $(this).attr('id') + "]").find("input").prop("checked", false);
-		$(this).remove();
-		
-		checkSelectedContent();
-	}
-	
-	function checkSelectedContent() {
-		var $list = $(".b_invite_sel_list"),
-			$items = $list.find(".b_invite_sel_item");
-			
-		if( $items.length > 0 ) {
-			$list.addClass("st_hascontent");
-		}else{
-			$list.removeClass("st_hascontent");
+			app.mainView.loadPage('invite_submit.html');
 		}
 	}
 	
 	return {
-		init: init,
-		invitePersonTemplate: invitePersonTemplate
+		init: init
 	};
 });

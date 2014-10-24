@@ -1,30 +1,23 @@
-define(["app","js/vc/invite_submit/invite_submitView","js/vc/invite_social/invite_socialController"], function(app, view, socialController) {
-	var $ = Framework7.$;
-	
+define(["app","js/vc/invite_submit/invite_submitView","js/utilities/invite","js/utilities/spinningwheel"], function(app, view, invite, SpinningWheel) {
 	var bindings = [
+		{
+			element: ".p_invite_submit_list",
+			event: "click",
+			handler: invite.personUncheck,
+			delegateTo: ".b_invite_sel_item"
+		}
 	];
 
 	function init(query) {
-		fillSelectList();
+		var datePicker = new SpinningWheel();
+		datePicker.addSlot({ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 }, 'right');
+		datePicker.open();
+		
+		invite.fillSelectedContent();
 		
 		view.render({
 			bindings: bindings
 		});
-	}
-	
-	function fillSelectList() {
-		console.time("1");
-		$(".b_invite_contacts").find(".item-inner").each(function() {
-			var $input = $(this).find("input");
-			
-			if($input.prop('checked') === true) {
-				console.log(true);
-			}
-		});
-		console.timeEnd("1");
-		
-		//socialController.invitePersonTemplate
-		//$(".b_invite_contacts").length
 	}
 	
 	return {

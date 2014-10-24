@@ -1,6 +1,7 @@
 define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], function(app, view, User, fb) {
 	var user = new User();
 	var $ = Framework7.$;
+	
 	var bindings = [
 		{
 			element: '.p_start_facebook-login',
@@ -30,10 +31,9 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	function init() {
 		if(user.id!=''){
 			$('.p_start_buttons').hide();
-			setTimeout( function(){ app.mainView.loadPage('main.html'); }, 1300);
-			/*ymaps.ready( function() {
+			$('.b_logo').transitionEnd( function(){
 				app.mainView.loadPage('main.html');
-			});*/
+			});
 		}
 		view.render({
 			bindings: bindings
@@ -50,7 +50,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	
 	function exitToStart(){
 		localStorage.clear();
-		alert('exit');
+		app.f7.alert('exit');
 		document.location.href='index.html';
 	}
 	

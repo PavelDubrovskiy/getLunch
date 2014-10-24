@@ -57,6 +57,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			delegateTo: '.item-inner_sought'
 		}
 	];
+	
 	// Разрешаем открывать меню
 	app.f7.allowPanelOpen = true;
 
