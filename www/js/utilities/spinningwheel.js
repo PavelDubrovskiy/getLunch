@@ -12,9 +12,12 @@
  */
 
 define(function() {
+	var $ = Framework7.$;
+
 	function SpinningWheel(values) {
 		values = values || {};
 		
+		this.destination = $(values['destination'] || document.body);
 		this.cellHeight = values['cellHeight'] || 44;
 		this.cellHeightfriction = values['friction'] || 0.003;
 		this.slotData = values['slotData'] || [];
@@ -75,7 +78,7 @@ define(function() {
 	},
 	
 	SpinningWheel.prototype.onScroll = function (e) {
-		this.swWrapper.style.top = window.innerHeight + window.pageYOffset + 'px';
+		//this.swWrapper.style.top = window.innerHeight + window.pageYOffset + 'px';
 	},
 
 	SpinningWheel.prototype.lockScreen = function (e) {
@@ -120,7 +123,7 @@ define(function() {
 		//div.style.webkitTransitionProperty = '-webkit-transform';
 		div.innerHTML = '<div id="sw-header"><div id="sw-cancel">Cancel</' + 'div><div id="sw-done">Done</' + 'div></' + 'div><div id="sw-slots-wrapper"><div id="sw-slots"></' + 'div></' + 'div><div id="sw-frame"></' + 'div>';
 
-		document.body.appendChild(div);
+		this.destination.append(div);
 
 		this.swWrapper = div;													// The SW wrapper
 		this.swSlotWrapper = document.getElementById('sw-slots-wrapper');		// Slots visible area
@@ -177,9 +180,9 @@ define(function() {
 	SpinningWheel.prototype.open = function () {
 		this.create();
 
-		this.swWrapper.style.webkitTransitionTimingFunction = 'ease-out';
+		/*this.swWrapper.style.webkitTransitionTimingFunction = 'ease-out';
 		this.swWrapper.style.webkitTransitionDuration = '400ms';
-		this.swWrapper.style.webkitTransform = 'translate3d(0, -260px, 0)';
+		this.swWrapper.style.webkitTransform = 'translate3d(0, -260px, 0)';*/
 	},
 	
 	
@@ -346,7 +349,7 @@ define(function() {
 		this.startY = e.targetTouches[0].clientY;
 
 		// Prevent slingshot effect
-		if (e.timeStamp - this.scrollStartTime > 80) {
+		if (e.timeStamp - this.scrollStartTime > 20) {
 			this.scrollStartY = this.slotEl[this.activeSlot].slotYPosition;
 			this.scrollStartTime = e.timeStamp;
 		}

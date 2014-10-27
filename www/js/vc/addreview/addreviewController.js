@@ -35,7 +35,6 @@ define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilit
 		var formInput = app.f7.formToJSON('#reviewForm');
 		formInput.code=user.code;
 		formInput.id=lunch.id;
-		console.log(formInput);
 		if(formInput.message!=''){
 			$.ajax({
 				type: "POST",

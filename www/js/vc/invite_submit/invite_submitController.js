@@ -9,8 +9,11 @@ define(["app","js/vc/invite_submit/invite_submitView","js/utilities/invite","js/
 	];
 
 	function init(query) {
-		var datePicker = new SpinningWheel();
-		datePicker.addSlot({ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 }, 'right');
+		var datePicker = new SpinningWheel({
+			destination: ".b_invite_date"
+		});
+		datePicker.addSlot({ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 }, 'left');
+		datePicker.addSlot({ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 }, 'left');
 		datePicker.open();
 		
 		invite.fillSelectedContent();
