@@ -1,7 +1,11 @@
 define(["js/utilities/common"], function( utilities ) {
 	var $ = Framework7.$;
 	function render(params) {
-		$('#checkinLunchName').html("Я ем в " + params.lunch.name);
+		var placeholder = 'Я планирую обедать в заведении: ' + params.lunch.name;
+		var $textarea = $('#checkinText');
+		
+		$textarea.attr('placeholder', placeholder).val(placeholder);
+		
 		utilities.bindEvents(params.bindings);
 	}
 

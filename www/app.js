@@ -101,12 +101,14 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	            var tmp=url_parser.get_args(tmp[1]);
 	            var data={token:tmp['access_token'],provider:'vk',vk_exp:tmp['expires_in'],user_id:tmp['user_id']};
 	            if(user.code!='')data.code=user.code;
+	            console.log(data);
 	            $.ajax({
 					type: "POST",
 					async: false,
 					url: config.source+"/api/fbauth/",
 					data: data,
 					success: function(msg){
+						alert(msg);
 						/*if(msg!='error'){
 							user.setValues(JSON.parse(msg));
 							ymaps.ready(function () {

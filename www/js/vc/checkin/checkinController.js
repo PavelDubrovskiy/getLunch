@@ -43,7 +43,7 @@ define(["app", "js/vc/checkin/checkinView", "js/utilities/forms", "js/utilities/
 				data: formInput,
 				success: function(msg){
 					forms.showMessage('Вы едите в ' + lunch.name, 'success');
-					$('.back').click();
+					$('.p_checkin_back').click();
 				}
 			});
 		}
