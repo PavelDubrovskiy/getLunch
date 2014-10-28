@@ -18,6 +18,10 @@ define(["app","js/vc/editprofile/editprofileView", "js/utilities/forms","js/m/us
 			element: '.p_edit_facebook-login',
 			event: 'click',
 			handler: loginFacebook
+		},{
+			element: '.p_edit_vkontakte-login',
+			event: 'click',
+			handler: loginVkontakte
 		}
 	];
 
@@ -45,8 +49,13 @@ define(["app","js/vc/editprofile/editprofileView", "js/utilities/forms","js/m/us
 		}
 	}
 	
-	function loginVK (){
-		app.f7.alert("Логинимся через ВКонтакте!");
+	function loginVkontakte (){
+		if($(this).hasClass('st_checked')){
+			$(this).removeClass('st_checked');
+			app.LogoutVK();
+		}else{
+			app.LoginVK.auth(false);
+		}
 	}
 	function saveProfile() {
 		var formInput = app.f7.formToJSON('#profileForm'),
