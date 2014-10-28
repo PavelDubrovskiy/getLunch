@@ -1767,6 +1767,10 @@ a{
 	background: #fff;
 }
 
+.b_review_block.m_margin{
+	margin: 4px 4px 8px;
+}
+
 .b_review_input{
 	margin: 0 60px 0 0;
 }

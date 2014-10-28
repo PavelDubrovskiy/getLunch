@@ -14,6 +14,10 @@ define(["app","js/vc/editprofile/editprofileView", "js/utilities/forms","js/m/us
 			element: '.f_update',
 			event: 'click',
 			handler: saveProfile
+		},{
+			element: '.p_edit_facebook-login',
+			event: 'click',
+			handler: loginFacebook
 		}
 	];
 
@@ -33,7 +37,12 @@ define(["app","js/vc/editprofile/editprofileView", "js/utilities/forms","js/m/us
 		document.location.href='index.html';
 	}
 	function loginFacebook (){
-		app.LoginFB.auth(false);
+		if($(this).hasClass('st_checked')){
+			$(this).removeClass('st_checked');
+			app.LogoutFB();
+		}else{
+			app.LoginFB.auth(false);
+		}
 	}
 	
 	function loginVK (){
