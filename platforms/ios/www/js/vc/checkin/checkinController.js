@@ -1,4 +1,4 @@
-define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilities/dynamicarea","js/m/user"], function(app, view, forms, DynamicArea,User) {
+define(["app", "js/vc/checkin/checkinView", "js/utilities/forms", "js/utilities/dynamicarea","js/m/user"], function(app, view, forms, DynamicArea, User) {
 	var $ = Framework7.$;
 	var user = new User();
 	var lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
@@ -9,9 +9,9 @@ define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilit
 			handler: forms.resetInput
 		},
 		{
-			element: '.submitReview',
+			element: '.submitCheckin',
 			event: 'click',
-			handler: submitReview
+			handler: submitCheckin
 		},
 	];
 	
@@ -31,19 +31,19 @@ define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilit
 			lunch:lunch
 		});
 	}
-	function submitReview() {
-		var formInput = app.f7.formToJSON('#reviewForm');
+	function submitCheckin() {
+		var formInput = app.f7.formToJSON('#checkinForm');
 		formInput.code=user.code;
 		formInput.id=lunch.id;
 		if(formInput.message!=''){
 			$.ajax({
 				type: "POST",
 				async: false,
-				url: app.config.source+"/api/addReview/",
+				url: app.config.source+"/api/checkin/",
 				data: formInput,
 				success: function(msg){
-					forms.showMessage('Рецензия успешно добавлена', 'success');
-					$('.p_addreview_back').click();
+					forms.showMessage('Вы едите в ' + lunch.name, 'success');
+					$('.p_checkin_back').click();
 				}
 			});
 		}

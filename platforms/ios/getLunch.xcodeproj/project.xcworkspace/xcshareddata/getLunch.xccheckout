@@ -10,29 +10,29 @@
 	<string>getLunch</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9C4BC623-C094-4C2E-BC6D-9F1E925A98DF</key>
+		<key>C11442BAF62993ED7FEBE28FD92D386BCD2A0E83</key>
 		<string>https://github.com/PavelDubrovskiy/getLunch.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>platforms/ios/getLunch.xcodeproj/project.xcworkspace</string>
+	<string>platforms/ios/getLunch.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9C4BC623-C094-4C2E-BC6D-9F1E925A98DF</key>
+		<key>C11442BAF62993ED7FEBE28FD92D386BCD2A0E83</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/PavelDubrovskiy/getLunch.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9C4BC623-C094-4C2E-BC6D-9F1E925A98DF</string>
+	<string>C11442BAF62993ED7FEBE28FD92D386BCD2A0E83</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9C4BC623-C094-4C2E-BC6D-9F1E925A98DF</string>
+			<string>C11442BAF62993ED7FEBE28FD92D386BCD2A0E83</string>
 			<key>IDESourceControlWCCName</key>
 			<string>getLunch</string>
 		</dict>

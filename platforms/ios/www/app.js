@@ -20,7 +20,7 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 		animateNavBackIcon: true,
 		swipePanel: 'left',
 		swipePanelThreshold: 50,
-		pushState: true,
+		/*pushState: true,*/
 		
 		sortable: false,
 		swipeBackPageBoxShadow: false
@@ -51,11 +51,13 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	        if(tmp[0]=='http://getlunch.ru/api/fbauth/?' || tmp[0]=='https://getlunch.ru/api/fbauth/?'){
 	            LoginFB.wwwref.close();
 	            var tmp=url_parser.get_args(tmp[1]);
+	            var data={token:tmp['access_token'],provider:'fb',fb_exp:tmp['expires_in']};
+	            if(user.code!='')data.code=user.code;
 	            $.ajax({
 					type: "POST",
 					async: false,
 					url: config.source+"/api/fbauth/",
-					data: {token:tmp['access_token'],provider:'fb',fb_exp:tmp['expires_in']},
+					data: data,
 					success: function(msg){
 						if(msg!='error'){
 							user.setValues(JSON.parse(msg));
@@ -69,6 +71,65 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 				});
 	        }
 	    }
+	};
+	var LogoutFB = function(){
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: config.source+"/api/socnetLogout/",
+			data: {provider:'fb',code:user.code},
+			success: function(msg){
+				user.setValues(JSON.parse(msg));
+			}
+		});
+	};
+	var LoginVK = {
+	    wwwref: false,
+	    plugin_perms: "friends,wall,photos,offline,notes,email",
+	    auth: function (force) {
+	        if (!window.localStorage.getItem("plugin_vk_token") || force || window.localStorage.getItem("plugin_vk_perms")!=plugin_vk.plugin_perms) {
+	            var authURL="https://oauth.vk.com/authorize?client_id=4532400&scope="+this.plugin_perms+"&redirect_uri=http://oauth.vk.com/blank.html&display=touch&response_type=token&v=5.25";
+	            this.wwwref = window.open(encodeURI(authURL), '_blank', 'location=no');
+	            this.wwwref.addEventListener('loadstop', this.auth_event_url);
+	        }
+	    },
+	    auth_event_url: function (event) {
+	        var tmp=(event.url).split("#");
+	        if (tmp[0]=='https://oauth.vk.com/blank.html' || tmp[0]=='http://oauth.vk.com/blank.html') {
+	            LoginVK.wwwref.close();
+	            var tmp=url_parser.get_args(tmp[1]);
+	            var data={token:tmp['access_token'],provider:'vk',vk_exp:tmp['expires_in'],user_id:tmp['user_id'],email:tmp['email']};
+	            if(user.code!='')data.code=user.code;
+	            $.ajax({
+					type: "POST",
+					async: false,
+					url: config.source+"/api/fbauth/",
+					data: data,
+					success: function(msg){
+						console.log(msg);
+						if(msg!='error'){
+							user.setValues(JSON.parse(msg));
+							ymaps.ready(function () {
+								mainView.loadPage('main.html');
+							});
+						}else{
+							forms.showMessage('Ошибка аутентификации', "error");
+						}
+					}
+				});
+	        }
+	    }
+	};
+	var LogoutVK = function(){
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: config.source+"/api/socnetLogout/",
+			data: {provider:'vk',code:user.code},
+			success: function(msg){
+				user.setValues(JSON.parse(msg));
+			}
+		});
 	};
 	return {
 		f7: f7,
@@ -86,7 +147,10 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 		disablePanel: function() {
 			f7.allowPanelOpen = false;
 		},
-		LoginFB:LoginFB
+		LoginFB:LoginFB,
+		LogoutFB:LogoutFB,
+		LoginVK:LoginVK,
+		LogoutVK:LogoutVK
 	};
 });
 

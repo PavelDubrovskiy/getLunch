@@ -45,7 +45,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	}
 	
 	function loginVK (){
-		app.f7.alert("Логинимся через ВКонтакте!");
+		app.LoginVK.auth(false);
 	}
 	
 	function exitToStart(){

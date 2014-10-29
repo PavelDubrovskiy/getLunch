@@ -12,6 +12,7 @@ define(["js/utilities/validate"], function( validate ) {
 		this.password = values['password'] || '';
 		this.avatar = values['avatar'] || '';
 		this.code = values['code'] || '';
+		this.fb_token = values['fb_token'] || '';
 	}
 
 	User.prototype.setValues = function( formInput ) {
