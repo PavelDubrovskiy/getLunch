@@ -63,6 +63,9 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 
 	// Инициализация страницы
 	function init(query) {
+		$(document).on('pageBeforeRemove', function (e) {
+			app.firstEnter=true;
+		});
 		initMap();
 		
 		view.render({
@@ -103,58 +106,38 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		// Предотвращение открытия меню по свайпу при перетаскивании карты
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
-		
-		// Создание меток
-		/*
-		map.createMark([55.76, 37.64], 'card.html', 'Итальянский ресторанчик Ля ПестоТестоСиесто');
-		map.createMark([55.757, 37.637], 'card.html', 'Шоколадница', true); // true — неактивная метка
-		map.createMark([55.759, 37.635], 'card.html', 'Тай-Чай');
-		map.createMark([55.756, 37.638], 'card.html', 'Цурцум Кафе');
-		*/
 		var itemList={};
 		
 		setTimeout( function(){
-			if(app.latitude!=0 && app.longitude!=0){
-				var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
-				map.geolocation(values);
-				if(app.firstEnter==true){
-					var lunchList=api.getLunchByCoords(values);
-					if(typeof lunchList !== 'undefined'){
-						var valuesItem={lunchList:lunchList,map:map};
-						view.attachLunches(valuesItem);
-						$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
-						app.firstEnter=false;
-					}
-				}
-			}
+			getNearestLunces();
 		}, 400);
-		
 		window.clearInterval(app.interval);
 		var mainSetMePosInterval=window.setInterval(function(){
-			if(app.latitude!=0 && app.longitude!=0){
-				var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
-				map.geolocation(values);
-				if(app.firstEnter==true){
-					var lunchList=api.getLunchByCoords(values);
-					if(typeof lunchList !== 'undefined'){
-						var valuesItem={lunchList:lunchList,map:map};
-						view.attachLunches(valuesItem);
-						$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
-						app.firstEnter=false;
-					}
-				}
-			}
-		},1000);
+			getNearestLunces();
+		},5000);
 		// Изменение состояния метки (если вторым параметром передано true, 1, "active" — метка становится активной, если false, 0, "inactive" или параметр не передан — неактивной)
 		//map.changeMarkState( map.marks.get(0), "inactive");
 	}
 	
 	// Геолокация
-	function geolocation() {	
-		//app.f7.alert("Мы бы определили ваше местоположение, но у нас пока не написана функция, которая это делает");
-		
-		// Перемещаем карту к найденной точке
-		map.setUserPosition([app.latitude, app.longitude], true);
+	function geolocation() {
+		app.firstEnter=true;
+		if(app.latitude==0 && app.longitude==0){
+			app.watchID = navigator.geolocation.watchPosition(function(position){
+					try{
+						app.latitude=position.coords.latitude;
+						app.longitude=position.coords.longitude;
+						getNearestLunces();
+						map.setUserPosition([app.latitude, app.longitude], true);
+					}catch(e){}
+				}, 
+				function(){}, 
+				{timeout: 10000, enableHighAccuracy: true}
+			);
+		}else{
+			getNearestLunces();
+			map.setUserPosition([app.latitude, app.longitude], true);
+		}
 	}
 	
 	// Функция управления избранным
@@ -187,6 +170,33 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				map.autoBounds();
 				setTimeout(view.closeSearchClick, 700);
 				
+			}
+		}
+	}
+	// Получение адресов вокруг моей позиции 
+	function getNearestLunces(){
+		if(app.latitude!=0 && app.longitude!=0){
+			var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
+			map.geolocation(values);
+			var lunchList=api.getLunchByCoords(values);
+			var mainLunchesList=JSON.parse(localStorage.getItem('mainLunchesList'));
+			var isChangeInList=false;
+			lunchList.forEach(function(element, index, array){
+				if(mainLunchesList!==null && element.id*1!==mainLunchesList[index].id*1){
+					isChangeInList=true;
+				}
+			});
+			if(mainLunchesList===null || isChangeInList==true){
+				localStorage.setItem('mainLunchesList',JSON.stringify(lunchList));
+			}
+			if(typeof lunchList !== 'undefined'){
+				if(isChangeInList==true || app.firstEnter==true){
+					map.marks.removeAll();
+					var valuesItem={lunchList:lunchList,map:map};
+					view.attachLunches(valuesItem);
+					$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
+					app.firstEnter=false;
+				}
 			}
 		}
 	}
