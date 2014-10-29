@@ -1,0 +1,60 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left sliding">
+			<a href="#" class="link icon-only open-panel">
+				<i class="icon icon-sidebar"></i><span></span>
+			</a>
+		</div>
+		<div class="center header-wide sliding">
+			<span class="header-wide_profile"></span>
+		</div>
+		<div class="right sliding">
+			<a href="editprofile.html" class="link icon-only">
+				<i class="icon icon-options"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="pages navbar-through">
+	<div data-page="profile" class="page">
+		<div class="page-content" id="profilePage">
+		</div>
+		<script id="profileCard" type="text/template">
+			<a href="editprofile.html" class="b_upic p_profile_upic">
+				<div class="p_profile_upic_large" style="background-image: url({{user.avatar}});background-size:cover;"></div>
+				<div class="b_upic_face" style="background-image: url({{user.avatar}});background-size:cover;">
+					<span class="b_upic_tx_profile">Редактировать профиль</span>
+				</div>
+			</a>
+			<div class="b_cards_list list-block b_address_list">
+				<ul id="profileCardsList">
+					{{#each checkins}}
+						<li class="swipeout">
+							<a href="card.html" data-id="{{this.id}}" class="b_cards_item swipeout-content">
+								<i class="icon icon-star-small"></i>
+								<div class="b_cards_item_inner">
+									<div class="row">
+										<div class="col-75">
+											<span class="b_cards_h">{{this.name}}</span>
+											<div class="b_cards_address">{{this.address}}</div>
+										</div>
+										<div class="col-25">
+											<div class="b_cards_date">
+												{{this.d}}<span>{{this.m}}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+							<div class="swipeout-actions-right">
+								<a href="#" class="p_profile_favourite_toggle b_favourite">
+									<i class="icon icon-star"></i>
+								</a>
+							</div>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+		</script>
+	</div>
+</div>

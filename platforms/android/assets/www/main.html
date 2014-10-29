@@ -1,0 +1,94 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left sliding">
+			<a href="#" class="link icon-only open-panel">
+				<i class="icon icon-sidebar"></i><span></span>
+			</a>
+		</div>
+		<div class="center sliding">
+			<div class="b_logo_navbar">
+				<img src="i/svg/logo.svg">
+			</div>
+		</div>
+		<div class="right sliding">
+			<a href="#" class="link icon-only p_main_search_open open-popup" data-popup=".searchbar-popup">
+				<i class="icon icon-search"></i>
+			</a>
+			<a href="filter.html" class="link icon-only">
+				<i class="icon icon-filter"></i>
+			</a>
+		</div>
+	</div>
+</div>
+<div class="pages navbar-through">
+	<div data-page="main" class="page no-swipeback page-main">
+
+		<form class="address-search searchbar" data-search-list=".list-block-search" data-search-in=".item-title">
+			<div class="searchbar-input">
+				<input class="p_main_search_input" type="search" placeholder="Поиск по адресу"><a href="#" class="searchbar-clear"></a>
+			</div><a href="#" class="searchbar-cancel p_main_search_close close-popup" data-popup=".searchbar-popup">Отменить</a>
+		</form>
+		<div class="searchbar-overlay"></div>
+		
+		<div class="popup tablet-fullscreen searchbar-popup">
+			<div class="list-block list-block-search searchbar-found">
+				<ul id="soughtList">
+
+				</ul>
+			</div>
+		</div>
+		<script id="soughtItem" type="text/template">
+				<li class="item-content">
+					<a href="#" class="item-inner item-inner_sought">
+						<div class="item-title">{{this}}</div>
+					</a>
+				</li>
+		</script>
+		
+		<div class="page-content page-no-scroll">
+			<a href="#" class="b_map_btn m_zoomin">
+				<i class="icon icon-plus"></i>
+			</a>
+			<a href="#" class="b_map_btn m_zoomout">
+				<i class="icon icon-minus"></i>
+			</a>
+			<a href="#" class="b_map_btn m_geolocation">
+				<i class="icon icon-geolocation"></i>
+			</a>
+		
+			<div id="mainMap" class="b_map">
+				<span class="preloader"></span>
+			</div>			
+			
+			<div class="b_cards_list list-block">
+				<ul id="mainCardsList">
+					
+				</ul>
+			</div>
+		</div>
+		
+		<script id="lunchItem" type="text/template">
+			<li class="swipeout">
+				<a href="card.html" data-id="{{id}}" class="b_cards_item {{inactive}} swipeout-content">
+					<i class="icon icon-star-small"></i>
+					<div class="b_cards_item_inner">
+						<div class="row">
+							<div class="col-75">
+								<span class="b_cards_h">{{name}}</span>
+								<span class="b_cards_distance">{{metr}} м</span>
+							</div>
+							<div class="col-25">
+								{{#if price}}<span class="b_cards_price">{{price}}<span class="f_rouble">p</span></span>{{/if}}
+							</div>
+						</div>
+					</div>
+				</a>
+				<div class="swipeout-actions-right">
+					<a href="#" class="p_main_favourite_toggle b_favourite" data-id="{{id}}">
+						<i class="icon icon-star"></i>
+					</a>
+				</div>
+			</li>
+		</script>
+	</div>
+</div>

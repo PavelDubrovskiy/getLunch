@@ -1,76 +1,144 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <script type="text/javascript" src="lib/jquery-1.7.2.min.js"></script>
-        <title>getLunch</title>
-    </head>
-    <body>
-        <div class="app" id="card">
-            <h3 id="name"></h3>
-            <div style="width:100%;height:200px;text-align: center;">
-            	<img id="compasRow" src="i/row.svg" style="width:200px;height:200px;">
-            	<img id="compasRowCard" src="i/row.svg" style="width:200px;height:200px;">
-            </div>
-            <h3><span id="metres"></span> m</h3>
-            <br><br>
-            <div id="YMaps" style="width:100%;height: 400px;"></div>
-			<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"> </script>
-			<script>
-				var map;
-				function init(){
-					map = new ymaps.Map("YMaps", {
-						center: [55.753676,37.619899],
-						zoom: 16,
-					});
-					map.controls.add("zoomControl").add("typeSelector").add("mapTools");
-				}
-				ymaps.ready(init);	
-			</script>
-			<br>
-			<h3 id="address"></h3>
-			<h3 id="time"></h3>
-			<div style="width:100%;">
-				<div id="menuList" style="background: #FFF;border: 2px solid #999999; border-radius:5px;">
-					<table>
-						<colgroup><col width="100%"><col width="50px"></colgroup>
-						<tbody>
-						</tbody>
-					</table>
-				</div>
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left sliding">
+			<a href="#" class="link icon-only back">
+				<i class="icon icon-arrow-back"></i><span></span>
+			</a>
+		</div>
+		<div class="center header-wide p_card_header sliding"><span></span></div>
+		<div class="right sliding">
+			<!--<a href="#" class="link icon-only p_card_favourite_toggle">
+				<i class="icon icon-star"></i>
+			</a>-->
+		</div>
+	</div>
+</div>
+<div class="pages navbar-through">
+	<div data-page="card" class="page page-full-fade">
+		<div class="page-content" id="lunchPage">
+		
+		</div>
+		<script id="lunchCard" type="text/template">
+			<div class="b_map_btn b_compass">
+				<span class="b_compass_arr"><i class="icon icon-geolocation-small"></i></span>
+				<span class="b_compass_tx">{{metres}} м</span>
 			</div>
-			<h3 id="site"></h3>
-			<p id="comment"></p>
-			<a id="buttonFriends" href="">������� ������</a>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="lib/index.js"></script>
-        <script type="text/javascript" src="lib/compass.js"></script>
-        <script type="text/javascript" src="lib/CompassError.js"></script>
-        <script type="text/javascript" src="lib/CompassHeading.js"></script>
-        <script type="text/javascript" src="js/application.js"></script>
-        <script type="text/javascript" src="js/card.js"></script>
-    </body>
-</html>
+			<div id="cardMap" class="b_map m_xsmall">
+				<span class="preloader"></span>
+			</div>
+			<div class="b_white-bg">
+				<div class="b_content-block">
+					<div class="b_address">
+						<i class="icon icon-geotag"></i>
+						{{address}}
+					</div>
+					{{#if metro1.name}}<div class="b_underground m_{{metro1.parent}}">{{metro1.name}}</div>{{/if}}
+					{{#if metro2.name}}<div class="b_underground m_{{metro2.parent}}">{{metro2.name}}</div>{{/if}}
+					{{#if metro3.name}}<div class="b_underground m_{{metro3.parent}}">{{metro3.name}}</div>{{/if}}
+					<div class="b_time">
+						<i class="icon icon-clock"></i>
+						{{lunchfromStr}}–{{lunchtoStr}}
+					</div>
+				</div>
+				<div class="b_cards_list list-block">
+					<ul>
+						{{#each menu.prices}}
+							<li>
+								<div class="b_lunch-combo b_cards_item_inner">
+									<div class="row">
+										<div class="col-75">
+											<span class="b_cards_h">{{this.name}}</span>
+											<div class="b_lunch-combo_list">
+												{{this.description}}
+											</div>
+										</div>
+										<div class="col-25">
+											<span class="b_cards_price">{{this.price}}<span class="f_rouble">p</span></span>
+										</div>
+									</div>
+								</div>
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+
+				<a href="menu.html" class="b_wide-btn">
+					<i class="icon icon-menu"></i>
+					Меню заведения
+				</a>
+				
+				<div class="b_btn_row">
+					<div class="buttons-row">
+						<a href="invite.html" class="button b_btn">Позвать друзей</a>
+						<a href="checkin.html" class="button b_btn">Я тут ем</a>
+					</div>
+				</div>
+				
+				<div class="b_desc">
+					<i class="icon icon-torus"></i>
+					{{comment}}
+				</div>
+				<div class="b_gallery">
+					{{#each files}}
+						<a href="{{this.largePath}}"><img src="{{this.smallPath}}" alt=""></a>
+					{{/each}}
+				</div>
+				<div class="b_features">
+					{{#each features}}
+						<div class="b_features_item">
+							<i class="icon icon-{{this.path}}"></i>
+							{{this.name}}
+						</div>
+					{{/each}}
+				</div>
+				
+				<div class="b_btn_row">
+					<div class="buttons-row">
+						<a href="tel:{{phone}}" class="button b_btn">Позвонить</a>
+						<a href="#" class="button b_btn" id="externalSite">Посетить сайт</a>
+					</div>
+				</div>
+				
+				<div class="b_contacts_list list-block">
+					<ul>
+						{{#each reviews.list}}
+							<li>
+								<div class="b_contacts_item">
+									<span class="b_contacts_upic" style="background-image:url({{this.iuserAvatar}})"></span>
+									<time>{{this.date}}</time>
+									<strong>
+										{{this.iuserName}}
+										{{if this.thumb}}<i class="icon icon-{{this.thumb}}"></i>{{/if}}
+									</strong>
+									{{this.message}}
+								</div>
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+				
+				<div class="b_reviews_toolbar">
+					<div class="b_rating">
+						<span><i class="icon icon-thumb-up-filled"></i>{{reviews.like}}</span>
+						<span><i class="icon icon-thumb-down-filled"></i>{{reviews.unlike}}</span>
+					</div>
+					<div class="b_reviews_toolbar_right">
+						<a href="addreview.html" class="button b_btn">Написать рецензию</a>
+					</div>
+				</div>
+				{{#if checkins}}
+					<div class="b_friends">
+						<div class="b_friends_count">Сейчас здесь:</div>
+						<div>
+							{{#each checkins}}
+								<div class="b_friends_item" style="background-image:url({{this.avatar}});">
+									<span>{{this.count}}</span>
+								</div>
+							{{/each}}
+						</div>
+					</div>
+				{{/if}}
+			</div>
+		</script>
+	</div>
+</div>
