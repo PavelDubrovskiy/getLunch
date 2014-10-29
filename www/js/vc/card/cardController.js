@@ -5,6 +5,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	var gallery = null;
 	var interval = null;
 	var lunch = null;
+	var externalSite = null;
 	var bindings = [
 		// Управление избранным
 		{
@@ -23,6 +24,10 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			element: '.b_gallery',
 			event: 'touchend',
 			handler: app.enablePanel
+		},{
+			element: '#externalSite',
+			event: 'click',
+			handler: externalSiteLoad
 		}
 	];
 	
@@ -32,14 +37,13 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		
 		if(localStorage.getItem('lunch'+localStorage.getItem("currentId"))===null){
 			lunch=api.getLunch(values);
-			
 			localStorage.setItem('lunch'+localStorage.getItem("currentId"),JSON.stringify(lunch));
 		}else{
 			lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
 		}
 		lunch.metres=getDistance();		
 		lunch.mainSource=app.config.source;
-		
+		externalSite=lunch.site;
 		view.render({
 			bindings: bindings,
 			card:lunch
@@ -86,6 +90,11 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	function tryCompass(){
 		//navigator.compass.getCurrentHeading(onSuccessHeading, onErrorHeading);
+	}
+	function externalSiteLoad(){
+		if(externalSite!==null && externalSite!=''){
+			navigator.app.loadUrl('http://'+externalSite, {openExternal:true});
+		}
 	}
 	return {
 		init: init

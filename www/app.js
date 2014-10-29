@@ -20,7 +20,7 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 		animateNavBackIcon: true,
 		swipePanel: 'left',
 		swipePanelThreshold: 50,
-		pushState: true,
+		/*pushState: true,*/
 		
 		sortable: false,
 		swipeBackPageBoxShadow: false
