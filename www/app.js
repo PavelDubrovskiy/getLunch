@@ -120,7 +120,6 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 					data: data,
 					success: function(msg){
 						console.log(msg);
-						alert(msg);
 						if(msg!='"error"'){
 							user.setValues(JSON.parse(msg));
 							ymaps.ready(function () {

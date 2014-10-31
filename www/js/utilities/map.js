@@ -21,7 +21,7 @@
 						localStorage.setItem('currentId',$(this).data('id'));
 					});
 				}
-			}
+			}*
 		);
 	
 		// Шаблон метки пользователя
