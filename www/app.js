@@ -154,14 +154,6 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	};
 });
 
-// Расширение прототипа Function для упрощения передачи контекста в события	
-Function.prototype.bind = function (scope) {
-	var fn = this;
-	return function () {
-		return fn.apply(scope, arguments);
-	};
-};
-
 var url_parser={
 	get_args: function (s) {
 	    var tmp=new Array();
@@ -179,6 +171,14 @@ var url_parser={
 	        i=s[i].split("=");
 	        tmp[(i[0])]=i[1];
 	    }
-	    return tmp;		
+	    return tmp;
 	}
+};
+
+// Расширение прототипа Function для упрощения передачи контекста в события	
+Function.prototype.bind = function (scope) {
+	var fn = this;
+	return function () {
+		return fn.apply(scope, arguments);
+	};
 };

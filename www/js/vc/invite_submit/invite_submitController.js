@@ -1,4 +1,4 @@
-define(["app","js/vc/invite_submit/invite_submitView","js/utilities/invite","js/utilities/spinningwheel"], function(app, view, invite, SpinningWheel) {
+define(["app","js/vc/invite_submit/invite_submitView","js/utilities/invite"], function(app, view, invite) {
 	var bindings = [
 		{
 			element: ".p_invite_submit_list",
@@ -8,14 +8,7 @@ define(["app","js/vc/invite_submit/invite_submitView","js/utilities/invite","js/
 		}
 	];
 
-	function init(query) {
-		var datePicker = new SpinningWheel({
-			destination: ".b_invite_date"
-		});
-		datePicker.addSlot({ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 }, 'left');
-		datePicker.addSlot({ 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 }, 'left');
-		datePicker.open();
-		
+	function init(query) {		
 		invite.fillSelectedContent();
 		
 		view.render({

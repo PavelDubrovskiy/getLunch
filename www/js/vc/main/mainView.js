@@ -3,21 +3,33 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 	var $cnt = $(".page-content");
 	var $map = $(".b_map");
 	var fullscreen = false;
-
+	
+	var template = $('#lunchItem').html();
+	var compiledTemplate = Template7.compile(template);
+	
+	var soughtTemplate = $('#soughtItem').html();
+	var compiledSoughtTemplate = Template7.compile(soughtTemplate);
+	
 	function render(params) {
+		if(params.filter!==null){
+			$('input[name=lunchfrom]').val(params.filter.lunchfrom);
+			$('input[name=lunchto]').val(params.filter.lunchto);
+			$('input[name=pricefrom]').val(params.filter.pricefrom);
+			$('input[name=priceto]').val(params.filter.priceto);
+			$('#filterForm').each(function(){
+				if(params.filter.features!==undefined) {
+					if(params.filter.features.join(',').indexOf($(this).val())>=0){
+						$(this).prop('checked',true);
+					}
+				}
+			});
+		}
 		utilities.bindEvents(params.bindings);
-		
-		$(".page-main").on("pageBeforeAnimation", function() {
-			if( checkSearchOpened() === true ) {
-				app.mainView.hideNavbar();
-			}
-		});
 	}
 	
 	// Переключение размера карты
 	function toggleMapSize( e ) {
-		fullscreen = !fullscreen;		
-		$cnt.scrollTop(0);
+		fullscreen = !fullscreen;
 		
 		if( fullscreen === true ){
 			$cnt.toggleClass("st_map_fullscreen");
@@ -25,6 +37,7 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 			$cnt.toggleClass("st_cards_list_hidden");
 		}else{
 			$cnt.toggleClass("st_cards_list_hidden");
+
 			setTimeout( function(){
 				$cnt.toggleClass("st_map_fullscreen");
 				e.originalEvent.map.container.fitToViewport(true);				
@@ -38,46 +51,19 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		if(localStorage.getItem('sought')!==null){
 			sought=localStorage.getItem('sought').split('!__;__!');
 		}
-		var html='',
-			template = $('#soughtItem').html();
-		var soughtTemplate = Template7.compile(template);
+		var html='';
 		sought.forEach(function(element, index, array){
-			html+=soughtTemplate(element);
+			html+=compiledSoughtTemplate(element);
 		});
 		$('#soughtList').html(html);
-		app.mainView.hideNavbar();
 		$(".p_main_search_input").focus();
 	}
 	
-	// Скрыть поиск
-	function closeSearch() {
-		app.mainView.showNavbar();
-	}
-	
-	// Проверить, открыт ли поиск
-	function checkSearchOpened() {
-		if( $(".searchbar-popup.modal-in").length ) {
-			return true;
-		}
-		return false;
-	}
-	
-	// Триггер нажатия на кнопку скрытия поиска
-	function closeSearchClick() {
-		$(".p_main_search_close").click();
-	}
-	
-	// Удалить оверлей попапа
-	function removePopupOverlay() {
-		$(".popup-overlay").remove();
-	}
+	// Добавить ланчи
 	function attachLunches(values){
 		var html='',
-			template = $('#lunchItem').html(),
 			date=new Date();
 		var fer=date.getHours()+""+date.getMinutes();
-		var compiledTemplate = Template7.compile(template);
-		
 		values.lunchList.forEach(function(element, index, array){
 			values.map.createMark([element.latitude*1,element.longitude*1], 'card.html', element.name);
 			element.metr=Math.round(element.metr);
@@ -121,9 +107,6 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		render: render,
 		toggleMapSize: toggleMapSize,
 		openSearch: openSearch,
-		closeSearch: closeSearch,
-		closeSearchClick: closeSearchClick,
-		removePopupOverlay: removePopupOverlay,
 		toggleFavouriteState: utilities.toggleFavouriteState,
 		attachLunches: attachLunches
 	};

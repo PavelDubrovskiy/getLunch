@@ -6,11 +6,16 @@ define(function() {
 	Api.prototype.getLunchByCoords = function(values) {
 		var values = values || {};
 		var lunchList={};
+		var data = values.filter;
+		if(data===null)data={};
+		data.longitude=values.longitude;
+		data.latitude=values.latitude;
+		data.app=true;
 		$.ajax({
 			type: "POST",
 			async: false,
 			url: values.source+"/api/getLunchByCoords/",
-			data: "longitude="+values.longitude+"&latitude="+values.latitude+"&app=true",
+			data: data,
 			success: function(msg){
 				lunchList=JSON.parse(msg);
 			}
@@ -20,11 +25,15 @@ define(function() {
 	Api.prototype.getLunchByAddress = function(values) {
 		var values = values || {};
 		var lunchList={};
+		var data = values.filter;
+		if(data===null)data={};
+		data.q=values.address;
+		data.app=true;
 		$.ajax({
 			type: "POST",
 			async: false,
 			url: values.source+"/api/getLunchByAddress/",
-			data: "q="+values.address+"&app=true",
+			data: data,
 			success: function(msg){
 				lunchList=JSON.parse(msg);
 			}

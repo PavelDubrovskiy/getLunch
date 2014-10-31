@@ -14,7 +14,8 @@
 			<a href="#" class="link icon-only p_main_search_open open-popup" data-popup=".searchbar-popup">
 				<i class="icon icon-search"></i>
 			</a>
-			<a href="filter.html" class="link icon-only">
+			
+			<a href="#" class="link icon-only open-popup" data-popup=".filter-popup">
 				<i class="icon icon-filter"></i>
 			</a>
 		</div>
@@ -23,28 +24,6 @@
 <div class="pages navbar-through">
 	<div data-page="main" class="page no-swipeback page-main">
 
-		<form class="address-search searchbar" data-search-list=".list-block-search" data-search-in=".item-title">
-			<div class="searchbar-input">
-				<input class="p_main_search_input" type="search" placeholder="Поиск по адресу"><a href="#" class="searchbar-clear"></a>
-			</div><a href="#" class="searchbar-cancel p_main_search_close close-popup" data-popup=".searchbar-popup">Отменить</a>
-		</form>
-		<div class="searchbar-overlay"></div>
-		
-		<div class="popup tablet-fullscreen searchbar-popup">
-			<div class="list-block list-block-search searchbar-found">
-				<ul id="soughtList">
-
-				</ul>
-			</div>
-		</div>
-		<script id="soughtItem" type="text/template">
-				<li class="item-content">
-					<a href="#" class="item-inner item-inner_sought">
-						<div class="item-title">{{this}}</div>
-					</a>
-				</li>
-		</script>
-		
 		<div class="page-content page-no-scroll">
 			<a href="#" class="b_map_btn m_zoomin">
 				<i class="icon icon-plus"></i>

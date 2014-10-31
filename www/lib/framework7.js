@@ -747,7 +747,11 @@
         app.initSearchbar = function (pageContainer) {
             pageContainer = $(pageContainer);
             var searchbar = pageContainer.hasClass('searchbar') ? pageContainer : pageContainer.find('.searchbar');
-            if (searchbar.length === 0) return;
+            if (searchbar.length === 0) {
+				pageContainer = $(document.body);
+				searchbar = pageContainer.hasClass('searchbar') ? pageContainer : pageContainer.find('.searchbar');
+				if (searchbar.length === 0) return;
+			}
             if (!pageContainer.hasClass('page')) pageContainer = searchbar.parents('.page').eq(0);
             var searchbarOverlay = pageContainer.hasClass('page') ? pageContainer.find('.searchbar-overlay') : $('.searchbar-overlay');
             var input = searchbar.find('input[type="search"]');
@@ -776,8 +780,7 @@
             // Cancel button
             var cancelWidth, cancelMarginProp = app.rtl ? 'margin-left' : 'margin-right';
             if (cancel.length > 0) {
-                cancelWidth = cancel.width();
-        
+                cancelWidth = cancel.width();        
                 cancel.css(cancelMarginProp, - cancelWidth + 'px');
             }
         
