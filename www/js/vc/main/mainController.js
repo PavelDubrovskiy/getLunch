@@ -132,7 +132,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 						app.latitude=position.coords.latitude;
 						app.longitude=position.coords.longitude;
 						getNearestLunches();
-						map.setUserPosition([app.latitude, app.longitude], true);
+						map.setUserPosition([app.latitude, app.longitude]);
+						map.autoBounds();
 					}catch(e){}
 				}, 
 				function(){}, 
@@ -140,7 +141,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			);
 		}else{
 			getNearestLunches();
-			map.setUserPosition([app.latitude, app.longitude], true);
+			map.setUserPosition([app.latitude, app.longitude]);
+			map.autoBounds();
 		}
 	}
 	

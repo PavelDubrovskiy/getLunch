@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="getLunch" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.example.hello" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>getLunch</name>
     <description>
-        Мобильное приложение «Getlunch» является информационным ресурсом, позволяющим быстро найти заведение, в котором есть бизнес-ланч.
+        A sample Apache Cordova application that responds to the deviceready event.
     </description>
-    <author email="getlunch@getlunch.ru" href="http://getlunch.ru">
-        Agency ONE TOUCH
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
     </author>
     <content src="index.html" />
     <access origin="*" />
