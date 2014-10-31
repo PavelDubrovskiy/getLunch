@@ -65,7 +65,8 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 			date=new Date();
 		var fer=date.getHours()+""+date.getMinutes();
 		values.lunchList.forEach(function(element, index, array){
-			values.map.createMark([element.latitude*1,element.longitude*1], 'card.html', element.name);
+			
+				
 			element.metr=Math.round(element.metr);
 			element.inactive='';
 			element.inactiveText='';
@@ -77,15 +78,22 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 				element.inactiveText='Закончилось время ланча';
 			}
 			html+=compiledTemplate(element);
+			
+			values.map.createMark([element.latitude*1,element.longitude*1],
+									{
+										name: element.name,
+										inactive: (element.inactive === 'st_inactive' ? true : false),
+										id: element.id
+									});
 		});
+		
 		$('#mainCardsList').html(html);
 	}
+	
 	function attachSearch(values){
 		var html='',
-			template = $('#lunchItem').html(),
 			date=new Date();
 		var fer=date.getHours()+""+date.getMinutes();
-		var compiledTemplate = Template7.compile(template);
 		
 		values.lunchList.forEach(function(element, index, array){
 			values.map.createMark([element.latitude*1,element.longitude*1], 'card.html', element.name);

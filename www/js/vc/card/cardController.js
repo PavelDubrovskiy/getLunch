@@ -71,7 +71,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		
 		// Если расстояние от пользователя до кафе меньше 700 метров, показываем карту так, чтобы вместить точку пользователя и точку кафе, иначе показываем только кафе
 		if( lunch.metres < 700 ) {
-			map.createMark([values.latitude, values.longitude], 'card.html');
+			map.createMark([values.latitude, values.longitude], {});
 			map.setUserPosition([app.latitude, app.longitude]);
 			map.autoBoundsUser();
 		}else{

@@ -133,7 +133,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 						app.longitude=position.coords.longitude;
 						getNearestLunches();
 						map.setUserPosition([app.latitude, app.longitude]);
-						map.autoBounds();
+						map.autoBounds(200);
 					}catch(e){}
 				}, 
 				function(){}, 
@@ -142,7 +142,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		}else{
 			getNearestLunches();
 			map.setUserPosition([app.latitude, app.longitude]);
-			map.autoBounds();
+			map.autoBounds(200);
 		}
 	}
 	
@@ -177,8 +177,11 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				localStorage.setItem('sought',sought.join('!__;__!'));
 				map.marks.removeAll();				
 				var valuesItem={lunchList:msg.list,map:map};
+				
 				view.attachLunches(valuesItem);
-				$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
+				
+				$('.b_cards_item').off('click').on('click', setCurrent);
+				
 				app.firstEnter=false;
 				map.autoBounds();
 				$(".p_main_search_close").click();
@@ -189,11 +192,21 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	function getNearestLunches(){
 		if(app.latitude!=0 && app.longitude!=0 && searchInput==''){
 			var filter=JSON.parse(localStorage.getItem('filter'));
-			var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map, filter:filter};
+			var values={
+				latitude: app.latitude,
+				longitude: app.longitude,
+				panTo: app.firstEnter,
+				source: app.config.source,
+				map:map,
+				filter:filter
+			};
+			
 			map.geolocation(values);
+			
 			var lunchList=api.getLunchByCoords(values);
 			var mainLunchesList=JSON.parse(localStorage.getItem('mainLunchesList'));
 			var isChangeInList=false;
+			
 			lunchList.forEach(function(element, index, array){
 				if(mainLunchesList!==null && mainLunchesList[index]!==undefined){
 					if(element.id*1!==mainLunchesList[index].id*1){
@@ -203,21 +216,32 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 					isChangeInList=true;
 				}
 			});
+			
 			if(mainLunchesList===null || isChangeInList==true){
 				localStorage.setItem('mainLunchesList',JSON.stringify(lunchList));
 			}
+			
 			if(typeof lunchList !== 'undefined'){
 				if(isChangeInList==true || app.firstEnter==true){
 					map.marks.removeAll();
 					var valuesItem={lunchList:lunchList,map:map};
 					view.attachLunches(valuesItem);
-					$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
+					
+					$('.b_cards_item').off('click').on('click', setCurrent);
+					
 					app.firstEnter=false;
 					app.useFilter=false;
 				}
 			}
 		}
 	}
+	
+	// Сохраняем выбранное кафе в LocalStorage
+	function setCurrent() {
+		localStorage.setItem('currentId',$(this).data('id'));
+	}
+	
+	// Фильтр
 	function submitFilter() {
 		var formInput = app.f7.formToJSON('#filterForm');
 		localStorage.setItem('filter',JSON.stringify(formInput));
@@ -225,10 +249,12 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			searchHandler();
 		}
 	}
+	
 	// Выход из приложения
 	function appExit() {
 		window.close();
 	}
+	
 	return {
 		init: init
 	};

@@ -1,16 +1,27 @@
 ﻿define(function() {
+	var $ = Framework7.$;
+	
 	function Map(values) {
 		values = values || {};
 		
 		// Шаблон балуна
 		this.balloonLayout = ymaps.templateLayoutFactory.createClass(
 			'<div class="b_map_balloon">' +
-				'<a href="$[properties.link]">' + 
+				'<a href="$[properties.link]" data-id="$[properties.id]" class="b_map_balloon_link">' + 
 					'$[properties.name]' + 
 					'<i class="icon icon-arrow-small-forward"></i>' +
 				'</a>' +
 				'<span class="b_map_balloon_arrow"></span>' +
-			'</div>'
+			'</div>', {
+				build: function () {
+                    this.constructor.superclass.build.call(this);
+					
+                    this._$element = $(this.getParentElement()).find('.b_map_balloon');
+					this._$element.find('.b_map_balloon_link').on('click', function(){
+						localStorage.setItem('currentId',$(this).data('id'));
+					});
+				}
+			}
 		);
 	
 		// Шаблон метки пользователя
@@ -57,13 +68,15 @@
 	
 	// Создание метки по заданным координатам
 	// и добавление её в массив меток
-	Map.prototype.createMark = function(coord, link, name, inactive) {
+	Map.prototype.createMark = function(coord, values) {
 		var mark = new ymaps.Placemark(coord, {
-				link: link,
-				name: name
+				link: values.link || "card.html",
+				name: values.name || "Кафе",
+				inactive: values.inactive || false,
+				id: values.id || 0
 			},{
 				iconLayout: 'default#image',
-				iconImageHref: !inactive ? 'i/svg/geotag.svg' : 'i/svg/geotag_inactive.svg',
+				iconImageHref: !values.inactive ? 'i/svg/geotag.svg' : 'i/svg/geotag_inactive.svg',
 				iconImageSize: [26, 40],
 				iconImageOffset: [-13, -36],
 				
@@ -71,7 +84,7 @@
 				balloonLayout: this.balloonLayout,
 				balloonCloseButton: false,
 				hideIconOnBalloonOpen: false,
-				openBalloonOnClick: name ? true : false,
+				openBalloonOnClick: values.name ? true : false,
 				balloonPanelMaxMapArea: 0
 			}
 		);
@@ -79,7 +92,7 @@
 		this.marks.add(mark);
 		this.map.geoObjects.add(this.marks);
 		
-		if(!name) {
+		if(!values.name) {
 			mark.events.add('click', this.autoPan.bind(this));
 		}
 		
@@ -171,13 +184,13 @@
 	};
 	
 	// Автопозиционирование карты для показа всех добавленных точек
-	Map.prototype.autoBounds = function() {
-		this.map.setBounds( this.marks.getBounds(), {zoomMargin: [48, 21, 8, 21], checkZoomRange: true});
+	Map.prototype.autoBounds = function(duration) {
+		this.map.setBounds( this.marks.getBounds(), {zoomMargin: [48, 21, 8, 21], checkZoomRange: true, duration: (duration || 0) });
 	};
 	
 	// Автопозиционирование карты для показа всех добавленных точек и пользователя
-	Map.prototype.autoBoundsUser = function() {
-		this.map.setBounds( this.map.geoObjects.getBounds(), {zoomMargin: [28, 21, 8, 21], checkZoomRange: true});
+	Map.prototype.autoBoundsUser = function(duration) {
+		this.map.setBounds( this.map.geoObjects.getBounds(), {zoomMargin: [28, 21, 8, 21], checkZoomRange: true, duration: (duration || 0) });
 	};
 	
 	// Геолокация
