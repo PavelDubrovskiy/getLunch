@@ -112,6 +112,7 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 	            var tmp=url_parser.get_args(tmp[1]);
 	            var data={token:tmp['access_token'],provider:'vk',vk_exp:tmp['expires_in'],user_id:tmp['user_id'],email:tmp['email']};
 	            if(user.code!='')data.code=user.code;
+	            console.log(data);
 	            $.ajax({
 					type: "POST",
 					async: false,
@@ -119,7 +120,8 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 					data: data,
 					success: function(msg){
 						console.log(msg);
-						if(msg!='error'){
+						alert(msg);
+						if(msg!='"error"'){
 							user.setValues(JSON.parse(msg));
 							ymaps.ready(function () {
 								mainView.loadPage('main.html');

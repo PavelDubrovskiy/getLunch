@@ -111,13 +111,10 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		map.map.events.add('mouseleave', app.enablePanel);
 		var itemList={};
 		
-		setTimeout( function(){
-			getNearestLunches();
-		}, 400);
+		setTimeout(getNearestLunches, 400);
 		window.clearInterval(app.interval);
-		var mainSetMePosInterval=window.setInterval(function(){
-			getNearestLunches();
-		},5000);
+		var mainSetMePosInterval=window.setInterval(getNearestLunches, 5000);
+		
 		// Изменение состояния метки (если вторым параметром передано true, 1, "active" — метка становится активной, если false, 0, "inactive" или параметр не передан — неактивной)
 		//map.changeMarkState( map.marks.get(0), "inactive");
 	}
