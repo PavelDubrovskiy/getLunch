@@ -821,6 +821,12 @@ a{
 		left: 8px;
 		margin: -31px 0 0;
 	}
+	.b_map_btn.m_findme{
+		font-size: 24px;
+		top: 55%;
+		right: 8px;
+		margin: -31px 0 0;
+	}
 	
 	.st_cards_list_hidden .b_map_btn.m_zoomin,
 	.st_cards_list_hidden .b_map_btn.m_zoomout{

@@ -11,7 +11,18 @@ paths: {
 	}
 });*/
 
-define('app', ['js/router', 'js/m/user'], function(Router, User) {
+require.config({
+    paths: {
+        "moment": "lib/moment.min"
+    },
+    config: {
+        moment: {
+            noGlobal: true
+        }
+    }
+});
+
+define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 	Router.init();
 	var $ = Framework7.$;
 	var user = new User();
@@ -88,7 +99,8 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	    plugin_perms: "friends,wall,photos,offline,notes,email",
 	    auth: function (force) {
 	        if (!window.localStorage.getItem("plugin_vk_token") || force || window.localStorage.getItem("plugin_vk_perms")!=plugin_vk.plugin_perms) {
-	            var authURL="https://oauth.vk.com/authorize?client_id=4532400&scope="+this.plugin_perms+"&redirect_uri=http://oauth.vk.com/blank.html&display=touch&response_type=token&v=5.25";
+	            //var authURL="https://oauth.vk.com/authorize?client_id=4532400&scope="+this.plugin_perms+"&redirect_uri=http://oauth.vk.com/blank.html&display=touch&response_type=token&v=5.25";
+	            var authURL="https://oauth.vk.com/authorize?client_id=4613296&scope="+this.plugin_perms+"&redirect_uri=http://oauth.vk.com/blank.html&display=touch&response_type=token&v=5.25";
 	            this.wwwref = window.open(encodeURI(authURL), '_blank', 'location=no');
 	            this.wwwref.addEventListener('loadstop', this.auth_event_url);
 	        }

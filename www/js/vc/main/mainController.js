@@ -96,6 +96,11 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				element: '.b_map_btn.m_geolocation',
 				event: 'click',
 				handler: geolocation
+			},
+			{
+				element: '.b_map_btn.m_findme',
+				event: 'click',
+				handler: findMe
 			}
 		);
 		
@@ -137,6 +142,11 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			getNearestLunches();
 			map.setUserPosition([app.latitude, app.longitude], true);
 		}
+	}
+	
+	// Найти меня
+	function findMe() {
+		map.setUserPosition([app.latitude, app.longitude], true);
 	}
 	
 	// Функция управления избранным
@@ -209,6 +219,9 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	function submitFilter() {
 		var formInput = app.f7.formToJSON('#filterForm');
 		localStorage.setItem('filter',JSON.stringify(formInput));
+		if($('.p_main_search_input').val()!=''){
+			searchHandler();
+		}
 	}
 	// Выход из приложения
 	function appExit() {
