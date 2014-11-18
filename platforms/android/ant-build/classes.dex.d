@@ -6,6 +6,14 @@ D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$drawa
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$string.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$xml.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\getLunch\getLunch.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$1.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$2$1$1.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$2$1.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$2.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$3.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$SocialSharingRunnable.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\org\apache\cordova\contacts\ContactAccessor$WhereOptions.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\org\apache\cordova\contacts\ContactAccessor.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\org\apache\cordova\contacts\ContactAccessorSdk5.class \

@@ -42,8 +42,9 @@ define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilit
 				url: app.config.source+"/api/addReview/",
 				data: formInput,
 				success: function(msg){
-					forms.showMessage('Рецензия успешно добавлена', 'success');
-					$('.p_addreview_back').click();
+					console.log(msg);
+					//forms.showMessage('Рецензия успешно добавлена', 'success');
+					//$('.p_addreview_back').click();
 				}
 			});
 		}

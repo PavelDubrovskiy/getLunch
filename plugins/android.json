@@ -23,6 +23,10 @@
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -51,7 +55,13 @@
                             "count": 1
                         }
                     ],
-                    "application": []
+                    "application": [],
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 1
+                        }
+                    ]
                 }
             },
             "res/values/facebookconnect.xml": {
@@ -79,6 +89,9 @@
         },
         "org.apache.cordova.inappbrowser": {
             "PACKAGE_NAME": "getLunch"
+        },
+        "nl.x-services.plugins.socialsharing": {
+            "PACKAGE_NAME": "com.example.hello"
         }
     },
     "dependent_plugins": {}

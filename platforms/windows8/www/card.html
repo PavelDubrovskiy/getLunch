@@ -1,0 +1,144 @@
+﻿<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left sliding">
+			<a href="#" class="link icon-only back">
+				<i class="icon icon-arrow-back"></i><span></span>
+			</a>
+		</div>
+		<div class="center header-wide p_card_header sliding"><span></span></div>
+		<div class="right sliding">
+			<!--<a href="#" class="link icon-only p_card_favourite_toggle">
+				<i class="icon icon-star"></i>
+			</a>-->
+		</div>
+	</div>
+</div>
+<div class="pages navbar-through">
+	<div data-page="card" class="page page-full-fade">
+		<div class="page-content" id="lunchPage">
+		
+		</div>
+		<script id="lunchCard" type="text/template">
+			<div class="b_map_btn b_compass">
+				<span class="b_compass_arr"><i class="icon icon-geolocation-small"></i></span>
+				<span class="b_compass_tx">{{metres}} м</span>
+			</div>
+			<div id="cardMap" class="b_map m_xsmall">
+				<span class="preloader"></span>
+			</div>
+			<div class="b_white-bg">
+				<div class="b_content-block">
+					<div class="b_address">
+						<i class="icon icon-geotag"></i>
+						{{address}}
+					</div>
+					{{#if metro1.name}}<div class="b_underground m_{{metro1.parent}}">{{metro1.name}}</div>{{/if}}
+					{{#if metro2.name}}<div class="b_underground m_{{metro2.parent}}">{{metro2.name}}</div>{{/if}}
+					{{#if metro3.name}}<div class="b_underground m_{{metro3.parent}}">{{metro3.name}}</div>{{/if}}
+					<div class="b_time">
+						<i class="icon icon-clock"></i>
+						{{lunchfromStr}}–{{lunchtoStr}}
+					</div>
+				</div>
+				<div class="b_cards_list list-block">
+					<ul>
+						{{#each menu.prices}}
+							<li>
+								<div class="b_lunch-combo b_cards_item_inner">
+									<div class="row">
+										<div class="col-75">
+											<span class="b_cards_h">{{this.name}}</span>
+											<div class="b_lunch-combo_list">
+												{{this.description}}
+											</div>
+										</div>
+										<div class="col-25">
+											<span class="b_cards_price">{{this.price}}<span class="f_rouble">p</span></span>
+										</div>
+									</div>
+								</div>
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+
+				<a href="menu.html" class="b_wide-btn">
+					<i class="icon icon-menu"></i>
+					Меню заведения
+				</a>
+				
+				<div class="b_btn_row">
+					<div class="buttons-row">
+						<a href="invite.html" class="button b_btn">Позвать друзей</a>
+						<a href="checkin.html" class="button b_btn">Я тут ем</a>
+					</div>
+				</div>
+				
+				<div class="b_desc">
+					<i class="icon icon-torus"></i>
+					{{comment}}
+				</div>
+				<div class="b_gallery">
+					{{#each files}}
+						<a href="{{this.largePath}}"><img src="{{this.smallPath}}" alt=""></a>
+					{{/each}}
+				</div>
+				<div class="b_features">
+					{{#each features}}
+						<div class="b_features_item">
+							<i class="icon icon-{{this.path}}"></i>
+							{{this.name}}
+						</div>
+					{{/each}}
+				</div>
+				
+				<div class="b_btn_row">
+					<div class="buttons-row">
+						<a href="tel:{{phone}}" class="button b_btn">Позвонить</a>
+						<a href="#" class="button b_btn" id="externalSite">Посетить сайт</a>
+					</div>
+				</div>
+				
+				<div class="b_contacts_list list-block">
+					<ul>
+						{{#each reviews.list}}
+							<li>
+								<div class="b_contacts_item">
+									<span class="b_contacts_upic" style="background-image:url({{this.iuserAvatar}})"></span>
+									<time>{{this.date}}</time>
+									<strong>
+										{{this.iuserName}}
+										{{if this.thumb}}<i class="icon icon-{{this.thumb}}"></i>{{/if}}
+									</strong>
+									{{this.message}}
+								</div>
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+				
+				<div class="b_reviews_toolbar">
+					<div class="b_rating">
+						<span><i class="icon icon-thumb-up-filled"></i>{{reviews.like}}</span>
+						<span><i class="icon icon-thumb-down-filled"></i>{{reviews.unlike}}</span>
+					</div>
+					<div class="b_reviews_toolbar_right">
+						<a href="addreview.html" class="button b_btn">Написать рецензию</a>
+					</div>
+				</div>
+				{{#if checkins}}
+					<div class="b_friends">
+						<div class="b_friends_count">Сейчас здесь:</div>
+						<div>
+							{{#each checkins}}
+								<div class="b_friends_item" style="background-image:url({{this.avatar}});">
+									<span>{{this.count}}</span>
+								</div>
+							{{/each}}
+						</div>
+					</div>
+				{{/if}}
+			</div>
+		</script>
+	</div>
+</div>

@@ -4,6 +4,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	var api = new Api();
 	var $ = Framework7.$;
 	var sought=[];
+	var searchInput='';
 	if(localStorage.getItem('sought')!==null){
 		sought=localStorage.getItem('sought').split('!__;__!');
 	}
@@ -20,16 +21,6 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			element: '.p_main_search_open',
 			event: 'click',
 			handler: view.openSearch
-		},
-		{
-			element: '.p_main_search_close',
-			event: 'click',
-			handler: view.closeSearch
-		},
-		{
-			element: '.popup',
-			event: 'open',
-			handler: view.removePopupOverlay
 		},
 		{
 			element: '.p_main_search_input',
@@ -55,6 +46,11 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			event: 'click',
 			handler: soughtClick,
 			delegateTo: '.item-inner_sought'
+		},
+		{
+			element: '#submitFilter',
+			event: 'click',
+			handler: submitFilter,
 		}
 	];
 	
@@ -63,6 +59,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 
 	// Инициализация страницы
 	function init(query) {
+		var filter=JSON.parse(localStorage.getItem('filter'));
 		$(document).on('pageBeforeRemove', function (e) {
 			app.firstEnter=true;
 		});
@@ -70,7 +67,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		
 		view.render({
 			bindings: bindings,
-			user: user
+			user: user,
+			filter:filter
 		});
 	}
 	
@@ -98,6 +96,11 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				element: '.b_map_btn.m_geolocation',
 				event: 'click',
 				handler: geolocation
+			},
+			{
+				element: '.b_map_btn.m_findme',
+				event: 'click',
+				handler: findMe
 			}
 		);
 		
@@ -108,13 +111,10 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		map.map.events.add('mouseleave', app.enablePanel);
 		var itemList={};
 		
-		setTimeout( function(){
-			getNearestLunces();
-		}, 400);
+		setTimeout(getNearestLunches, 400);
 		window.clearInterval(app.interval);
-		var mainSetMePosInterval=window.setInterval(function(){
-			getNearestLunces();
-		},5000);
+		var mainSetMePosInterval=window.setInterval(getNearestLunches, 5000);
+		
 		// Изменение состояния метки (если вторым параметром передано true, 1, "active" — метка становится активной, если false, 0, "inactive" или параметр не передан — неактивной)
 		//map.changeMarkState( map.marks.get(0), "inactive");
 	}
@@ -122,22 +122,30 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	// Геолокация
 	function geolocation() {
 		app.firstEnter=true;
+		searchInput='';
 		if(app.latitude==0 && app.longitude==0){
 			app.watchID = navigator.geolocation.watchPosition(function(position){
 					try{
 						app.latitude=position.coords.latitude;
 						app.longitude=position.coords.longitude;
-						getNearestLunces();
-						map.setUserPosition([app.latitude, app.longitude], true);
+						getNearestLunches();
+						map.setUserPosition([app.latitude, app.longitude]);
+						map.autoBounds(200);
 					}catch(e){}
 				}, 
 				function(){}, 
 				{timeout: 10000, enableHighAccuracy: true}
 			);
 		}else{
-			getNearestLunces();
-			map.setUserPosition([app.latitude, app.longitude], true);
+			getNearestLunches();
+			map.setUserPosition([app.latitude, app.longitude]);
+			map.autoBounds(200);
 		}
+	}
+	
+	// Найти меня
+	function findMe() {
+		map.setUserPosition([app.latitude, app.longitude], true);
 	}
 	
 	// Функция управления избранным
@@ -150,61 +158,100 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		searchHandler();
 	}
 	// Поиск
-	function searchHandler() {
+	function searchHandler(){
 		if($('.p_main_search_input').val()!=''){
-			var values={source:app.config.source, map:map, address:$('.p_main_search_input').val()};
+			searchInput=$('.p_main_search_input').val();
+			var filter=JSON.parse(localStorage.getItem('filter'));
+			var values={source:app.config.source, map:map, address:searchInput, filter:filter};
 			var msg=api.getLunchByAddress(values);
 			if(typeof msg !== 'undefined'){
 				sought.forEach(function(element, index, array){
-					if(element==$('.p_main_search_input').val()){
+					if(element==searchInput){
 						sought.splice(index,1);
 					}
 				});
-				sought.unshift($('.p_main_search_input').val());
+				sought.unshift(searchInput);
 				localStorage.setItem('sought',sought.join('!__;__!'));
-				map.marks.removeAll();				
+				map.marks.removeAll();
+				console.log(msg);
 				var valuesItem={lunchList:msg.list,map:map};
 				view.attachLunches(valuesItem);
-				$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
+				
+				$('.b_cards_item').off('click').on('click', setCurrent);
+				
 				app.firstEnter=false;
 				map.autoBounds();
-				setTimeout(view.closeSearchClick, 700);
-				
+				$(".p_main_search_close").click();
 			}
 		}
 	}
 	// Получение адресов вокруг моей позиции 
-	function getNearestLunces(){
-		if(app.latitude!=0 && app.longitude!=0){
-			var values={latitude:app.latitude, longitude:app.longitude,panTo:app.firstEnter, source:app.config.source, map:map};
+	function getNearestLunches(){
+		if(app.latitude!=0 && app.longitude!=0 && searchInput==''){
+			var filter=JSON.parse(localStorage.getItem('filter'));
+			var values={
+				latitude: app.latitude,
+				longitude: app.longitude,
+				panTo: app.firstEnter,
+				source: app.config.source,
+				map:map,
+				filter:filter
+			};
+			
 			map.geolocation(values);
+			
 			var lunchList=api.getLunchByCoords(values);
 			var mainLunchesList=JSON.parse(localStorage.getItem('mainLunchesList'));
 			var isChangeInList=false;
+			
 			lunchList.forEach(function(element, index, array){
-				if(mainLunchesList!==null && element.id*1!==mainLunchesList[index].id*1){
+				if(mainLunchesList!==null && mainLunchesList[index]!==undefined){
+					if(element.id*1!==mainLunchesList[index].id*1){
+						isChangeInList=true;
+					}
+				}else{
 					isChangeInList=true;
 				}
 			});
+			
 			if(mainLunchesList===null || isChangeInList==true){
 				localStorage.setItem('mainLunchesList',JSON.stringify(lunchList));
 			}
+			
 			if(typeof lunchList !== 'undefined'){
 				if(isChangeInList==true || app.firstEnter==true){
 					map.marks.removeAll();
 					var valuesItem={lunchList:lunchList,map:map};
 					view.attachLunches(valuesItem);
-					$('.b_cards_item').click(function(){localStorage.setItem('currentId',$(this).data('id'));});
+					
+					$('.b_cards_item').off('click').on('click', setCurrent);
+					
 					app.firstEnter=false;
+					app.useFilter=false;
 				}
 			}
 		}
 	}
+	
+	// Сохраняем выбранное кафе в LocalStorage
+	function setCurrent() {
+		localStorage.setItem('currentId',$(this).data('id'));
+	}
+	
+	// Фильтр
+	function submitFilter() {
+		var formInput = app.f7.formToJSON('#filterForm');
+		localStorage.setItem('filter',JSON.stringify(formInput));
+		if($('.p_main_search_input').val()!=''){
+			searchHandler();
+		}
+	}
+	
 	// Выход из приложения
 	function appExit() {
 		window.close();
 	}
-
+	
 	return {
 		init: init
 	};

@@ -1,43 +1,274 @@
-<!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+﻿<!DOCTYPE html>
+<html class="with-statusbar-overlay">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<title>GetLunch</title>
+	<link rel="stylesheet" href="css/fonts/fonts.css">
+	<link rel="stylesheet" href="css/icons/icons.css">
+	<link rel="stylesheet" href="lib/css/framework7.css">
+	<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+	<!-- САЙДБАР -->
+	<div class="panel-overlay"></div>
+	<div class="panel panel-left panel-reveal">
+		
+		<a class="b_sidebar_item close-panel" href="main.html">
+			<i class="icon icon-sidebar-eat"></i>
+			Поесть
+		</a>
+		
+		<a class="b_sidebar_item close-panel" href="reminder.html">
+			<i class="icon icon-sidebar-bell"></i>
+			Напоминание
+		</a>
+		
+		<!--<a class="b_sidebar_item close-panel" href="favourite.html">
+			<i class="icon icon-sidebar-star"></i>
+			Избранное
+		</a>-->
+		
+		<a class="b_sidebar_item close-panel" href="profile.html">
+			<i class="icon icon-sidebar-face"></i>
+			Профиль
+		</a>
+		
+		<a class="b_sidebar_item app_exit" href="#">
+			<i class="icon icon-exit"></i>
+			Выход
+		</a>		
+	
+	</div>
+	<!-- /САЙДБАР -->
 
-    http://www.apache.org/licenses/LICENSE-2.0
+	<div class="statusbar-overlay"></div>
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+	<!-- Попап поиска -->
+	<div class="popup tablet-fullscreen searchbar-popup">
+		<form class="address-search searchbar" data-search-list=".list-block-search" data-search-in=".item-title">
+			<div class="searchbar-input">
+				<input class="p_main_search_input" type="search" placeholder="Поиск по адресу"><a href="#" class="searchbar-clear"></a>
+			</div><a href="#" class="searchbar-cancel-static p_main_search_close close-popup" data-popup=".searchbar-popup">Отменить</a>
+		</form>
+		
+		<div class="list-block list-block-search searchbar-found">
+			<ul id="soughtList">
+
+			</ul>
+		</div>
+	</div>
+	<script id="soughtItem" type="text/template">
+			<li class="item-content">
+				<a href="#" class="item-inner item-inner_sought close-popup" data-popup=".searchbar-popup">
+					<div class="item-title">{{this}}</div>
+				</a>
+			</li>
+	</script>
+	<!-- /Попап поиска -->
+	
+	<!-- Попап фильтра -->
+	<div class="popup tablet-fullscreen filter-popup">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="left sliding">
+					<a href="#" class="link f_cancel close-popup" data-popup=".filter-popup">
+						Отменить
+					</a>
+				</div>
+				<div class="center sliding">
+					Фильтр
+				</div>
+				<div class="right sliding">
+					<a href="#" class="link close-popup" data-popup=".filter-popup" id="submitFilter">
+						Готово
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="page-content">
+			<form id="filterForm" class="store-data">
+				<div class="content-block-title">Время ланча</div>
+				<div class="list-block m_gray">
+					<ul>
+						<li>
+							<label class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">Начало</div>
+									<div class="item-input">
+										<input name="lunchfrom" type="time" step="1800">
+									</div>									
+								</div>
+							</label>
+						</li>
+						<li>
+							<label class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">Конец</div>
+									<div class="item-input">
+										<input name="lunchto" type="time" step="1800">
+									</div>									
+								</div>
+							</label>
+						</li>
+					</ul>
+				</div>
+				<div class="content-block-title">Цена</div>
+				<div class="list-block m_gray">
+					<ul>
+						<li>
+							<label class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">От</div>
+									<div class="item-input b_price">
+										<input name="pricefrom" min="1" max="999" type="number">
+									</div>
+								</div>
+							</label>
+						</li>
+						<li>
+							<label class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">До</div>
+									<div class="item-input b_price">
+										<input name="priceto" min="1" max="999" type="number">
+									</div>
+								</div>
+							</label>
+						</li>						
+					</ul>
+				</div>
+				<div class="content-block-title">Другие параметры</div>
+				<div class="list-block m_gray">
+					<ul>
+						<li>
+							<div class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">Вегетарианская кухня</div>
+									<div class="item-input b_switch">
+										<label class="label-switch">
+											<input type="checkbox" value="5" name="features[]">
+											<div class="checkbox"></div>
+										</label>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">Wi-Fi</div>
+									<div class="item-input b_switch">
+										<label class="label-switch">
+											<input type="checkbox" value="2" name="features[]">
+											<div class="checkbox"></div>
+										</label>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">Парковка</div>
+									<div class="item-input b_switch">
+										<label class="label-switch">
+											<input type="checkbox" value="3" name="features[]">
+											<div class="checkbox"></div>
+										</label>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item-content">
+								<div class="item-inner">
+									<div class="item-title label">Терраса</div>
+									<div class="item-input b_switch">
+										<label class="label-switch">
+											<input type="checkbox" value="4" name="features[]">
+											<div class="checkbox"></div>
+										</label>
+									</div>
+								</div>
+							</div>
+						</li>						
+					</ul>
+				</div>
+			</form>
+		</div>
+	
+	</div>
+	<!-- /Попап фильтра -->
+	<div class="popup-overlay"></div>
+	
+	<div class="views">
+		<div class="view view-main hidden-navbar">
+			
+			<!-- НАВИГАЦИОННАЯ ПАНЕЛЬ -->
+			<div class="navbar">
+				<div class="navbar-inner">
+				</div>
+			</div>
+			<!-- /НАВИГАЦИОННАЯ ПАНЕЛЬ -->
+			
+			<!-- СТРАНИЦЫ -->
+			<div class="pages navbar-through">
+				<div class="b_bg_blurred"></div>
+				
+				<!-- СТРАНИЦА -->
+				<div data-page="start" class="page no-navbar page-transparent page-full-fade">
+					<div class="page-content">
+						
+						<div class="b_logo">
+							<img src="i/svg/logo.svg" alt="">
+							<div class="b_logo_slogan">Пора есть!</div>
+							<div class="b_logo_preloader"><span class="preloader"></span></div>
+						</div>
+						
+						<div class="p_start_buttons content-block">
+							<p class="p_start_item p_start_facebook-login">
+								<a href="#" class="button b_btn m_fb">
+									<i class="icon-facebook"></i>
+									Войти через Фейсбук
+								</a>
+							</p>
+							<p class="p_start_item p_start_vk-login">
+								<a href="#" class="button b_btn m_vk">
+									<i class="icon-vk"></i>
+									Войти через ВКонтакте
+								</a>
+							</p>
+							<p class="p_start_item">
+								<a href="registration.html" class="button b_btn m_reg">
+									<i class="icon-mail"></i>
+									Регистрация
+								</a>
+							</p>
+							<p class="p_start_login">
+								<a href="authorization.html" class="button b_btn m_login">
+									Вход
+								</a>
+							</p>
+						</div>
+						
+					</div>
+				</div>
+				<!-- /СТРАНИЦА -->
+				
+			</div>
+			<!-- /СТРАНИЦЫ -->
+			
+		</div>
+	</div>
+</body>
 </html>
+
+<!-- scripts -->
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="lib/framework7.js"></script>
+<script src="http://api-maps.yandex.ru/2.1.16/?lang=ru_RU&load=Map,geoObject.addon.balloon,Placemark,GeoObjectCollection,templateLayoutFactory" type="text/javascript"></script>
+<script data-main="app" src="lib/require.js"></script>
+<!-- /scripts -->

@@ -11,7 +11,18 @@ paths: {
 	}
 });*/
 
-define('app', ['js/router', 'js/m/user'], function(Router, User) {
+require.config({
+    paths: {
+        "moment": "lib/moment.min"
+    },
+    config: {
+        moment: {
+            noGlobal: true
+        }
+    }
+});
+
+define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 	Router.init();
 	var $ = Framework7.$;
 	var user = new User();
@@ -89,6 +100,7 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	    auth: function (force) {
 	        if (!window.localStorage.getItem("plugin_vk_token") || force || window.localStorage.getItem("plugin_vk_perms")!=plugin_vk.plugin_perms) {
 	            var authURL="https://oauth.vk.com/authorize?client_id=4532400&scope="+this.plugin_perms+"&redirect_uri=http://oauth.vk.com/blank.html&display=touch&response_type=token&v=5.25";
+	            //var authURL="https://oauth.vk.com/authorize?client_id=4613296&scope="+this.plugin_perms+"&redirect_uri=http://oauth.vk.com/blank.html&display=touch&response_type=token&v=5.25";
 	            this.wwwref = window.open(encodeURI(authURL), '_blank', 'location=no');
 	            this.wwwref.addEventListener('loadstop', this.auth_event_url);
 	        }
@@ -100,6 +112,7 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	            var tmp=url_parser.get_args(tmp[1]);
 	            var data={token:tmp['access_token'],provider:'vk',vk_exp:tmp['expires_in'],user_id:tmp['user_id'],email:tmp['email']};
 	            if(user.code!='')data.code=user.code;
+	            console.log(data);
 	            $.ajax({
 					type: "POST",
 					async: false,
@@ -107,7 +120,7 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 					data: data,
 					success: function(msg){
 						console.log(msg);
-						if(msg!='error'){
+						if(msg!='"error"'){
 							user.setValues(JSON.parse(msg));
 							ymaps.ready(function () {
 								mainView.loadPage('main.html');
@@ -154,14 +167,6 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	};
 });
 
-// Расширение прототипа Function для упрощения передачи контекста в события	
-Function.prototype.bind = function (scope) {
-	var fn = this;
-	return function () {
-		return fn.apply(scope, arguments);
-	};
-};
-
 var url_parser={
 	get_args: function (s) {
 	    var tmp=new Array();
@@ -179,6 +184,14 @@ var url_parser={
 	        i=s[i].split("=");
 	        tmp[(i[0])]=i[1];
 	    }
-	    return tmp;		
+	    return tmp;
 	}
+};
+
+// Расширение прототипа Function для упрощения передачи контекста в события	
+Function.prototype.bind = function (scope) {
+	var fn = this;
+	return function () {
+		return fn.apply(scope, arguments);
+	};
 };

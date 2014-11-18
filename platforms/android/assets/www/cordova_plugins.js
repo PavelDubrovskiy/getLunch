@@ -101,6 +101,13 @@ module.exports = [
         "clobbers": [
             "window.open"
         ]
+    },
+    {
+        "file": "plugins/nl.x-services.plugins.socialsharing/www/SocialSharing.js",
+        "id": "nl.x-services.plugins.socialsharing.SocialSharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -111,7 +118,8 @@ module.exports.metadata =
     "org.apache.cordova.device-motion": "0.2.8",
     "org.apache.cordova.console": "0.2.9",
     "org.apache.cordova.contacts": "0.2.12",
-    "org.apache.cordova.inappbrowser": "0.5.2"
+    "org.apache.cordova.inappbrowser": "0.5.2",
+    "nl.x-services.plugins.socialsharing": "4.3.10"
 }
 // BOTTOM OF METADATA
 });

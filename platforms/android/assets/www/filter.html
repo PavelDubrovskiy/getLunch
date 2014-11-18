@@ -9,7 +9,7 @@
 			Фильтр
 		</div>
 		<div class="right sliding">
-			<a href="#" class="back link">
+			<a href="#" class="back link" id="submitFilter">
 				Готово
 			</a>
 		</div>
@@ -17,9 +17,7 @@
 </div>
 <div class="pages navbar-through">
 	<div data-page="filter" class="page">
-			
 		<div class="page-content">
-		
 			<form id="filterForm" class="store-data">
 				<div class="content-block-title">Время ланча</div>
 				<div class="list-block m_gray">
@@ -29,7 +27,7 @@
 								<div class="item-inner">
 									<div class="item-title label">Начало</div>
 									<div class="item-input">
-										<input name="timeStart" type="time" step="1800">
+										<input name="lunchfrom" type="time" step="1800">
 									</div>									
 								</div>
 							</label>
@@ -39,14 +37,13 @@
 								<div class="item-inner">
 									<div class="item-title label">Конец</div>
 									<div class="item-input">
-										<input name="timeEnd" type="time" step="1800">
+										<input name="lunchto" type="time" step="1800">
 									</div>									
 								</div>
 							</label>
 						</li>
 					</ul>
 				</div>
-						
 				<div class="content-block-title">Цена</div>
 				<div class="list-block m_gray">
 					<ul>
@@ -55,7 +52,7 @@
 								<div class="item-inner">
 									<div class="item-title label">От</div>
 									<div class="item-input b_price">
-										<input name="priceStart" min="1" max="999" type="number">
+										<input name="pricefrom" min="1" max="999" type="number">
 									</div>
 								</div>
 							</label>
@@ -65,14 +62,13 @@
 								<div class="item-inner">
 									<div class="item-title label">До</div>
 									<div class="item-input b_price">
-										<input name="priceEnd" min="1" max="999" type="number">
+										<input name="priceto" min="1" max="999" type="number">
 									</div>
 								</div>
 							</label>
 						</li>						
 					</ul>
 				</div>
-						
 				<div class="content-block-title">Другие параметры</div>
 				<div class="list-block m_gray">
 					<ul>
@@ -82,7 +78,7 @@
 									<div class="item-title label">Вегетарианская кухня</div>
 									<div class="item-input b_switch">
 										<label class="label-switch">
-											<input type="checkbox">
+											<input type="checkbox" value="5" name="features[]">
 											<div class="checkbox"></div>
 										</label>
 									</div>
@@ -95,7 +91,7 @@
 									<div class="item-title label">Wi-Fi</div>
 									<div class="item-input b_switch">
 										<label class="label-switch">
-											<input type="checkbox">
+											<input type="checkbox" value="2" name="features[]">
 											<div class="checkbox"></div>
 										</label>
 									</div>
@@ -108,7 +104,7 @@
 									<div class="item-title label">Парковка</div>
 									<div class="item-input b_switch">
 										<label class="label-switch">
-											<input type="checkbox">
+											<input type="checkbox" value="3" name="features[]">
 											<div class="checkbox"></div>
 										</label>
 									</div>
@@ -121,7 +117,7 @@
 									<div class="item-title label">Терраса</div>
 									<div class="item-input b_switch">
 										<label class="label-switch">
-											<input type="checkbox">
+											<input type="checkbox" value="4" name="features[]">
 											<div class="checkbox"></div>
 										</label>
 									</div>
@@ -131,8 +127,6 @@
 					</ul>
 				</div>
 			</form>
-
 		</div>
-	
 	</div>
 </div>

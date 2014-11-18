@@ -68,6 +68,7 @@ D:\GITHUB\getLunch\platforms\android\assets\www\_card.html \
 D:\GITHUB\getLunch\platforms\android\assets\www\_changepassword.html \
 D:\GITHUB\getLunch\platforms\android\assets\www\_checkin.html \
 D:\GITHUB\getLunch\platforms\android\assets\www\_editprofile.html \
+D:\GITHUB\getLunch\platforms\android\assets\www\_filter.html \
 D:\GITHUB\getLunch\platforms\android\assets\www\_main.html \
 D:\GITHUB\getLunch\platforms\android\assets\www\_menu.html \
 D:\GITHUB\getLunch\platforms\android\assets\www\_profile.html \
@@ -199,15 +200,19 @@ D:\GITHUB\getLunch\platforms\android\assets\www\lib\framework7_OLD.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\handlebars.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\hbs.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\jquery.velocity.min.js \
+D:\GITHUB\getLunch\platforms\android\assets\www\lib\moment.min.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\require.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\spinningwheel.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\text.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\css\framework7.css \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\css\framework7.rtl.css \
+D:\GITHUB\getLunch\platforms\android\assets\www\plugins\nl.x-services.plugins.socialsharing \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.contacts \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.device-motion \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.device-orientation \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.inappbrowser \
+D:\GITHUB\getLunch\platforms\android\assets\www\plugins\nl.x-services.plugins.socialsharing\www \
+D:\GITHUB\getLunch\platforms\android\assets\www\plugins\nl.x-services.plugins.socialsharing\www\SocialSharing.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.contacts\www \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.contacts\www\Contact.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.contacts\www\ContactAddress.js \
