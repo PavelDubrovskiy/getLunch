@@ -54,8 +54,9 @@ define(["app","js/vc/invite_social/invite_socialView","js/utilities/invite", "js
 			var filter = ["displayName", "addresses", "name", "phoneNumbers", "emails", "urls", "categories", "photos"];
 			navigator.contacts.find(filter, 
 				function(contacts) {
+					console.log(contacts);
 				    for (var i = 0; i < contacts.length; i++) {
-				        console.log(contacts[i]);
+				        
 				    }
 				}
 			, null, options);
