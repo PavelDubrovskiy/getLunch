@@ -77,7 +77,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		}else{
 			map.map.setCenter(
 				map.getOffset( // Получаем координаты со сдвигом, заданным при инициализации карты
-					map.createMark([values.latitude, values.longitude], 'card.html').geometry.getCoordinates()
+					map.createMark([values.latitude, values.longitude], {}).geometry.getCoordinates()
 				)
 			);
 			map.setUserPosition([app.latitude, app.longitude]);

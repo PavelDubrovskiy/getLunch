@@ -64,29 +64,31 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		var html='',
 			date=new Date();
 		var fer=date.getHours()+""+date.getMinutes();
-		values.lunchList.forEach(function(element, index, array){
-			
+		if(typeof values.lunchList !== 'undefined'){
+			values.lunchList.forEach(function(element, index, array){
 				
-			element.metr=Math.round(element.metr);
-			element.inactive='';
-			element.inactiveText='';
-			if(element.lunchfrom>fer){
-				element.inactive='st_inactive';
-				element.inactiveText='Время ланча не началось';
-			}else if(fer>element.lunchto){
-				element.inactive='st_inactive';
-				element.inactiveText='Закончилось время ланча';
-			}
-			html+=compiledTemplate(element);
-			
-			values.map.createMark([element.latitude*1,element.longitude*1],
-									{
-										name: element.name,
-										inactive: (element.inactive === 'st_inactive' ? true : false),
-										id: element.id
-									});
-		});
-		
+					
+				element.metr=Math.round(element.metr);
+				if(element.metr/1000>1)element.metrString=Math.round(element.metr/100)+' км';
+				else element.metrString=element.metr+' м';
+				element.inactive='';
+				element.inactiveText='';
+				if(element.lunchfrom>fer){
+					element.inactive='st_inactive';
+					element.inactiveText='Время ланча не началось';
+				}else if(fer>element.lunchto){
+					element.inactive='st_inactive';
+					element.inactiveText='Закончилось время ланча';
+				}
+				html+=compiledTemplate(element);
+				
+				values.map.createMark([element.latitude*1,element.longitude*1],{
+					name: element.name,
+					inactive: (element.inactive === 'st_inactive' ? true : false),
+					id: element.id
+				});
+			});
+		}
 		$('#mainCardsList').html(html);
 	}
 	
@@ -98,6 +100,8 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		values.lunchList.forEach(function(element, index, array){
 			values.map.createMark([element.latitude*1,element.longitude*1], 'card.html', element.name);
 			element.metr=Math.round(element.metr);
+			if(element.metr/100>1)element.metrString=Math.round(element.metr/100,1)+' км';
+			else element.metrString=element.metr+' м';
 			element.inactive='';
 			element.inactiveText='';
 			if(element.lunchfrom>fer){

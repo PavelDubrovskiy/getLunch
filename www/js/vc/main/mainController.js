@@ -172,9 +172,9 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				});
 				sought.unshift(searchInput);
 				localStorage.setItem('sought',sought.join('!__;__!'));
-				map.marks.removeAll();				
+				map.marks.removeAll();
+				console.log(msg);
 				var valuesItem={lunchList:msg.list,map:map};
-				
 				view.attachLunches(valuesItem);
 				
 				$('.b_cards_item').off('click').on('click', setCurrent);

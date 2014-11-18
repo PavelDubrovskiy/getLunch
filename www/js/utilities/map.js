@@ -68,7 +68,7 @@
 	
 	// Создание метки по заданным координатам
 	// и добавление её в массив меток
-	Map.prototype.createMark = function(coord, values) {
+	Map.prototype.createMark = function(coord, values) {		
 		var mark = new ymaps.Placemark(coord, {
 				link: values.link || "card.html",
 				name: values.name || "Кафе",
