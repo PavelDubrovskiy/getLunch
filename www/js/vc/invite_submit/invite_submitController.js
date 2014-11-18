@@ -22,7 +22,7 @@ define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/]
 		var text='Приглашаю на ланч в заведение: '+lunch.name+"\n";
 		text+="Сегодня в 13:00 \n";
 		text+='По адресу: '+lunch.address+"\n";
-		text+='Подробнее тут: '+=app.config.source+'/restourant/'+lunch.id+'/';
+		text+='Подробнее тут: '+app.config.source+'/restourant/'+lunch.id+'/';
 		$('#invitation').html(text);
 		view.render({
 			bindings: bindings
