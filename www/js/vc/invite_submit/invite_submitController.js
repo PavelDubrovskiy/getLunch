@@ -22,22 +22,22 @@ define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/]
 		var text='Приглашаю на ланч в заведение: '+lunch.name+"\n";
 		text+="Сегодня в 13:00 \n";
 		text+='По адресу: '+lunch.address+"\n";
-		text+='Подробнее тут: '+app.config.source+'/restourant/'+lunch.id+'/';
-		$('#invitation').html(text);
+		text+='Подробнее тут: '+app.config.source+'/restaurant/'+lunch.id+'/';
+		$('#invitation').val(text);
 		view.render({
 			bindings: bindings
 		});
 	}
 	function shareMe() {
-		var text=$('#invitation').html(text);
+		var text=$('#invitation').val();
 		text+="\n\nGetLunch.ru";
 		var subject='Приглашаю на ланч в заведение: '+lunch.name;
 		var logo=app.config.source+lunch.logo;
-		var url=app.config.source+'/restourant/'+lunch.id+'/';
+		var url=app.config.source+'/restaurant/'+lunch.id+'/';
 		try{
 			window.plugins.socialsharing.share(text, subject);
 		}catch(e){
-			console.log(text+' '+subject+' '+logo+' '+url)
+			console.log(text+' '+subject+' '+logo+' '+url);
 		}
 	}
 	return {
