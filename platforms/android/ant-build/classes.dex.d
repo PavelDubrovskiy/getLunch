@@ -1,12 +1,11 @@
 D:\GITHUB\getLunch\platforms\android\ant-build\classes.dex : \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\BuildConfig.class \
-D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\getLunch.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\CordovaApp.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$attr.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$drawable.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$string.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$xml.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R.class \
-D:\GITHUB\getLunch\platforms\android\ant-build\classes\getLunch\getLunch.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$1.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$2$1$1.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$2$1.class \

@@ -1,7 +1,7 @@
 define(["app", "js/vc/checkin/checkinView", "js/utilities/forms", "js/utilities/dynamicarea","js/m/user"], function(app, view, forms, DynamicArea, User) {
 	var $ = Framework7.$;
 	var user = new User();
-	var lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
+	var lunch ={};
 	var bindings = [
 		{
 			element: '.b_review_block textarea',
@@ -17,6 +17,7 @@ define(["app", "js/vc/checkin/checkinView", "js/utilities/forms", "js/utilities/
 	
 	// Инициализация страницы
 	function init(query) {
+		lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
 		var textarea = new DynamicArea({
 			selector: '.b_review_block textarea',
 			afterInit: function(e) {
