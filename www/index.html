@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="lib/css/framework7.css">
 	<link rel="stylesheet" href="css/app.css">
 </head>
-<body>
+<body onload="onLoad()">
 	<!-- САЙДБАР -->
 	<div class="panel-overlay"></div>
 	<div class="panel panel-left panel-reveal">
@@ -265,10 +265,37 @@
 	</div>
 </body>
 </html>
-
 <!-- scripts -->
 <script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="lib/framework7.js"></script>
+<script>
+	function onLoad() {
+        document.addEventListener("deviceready", function(){
+			var f7 = document.createElement('script'),
+				ymaps = document.createElement('script'),
+				requirejs = document.createElement('script')
+			;
+
+			f7.src = 'lib/framework7.js';
+			ymaps.src = 'http://api-maps.yandex.ru/2.1.16/?lang=ru_RU&load=Map,geoObject.addon.balloon,Placemark,GeoObjectCollection,templateLayoutFactory';
+			requirejs.src = 'lib/require.js';
+			requirejs.setAttribute('data-main','app');
+			
+			f7.onload = function(){
+				document.body.appendChild(ymaps);
+				document.body.appendChild(requirejs);
+			};
+
+			document.body.appendChild(f7);
+		}, false);
+		if(typeof navigator.app=='undefined'){
+	    	var event = document.createEvent("HTMLEvents");
+			event.initEvent("deviceready", true, true);
+			event.eventName = "deviceready";
+			document.dispatchEvent(event);
+	    }
+    }
+</script>
+<!--<script type="text/javascript" src="lib/framework7.js"></script>
 <script src="http://api-maps.yandex.ru/2.1.16/?lang=ru_RU&load=Map,geoObject.addon.balloon,Placemark,GeoObjectCollection,templateLayoutFactory" type="text/javascript"></script>
-<script data-main="app" src="lib/require.js"></script>
+<script data-main="app" src="lib/require.js"></script>-->
 <!-- /scripts -->

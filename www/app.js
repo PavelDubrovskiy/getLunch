@@ -29,7 +29,7 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 	var f7 = new Framework7({
 		modalTitle: ' ',
 		swipeBackPage: false,
-		/*pushState: true,*/
+		pushState: true,
 		swipeout: false,
 		sortable: false,
 		swipeBackPageBoxShadow: false
