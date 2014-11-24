@@ -28,11 +28,9 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 	var user = new User();
 	var f7 = new Framework7({
 		modalTitle: ' ',
-		animateNavBackIcon: true,
-		swipePanel: 'left',
-		swipePanelThreshold: 50,
+		swipeBackPage: false,
 		/*pushState: true,*/
-		
+		swipeout: false,
 		sortable: false,
 		swipeBackPageBoxShadow: false
 	});
