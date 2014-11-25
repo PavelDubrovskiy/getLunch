@@ -156,7 +156,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int accessibility_time_picker_second=0x7f070017;
         public static final int actionbar_share=0x7f070000;
         public static final int actionbar_web_search=0x7f070001;
-        public static final int activity_name=0x7f070049;
         public static final int app_name=0x7f070046;
         public static final int color_picker_button_black=0x7f070032;
         public static final int color_picker_button_blue=0x7f07002e;
@@ -195,7 +194,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int js_alert_title=0x7f070035;
         public static final int js_confirm_title=0x7f070036;
         public static final int js_prompt_title=0x7f070037;
-        public static final int launcher_name=0x7f070048;
         public static final int low_memory_error=0x7f070023;
         public static final int media_player_error_button=0x7f07001d;
         public static final int media_player_error_text_invalid_progressive_playback=0x7f07001b;

@@ -1,6 +1,6 @@
 D:\GITHUB\getLunch\platforms\android\ant-build\classes.dex : \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\BuildConfig.class \
-D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\CordovaApp.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\GetLunch.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$array.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$attr.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$color.class \

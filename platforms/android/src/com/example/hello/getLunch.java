@@ -22,7 +22,7 @@ package com.example.hello;
 import android.os.Bundle;
 import org.apache.cordova.*;
 
-public class getLunch extends CordovaActivity 
+public class GetLunch extends CordovaActivity 
 {
     @Override
     public void onCreate(Bundle savedInstanceState)

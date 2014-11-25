@@ -1,5 +1,5 @@
-# view AndroidManifest.xml #generated:8
--keep class com.example.hello.CordovaApp { <init>(...); }
+# view AndroidManifest.xml #generated:6
+-keep class com.example.hello.GetLunch { <init>(...); }
 
 # view res/layout/color_picker_dialog_content.xml #generated:15
 # view v17\res/layout-v17/color_picker_dialog_content.xml #generated:18
