@@ -58,12 +58,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static int dropdown_popup_background=0x7f020005;
         public static int dropdown_popup_background_down=0x7f020006;
         public static int dropdown_popup_background_up=0x7f020007;
-        public static int ic_menu_search_holo_light=0x7f020008;
-        public static int ic_menu_share_holo_light=0x7f020009;
-        public static int icon=0x7f02000a;
-        public static int ondemand_overlay=0x7f02000b;
-        public static int pageinfo_warning_major=0x7f02000c;
-        public static int splash=0x7f02000d;
+        public static int ic_action_next_item=0x7f020008;
+        public static int ic_action_previous_item=0x7f020009;
+        public static int ic_action_remove=0x7f02000a;
+        public static int ic_menu_search_holo_light=0x7f02000b;
+        public static int ic_menu_share_holo_light=0x7f02000c;
+        public static int icon=0x7f02000d;
+        public static int ondemand_overlay=0x7f02000e;
+        public static int pageinfo_warning_major=0x7f02000f;
+        public static int splash=0x7f020010;
     }
     public static final class id {
         public static int ampm=0x7f0b001b;
