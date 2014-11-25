@@ -17,12 +17,12 @@
        under the License.
  */
 
-package getLunch;
+package GetLunch;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
 
-public class getLunch extends CordovaActivity 
+public class GetLunch extends CordovaActivity 
 {
     @Override
     public void onCreate(Bundle savedInstanceState)
