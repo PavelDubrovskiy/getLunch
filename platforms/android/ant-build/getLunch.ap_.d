@@ -292,6 +292,7 @@ D:\GITHUB\getLunch\platforms\android\assets\www\js \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib \
 D:\GITHUB\getLunch\platforms\android\assets\www\main.html \
 D:\GITHUB\getLunch\platforms\android\assets\www\menu.html \
+D:\GITHUB\getLunch\platforms\android\assets\www\npm-debug.log \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins \
 D:\GITHUB\getLunch\platforms\android\assets\www\profile.html \
 D:\GITHUB\getLunch\platforms\android\assets\www\registration.html \
