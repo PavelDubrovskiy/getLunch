@@ -17,7 +17,7 @@
  under the License.
  */
 //
-// Prefix header for all source files of the 'getLunch' target in the 'getLunch' project
+// Prefix header for all source files of the 'GetLunch' target in the 'GetLunch' project
 //
 
 #ifdef __OBJC__
