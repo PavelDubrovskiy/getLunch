@@ -25,9 +25,8 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 			}catch(e){}
 		}, 
 		function(){}, 
-		{timeout: 10000, enableHighAccuracy: true}
+		{timeout: 10000, enableHighAccuracy: false}
 	);
-	
 	function init() {
 		if(user.id!=''){
 			$('.p_start_buttons').hide();

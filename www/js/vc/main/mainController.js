@@ -134,7 +134,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 					}catch(e){}
 				}, 
 				function(){}, 
-				{timeout: 10000, enableHighAccuracy: true}
+				{timeout: 10000, enableHighAccuracy: false}
 			);
 		}else{
 			getNearestLunches();
