@@ -49,9 +49,13 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			card:lunch
 		});
 		
-		map = new Map({ mapId: 'cardMap', initZoom: 17, offset: {top: 13, left: 0} });
+		map = new Map({
+			mapId: 'cardMap',
+			initZoom: 17, offset: {top: 13, left: 0},
+			autoPanOffset: [20, 0, 0, 40]
+		});
 		
-		initMap({latitude:lunch.latitude,longitude:lunch.longitude});
+		initMap(lunch);
 		
 		gallery = new Gallery({wrapper: '.b_gallery', items: 'a'});
 		window.clearInterval(app.intervalCompass);
@@ -64,20 +68,40 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	
 	// Инициализация карты
-	function initMap(values) {
+	function initMap() {
 		// Предотвращение открытия меню по свайпу при перетаскивании карты
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
 		
 		// Если расстояние от пользователя до кафе меньше 700 метров, показываем карту так, чтобы вместить точку пользователя и точку кафе, иначе показываем только кафе
-		if( lunch.metres < 700 ) {
-			map.createMark([values.latitude, values.longitude], {});
+		map.createMarks([{
+			type: 'Feature',
+			id: lunch.id,
+			properties: {
+				name: lunch.name,
+				inactive: (lunch.inactive === 'st_inactive' ? true : false),
+				id: lunch.id
+			},
+			geometry: {
+				type: 'Point',
+				coordinates: [lunch.latitude, lunch.longitude]
+			},
+			options: {
+				iconImageHref: lunch.inactive === 'st_inactive' ? 'i/svg/geotag_inactive.svg' :'i/svg/geotag.svg'
+			}
+		}]);
+			
+		if( lunch.metres < 450 ) {			
+			//map.autoBoundsUser();
+			map.setBounds([
+				[lunch.latitude, lunch.longitude],
+				[app.latitude, app.longitude]
+			]);
 			map.setUserPosition([app.latitude, app.longitude]);
-			map.autoBoundsUser();
 		}else{
 			map.map.setCenter(
-				map.getOffset( // Получаем координаты со сдвигом, заданным при инициализации карты
-					map.createMark([values.latitude, values.longitude], {}).geometry.getCoordinates()
+				map.getOffset(
+					[lunch.latitude, lunch.longitude]
 				)
 			);
 			map.setUserPosition([app.latitude, app.longitude]);

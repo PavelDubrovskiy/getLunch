@@ -25,6 +25,7 @@ define(["app"], function(app) {
 			onOpen: (function(pb) {
 				$(".photo-browser-current").text( pb.openIndex + 1 );
 				$(".photo-browser-total").text( this.length );
+				$(".photo-browser-slide").append('<div class="preloader"></div>');
 			}).bind(this),
 			toolbar: false,
 			exposition: false,

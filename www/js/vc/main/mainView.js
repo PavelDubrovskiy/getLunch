@@ -64,6 +64,8 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		var html='',
 			date=new Date();
 		var fer=date.getHours()+""+date.getMinutes();
+		var marks = [];
+		
 		if(typeof values.lunchList !== 'undefined'){
 			values.lunchList.forEach(function(element, index, array){
 				
@@ -82,13 +84,34 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 				}
 				html+=compiledTemplate(element);
 				
-				values.map.createMark([element.latitude*1,element.longitude*1],{
+				marks.push({
+					type: 'Feature',
+					id: element.id,
+					properties: {
+						name: element.name,
+						inactive: (element.inactive === 'st_inactive' ? true : false),
+						id: element.id
+					},
+					geometry: {
+						type: 'Point',
+						coordinates: [element.latitude*1, element.longitude*1]
+					},
+					options: {
+						iconImageHref: element.inactive === 'st_inactive' ? 'i/svg/geotag_inactive.svg' :'i/svg/geotag.svg'
+					}
+				});
+				
+				/*values.map.createMark([element.latitude*1,element.longitude*1],{
 					name: element.name,
 					inactive: (element.inactive === 'st_inactive' ? true : false),
 					id: element.id
-				});
+				});*/
 			});
+			
+			values.map.createMarks(marks);
 		}
+		
+		
 		$('#mainCardsList').html(html);
 	}
 	

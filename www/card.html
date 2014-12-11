@@ -40,6 +40,8 @@
 						{{lunchfromStr}}–{{lunchtoStr}}
 					</div>
 				</div>
+				
+				{{#if menu.prices.length}}
 				<div class="b_cards_list list-block">
 					<ul>
 						{{#each menu.prices}}
@@ -61,6 +63,7 @@
 						{{/each}}
 					</ul>
 				</div>
+				{{/if}}
 
 				<a href="menu.html" class="b_wide-btn">
 					<i class="icon icon-menu"></i>
@@ -74,15 +77,20 @@
 					</div>
 				</div>
 				
+				{{#if comment}}
 				<div class="b_desc">
 					<i class="icon icon-torus"></i>
 					{{comment}}
 				</div>
+				{{/if}}
+				{{#if files.length}}
 				<div class="b_gallery">
 					{{#each files}}
 						<a href="{{this.largePath}}"><img src="{{this.smallPath}}" alt=""></a>
 					{{/each}}
 				</div>
+				{{/if}}
+				{{#if features.length}}
 				<div class="b_features">
 					{{#each features}}
 						<div class="b_features_item">
@@ -91,14 +99,16 @@
 						</div>
 					{{/each}}
 				</div>
+				{{/if}}
 				
 				<div class="b_btn_row">
 					<div class="buttons-row">
-						<a href="tel:{{phone}}" class="button b_btn">Позвонить</a>
-						<a href="#" class="button b_btn" id="externalSite">Посетить сайт</a>
+						{{#if phone}}<a href="tel:{{phone}}" class="button b_btn">Позвонить</a>{{/if}}
+						{{#if site}}<a href="#" class="button b_btn" id="externalSite">Посетить сайт</a>{{/if}}
 					</div>
 				</div>
 				
+				{{#if reviews.list.length}}
 				<div class="b_contacts_list list-block">
 					<ul>
 						{{#each reviews.list}}
@@ -108,7 +118,7 @@
 									<time>{{this.date}}</time>
 									<strong>
 										{{this.iuserName}}
-										{{if this.thumb}}<i class="icon icon-{{this.thumb}}"></i>{{/if}}
+										{{#if this.thumb}}<i class="icon icon-{{this.thumb}}"></i>{{/if}}
 									</strong>
 									{{this.message}}
 								</div>
@@ -116,6 +126,7 @@
 						{{/each}}
 					</ul>
 				</div>
+				{{/if}}
 				
 				<div class="b_reviews_toolbar">
 					<div class="b_rating">
