@@ -376,6 +376,7 @@ D:\GITHUB\getLunch\platforms\android\assets\www\js\utilities\gallery.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\utilities\indexnavigation.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\utilities\invite.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\utilities\map.js \
+D:\GITHUB\getLunch\platforms\android\assets\www\js\utilities\mapOLD.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\utilities\menu.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\utilities\spinningwheel.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\utilities\validate.js \
@@ -417,6 +418,7 @@ D:\GITHUB\getLunch\platforms\android\assets\www\js\vc\invite_social\invite_socia
 D:\GITHUB\getLunch\platforms\android\assets\www\js\vc\invite_submit\invite_submitController.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\vc\invite_submit\invite_submitView.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\vc\main\mainController.js \
+D:\GITHUB\getLunch\platforms\android\assets\www\js\vc\main\mainControllerOLD.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\vc\main\mainView.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\vc\menu\menuController.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\js\vc\menu\menuView.js \

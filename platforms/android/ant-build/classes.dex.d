@@ -15,6 +15,7 @@ D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$strin
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$style.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$xml.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\GetLunch\GetLunch.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$1.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$2$1$1.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$2$1.class \

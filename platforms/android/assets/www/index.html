@@ -276,7 +276,7 @@
 			;
 
 			f7.src = 'lib/framework7.js';
-			ymaps.src = 'http://api-maps.yandex.ru/2.1.16/?lang=ru_RU&load=Map,geoObject.addon.balloon,Placemark,GeoObjectCollection,templateLayoutFactory';
+			ymaps.src = 'http://api-maps.yandex.ru/2.1.16/?lang=ru_RU';
 			requirejs.src = 'lib/require.js';
 			requirejs.setAttribute('data-main','app');
 			
@@ -287,6 +287,7 @@
 
 			document.body.appendChild(f7);
 		}, false);
+		
 		if(typeof navigator.app=='undefined'){
 	    	var event = document.createEvent("HTMLEvents");
 			event.initEvent("deviceready", true, true);
