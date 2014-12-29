@@ -53,6 +53,7 @@ D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\mipmap-hd
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\mipmap-mdpi\app_icon.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\mipmap-xhdpi\app_icon.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\mipmap-xxhdpi\app_icon.png \
+D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\mipmap-xxxhdpi\app_icon.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\raw\contacts_api.js \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\raw\device_capabilities_api.js \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\raw\icudtl.dat \
@@ -194,4 +195,5 @@ D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\ant-build\res
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\ant-build\res\mipmap-mdpi\app_icon.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\ant-build\res\mipmap-xhdpi\app_icon.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\ant-build\res\mipmap-xxhdpi\app_icon.png \
+D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\ant-build\res\mipmap-xxxhdpi\app_icon.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\ant-build\AndroidManifest.xml \

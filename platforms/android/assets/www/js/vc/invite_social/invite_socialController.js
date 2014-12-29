@@ -18,7 +18,10 @@ define(["app","js/vc/invite_social/invite_socialView","js/utilities/invite", "js
 			handler: forward
 		}
 	];
-
+	document.addEventListener("backbutton", onBackButtonFire, false); 
+	function onBackButtonFire(){
+		app.mainView.loadPage('card.html');
+	}
 	function init(query) {
 		invite.checkSelectedContent();
 		var contacts;

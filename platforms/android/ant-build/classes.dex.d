@@ -79,4 +79,5 @@ D:\GITHUB\getLunch\platforms\android\ant-build\classes\org\xwalk\core\R$style.cl
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\org\xwalk\core\R.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\classes-30d7c0bf91301b94cf6fc40f2dab8747.jar \
 D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\classes-14c2d3de3f5ede73e752f34bdb9e62f0.jar \
-D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\xwalk_core_library_java-0b859434c79c53c82bf90a2cbf2de9f5.jar \
+D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\xwalk_core_library_java_library_part-3c9866c5abfb8391679b8b9847bbc6c2.jar \
+D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\xwalk_core_library_java_app_part-9e3e7ee15d26e66b52623366e71c00dd.jar \

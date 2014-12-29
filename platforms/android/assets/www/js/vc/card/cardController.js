@@ -30,7 +30,10 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			handler: externalSiteLoad
 		}
 	];
-	
+	document.addEventListener("backbutton", onBackButtonFire, false); 
+	function onBackButtonFire(){
+		app.mainView.loadPage('main.html');
+	}
 	// Инициализация страницы
 	function init(query) {
 		var values={latitude:app.latitude, longitude:app.longitude, source:app.config.source, id:localStorage.getItem("currentId")};
