@@ -5,6 +5,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	var $ = Framework7.$;
 	var sought=[];
 	var searchInput='';
+	var userPosition=true;
+	
 	if(localStorage.getItem('sought')!==null){
 		sought=localStorage.getItem('sought').split('!__;__!');
 	}
@@ -113,13 +115,15 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
 		var itemList={};
-		
+		//getLunchBySquareCoords();
+		map.boundsChange(function(){userPosition=false;getLunchBySquareCoords();});
+		geolocation();
 		//setTimeout(getNearestLunches, 400);
-		setTimeout(getLunchBySquareCoords, 400);
+		//setTimeout(getLunchBySquareCoords, 400);
 		
-		window.clearInterval(app.interval);
+		//window.clearInterval(app.interval);
 		//var mainSetMePosInterval=window.setInterval(getNearestLunches, 5000);
-		var mainSetMePosInterval=window.setInterval(getLunchBySquareCoords, 5000);
+		//var mainSetMePosInterval=window.setInterval(getLunchBySquareCoords, 5000);
 		
 		// Изменение состояния метки (если вторым параметром передано true, 1, "active" — метка становится активной, если false, 0, "inactive" или параметр не передан — неактивной)
 		//map.changeMarkState( map.marks.get(0), "inactive");
@@ -132,11 +136,14 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		if(app.latitude==0 && app.longitude==0){
 			app.watchID = navigator.geolocation.watchPosition(function(position){
 					try{
-						app.latitude=position.coords.latitude;
-						app.longitude=position.coords.longitude;
-						//getNearestLunches();
-						getLunchBySquareCoords();
-						map.setUserPosition([app.latitude, app.longitude], true);
+						console.log(position.coords.latitude+'!='+app.latitude+' && '+app.longitude+'!='+position.coords.longitude);
+						if(position.coords.latitude!=app.latitude && app.longitude!=position.coords.longitude){
+							app.latitude=position.coords.latitude;
+							app.longitude=position.coords.longitude;
+							//getNearestLunches();
+							getLunchBySquareCoords();
+							if(userPosition==true) map.setUserPosition([app.latitude, app.longitude], true);
+						}
 					}catch(e){}
 				}, 
 				function(){

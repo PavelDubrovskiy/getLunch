@@ -71,7 +71,7 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 				
 					
 				element.metr=Math.round(element.metr);
-				if(element.metr/1000>1)element.metrString=Math.round(element.metr/100)+' км';
+				if(element.metr/1000>1)element.metrString=Math.round(element.metr/1000)+' км';
 				else element.metrString=element.metr+' м';
 				element.inactive='';
 				element.inactiveText='';
