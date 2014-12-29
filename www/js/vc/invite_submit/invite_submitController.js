@@ -1,6 +1,7 @@
 define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/], function(app, view/*, invite*/) {
 	var $ = Framework7.$;
 	var lunch ={};
+	var header, date, bottom;
 	var bindings = [
 		/*{
 			element: ".p_invite_submit_list",
@@ -12,6 +13,10 @@ define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/]
 			element: "#shareMe",
 			event: "click",
 			handler: shareMe
+		},{
+			element: "#inviteDatetime",
+			event: "change",
+			handler: setTime
 		}
 	];
 
@@ -19,11 +24,11 @@ define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/]
 		//invite.fillSelectedContent();
 		lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
 		//console.log(lunch);
-		var text='Приглашаю на ланч в заведение: '+lunch.name+"\n";
-		text+="Сегодня в 13:00 \n";
-		text+='По адресу: '+lunch.address+"\n";
-		text+='Подробнее тут: '+app.config.source+'/restaurant/'+lunch.id+'/';
-		$('#invitation').val(text);
+		header='Приглашаю на ланч в заведение: '+lunch.name+"\n";
+		date="Сегодня в 13:00 \n";
+		bottom='По адресу: '+lunch.address+"\n";
+		bottom+='Подробнее тут: '+app.config.source+'/restaurant/'+lunch.id+'/';
+		$('#invitation').val(header+date+bottom);
 		view.render({
 			bindings: bindings
 		});
@@ -39,6 +44,20 @@ define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/]
 		}catch(e){
 			console.log(text+' '+subject+' '+logo+' '+url);
 		}
+	}
+	function setTime() {
+		var time=$('#inviteDatetime').val();
+		var ndate=new Date();
+		var d=ndate.getDate();
+		d=d>9?d:'0'+d;
+		var m=ndate.getMonth()*1+1;
+		if(time.substr(0,10)==ndate.getFullYear()+'-'+m+'-'+d){
+			date='Сегодня в ';
+		}else{
+			date=time.substr(8,2)+'.'+time.substr(5,2)+'.'+time.substr(0,4)+' в ';
+		}
+		date+=time.substr(11,2)+':'+time.substr(14,2)+"\n";
+		$('#invitation').val(header+date+bottom);
 	}
 	return {
 		init: init
