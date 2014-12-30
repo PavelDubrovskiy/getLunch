@@ -10,7 +10,7 @@
 }
 
 /* HELVETICA */
-@font-face {
+/*@font-face {
 	font-family: 'Helvetica Neue';
 	src: 	local("Helvetica Neue"), 
 			local("HelveticaNeue"),
@@ -53,4 +53,4 @@
 			url('HelveticaNeueCyr-Bold.otf') format("opentype");
 	font-weight: 700;
 	font-style: normal;
-}
+}*/

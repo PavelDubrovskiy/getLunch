@@ -17,9 +17,19 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		}else if(lunchPos.longitude<myPos.longitude && lunchPos.latitude<=myPos.latitude){
 			degrees=180+(Math.acos(((myPos.latitude-lunchPos.latitude)*10000*11.12)/metres))*180/Math.PI;
 		}*/
+		
 		html=compiledTemplate(params.card);
 		$('#lunchPage').html(html);
 		utilities.bindEvents(params.bindings);
+		
+		$('.b_underground').each( function() {
+			var $this = $(this)
+				$prev = $this.prev();
+			
+			if($this.text() === $prev.text()) {
+				$prev.addClass('m_connect').text('');
+			}
+		});
 		
 		// Крутим компас
 		/*var i = 0;		

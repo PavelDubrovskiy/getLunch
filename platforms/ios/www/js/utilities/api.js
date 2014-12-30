@@ -54,5 +54,26 @@ define(function() {
 		});
 		return lunch;
 	}
+	Api.prototype.getLunchBySquareCoords = function(values) {
+		var values = values || {};
+		var lunchList={};
+		var data = values.filter;
+		if(data===null)data={};
+		data.longitude=values.longitude;
+		data.latitude=values.latitude;
+		data.cornerTL=JSON.stringify(values.coords[0]);
+		data.cornerBR=JSON.stringify(values.coords[1]);
+		data.app=true;
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: values.source+"/api/getLunchBySquareCoords/",
+			data: data,
+			success: function(msg){
+				lunchList=JSON.parse(msg);
+			}
+		});
+		return lunchList;
+	}
 	return Api;
 });

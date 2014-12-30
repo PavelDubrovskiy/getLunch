@@ -17,7 +17,7 @@
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
                BuildableName = "GetLunch.app"
                BlueprintName = "GetLunch"
-               ReferencedContainer = "container:getLunch.xcodeproj">
+               ReferencedContainer = "container:GetLunch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "GetLunch.app"
             BlueprintName = "GetLunch"
-            ReferencedContainer = "container:getLunch.xcodeproj">
+            ReferencedContainer = "container:GetLunch.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -54,7 +54,7 @@
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "GetLunch.app"
             BlueprintName = "GetLunch"
-            ReferencedContainer = "container:getLunch.xcodeproj">
+            ReferencedContainer = "container:GetLunch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -72,7 +72,7 @@
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "GetLunch.app"
             BlueprintName = "GetLunch"
-            ReferencedContainer = "container:getLunch.xcodeproj">
+            ReferencedContainer = "container:GetLunch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

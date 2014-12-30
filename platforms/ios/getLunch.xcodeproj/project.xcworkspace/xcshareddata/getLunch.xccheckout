@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>784EF476-78EB-46B6-9BFC-43B285AA8078</string>
+	<string>046F89AF-423D-429E-AD89-580BDCBAEA4B</string>
 	<key>IDESourceControlProjectName</key>
-	<string>getLunch</string>
+	<string>GetLunch</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>C11442BAF62993ED7FEBE28FD92D386BCD2A0E83</key>
 		<string>https://github.com/PavelDubrovskiy/getLunch.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>platforms/ios/getLunch.xcodeproj</string>
+	<string>platforms/ios/GetLunch.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C11442BAF62993ED7FEBE28FD92D386BCD2A0E83</key>

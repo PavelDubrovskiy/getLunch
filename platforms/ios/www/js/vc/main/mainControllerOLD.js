@@ -5,8 +5,6 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	var $ = Framework7.$;
 	var sought=[];
 	var searchInput='';
-	var userPosition=true;
-	
 	if(localStorage.getItem('sought')!==null){
 		sought=localStorage.getItem('sought').split('!__;__!');
 	}
@@ -62,9 +60,9 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	// Инициализация страницы
 	function init(query) {
 		var filter=JSON.parse(localStorage.getItem('filter'));
-		/*$(document).on('pageBeforeRemove', function (e) {
+		$(document).on('pageBeforeRemove', function (e) {
 			app.firstEnter=true;
-		});*/
+		});
 		initMap();
 		
 		view.render({
@@ -80,10 +78,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	// Инициализация карты
 	function initMap() {
 		// Создание карты
-		map = new Map({
-			mapId: 'mainMap',
-			openBalloon: true
-		});
+		map = new Map({ mapId: 'mainMap' });
 		
 		// Добавление подписки на события управления картой
 		bindings.push(
@@ -115,15 +110,10 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
 		var itemList={};
-		//getLunchBySquareCoords();
-		map.boundsChange(function(){userPosition=false;getLunchBySquareCoords();});
-		geolocation();
-		//setTimeout(getNearestLunches, 400);
-		//setTimeout(getLunchBySquareCoords, 400);
 		
-		//window.clearInterval(app.interval);
-		//var mainSetMePosInterval=window.setInterval(getNearestLunches, 5000);
-		//var mainSetMePosInterval=window.setInterval(getLunchBySquareCoords, 5000);
+		setTimeout(getNearestLunches, 400);
+		window.clearInterval(app.interval);
+		var mainSetMePosInterval=window.setInterval(getNearestLunches, 5000);
 		
 		// Изменение состояния метки (если вторым параметром передано true, 1, "active" — метка становится активной, если false, 0, "inactive" или параметр не передан — неактивной)
 		//map.changeMarkState( map.marks.get(0), "inactive");
@@ -136,25 +126,20 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		if(app.latitude==0 && app.longitude==0){
 			app.watchID = navigator.geolocation.watchPosition(function(position){
 					try{
-						console.log(position.coords.latitude+'!='+app.latitude+' && '+app.longitude+'!='+position.coords.longitude);
-						if(position.coords.latitude!=app.latitude && app.longitude!=position.coords.longitude){
-							app.latitude=position.coords.latitude;
-							app.longitude=position.coords.longitude;
-							//getNearestLunches();
-							getLunchBySquareCoords();
-							if(userPosition==true) map.setUserPosition([app.latitude, app.longitude], true);
-						}
+						app.latitude=position.coords.latitude;
+						app.longitude=position.coords.longitude;
+						getNearestLunches();
+						map.setUserPosition([app.latitude, app.longitude]);
+						map.autoBounds(200);
 					}catch(e){}
 				}, 
-				function(){
-					getLunchBySquareCoords();
-				}, 
+				function(){}, 
 				{timeout: 10000, enableHighAccuracy: false}
 			);
 		}else{
-			//getNearestLunches();
-			getLunchBySquareCoords();
-			map.setUserPosition([app.latitude, app.longitude], true);
+			getNearestLunches();
+			map.setUserPosition([app.latitude, app.longitude]);
+			map.autoBounds(200);
 		}
 	}
 	
@@ -187,76 +172,21 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				});
 				sought.unshift(searchInput);
 				localStorage.setItem('sought',sought.join('!__;__!'));
+				map.marks.removeAll();
 				console.log(msg);
-				
 				var valuesItem={lunchList:msg.list,map:map};
 				view.attachLunches(valuesItem);
 				
 				$('.b_cards_item').off('click').on('click', setCurrent);
 				
 				app.firstEnter=false;
-				map.setBounds([msg.latitude, msg.longitude]);
+				map.autoBounds();
 				$(".p_main_search_close").click();
 			}
 		}
 	}
-	// Получение адресов по крайним точкам карты
-	function getLunchBySquareCoords(){
-		if(searchInput==''){
-			var filter=JSON.parse(localStorage.getItem('filter'));
-			var coords=map.map.getBounds();
-			var latitude=(coords[0][0]+coords[1][0])/2;
-			var longitude=(coords[0][1]+coords[1][1])/2;
-			if(app.latitude==0 && app.longitude==0){
-				app.latitude=latitude;
-				app.longitude=longitude;
-			}
-			var values={
-				coords: coords,
-				latitude: app.latitude,
-				longitude: app.longitude,
-				panTo: app.firstEnter,
-				source: app.config.source,
-				map:map,
-				filter:filter
-			};
-			
-			//map.geolocation(values);
-			
-			var lunchList=api.getLunchBySquareCoords(values);
-			var mainLunchesList=JSON.parse(localStorage.getItem('mainLunchesList'));
-			var isChangeInList=false;
-			
-			lunchList.forEach(function(element, index, array){
-				if(mainLunchesList!==null && mainLunchesList[index]!==undefined){
-					if(element.id*1!==mainLunchesList[index].id*1){
-						isChangeInList=true;
-					}
-				}else{
-					isChangeInList=true;
-				}
-				//lunchList[index].metr=222;//SQRT(POW((longitude*COS('.$coord[1].')-'.$coord[0].'*COS('.$coord[1].')),2)+POW((latitude-'.$coord[1].'),2))*10000*11.12 AS metr
-			});
-			
-			if(mainLunchesList===null || isChangeInList==true){
-				localStorage.setItem('mainLunchesList',JSON.stringify(lunchList));
-			}
-			
-			if(typeof lunchList !== 'undefined'){
-				if(isChangeInList==true || app.firstEnter==true){
-					var valuesItem={lunchList:lunchList,map:map};
-					view.attachLunches(valuesItem);
-					
-					$('.b_cards_item').off('click').on('click', setCurrent);
-					
-					app.firstEnter=false;
-					app.useFilter=false;
-				}
-			}
-		}
-	}
+	// Получение адресов вокруг моей позиции 
 	function getNearestLunches(){
-		console.log(map.map.getBounds());
 		if(app.latitude!=0 && app.longitude!=0 && searchInput==''){
 			var filter=JSON.parse(localStorage.getItem('filter'));
 			var values={
@@ -290,6 +220,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			
 			if(typeof lunchList !== 'undefined'){
 				if(isChangeInList==true || app.firstEnter==true){
+					map.marks.removeAll();
 					var valuesItem={lunchList:lunchList,map:map};
 					view.attachLunches(valuesItem);
 					
