@@ -202,7 +202,6 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	}
 	// Получение адресов по крайним точкам карты
 	function getLunchBySquareCoords(){
-		console.log(map.map.getZoom());
 		if(searchInput=='' && map.map.getZoom()>13){
 			var filter=JSON.parse(localStorage.getItem('filter'));
 			var coords=map.map.getBounds();
