@@ -142,6 +142,18 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 			}
 		});
 	};
+	var tryConnection = function() {
+		$.ajax({
+			type: "POST",
+			async: false,
+			url: config.source+"/api/tryConnection/",
+			success: function(msg){
+			},
+			error: function(error){
+				app.f7.alert('Нет подключения к&nbsp;интернету или&nbsp;сервер не&nbsp;отвечает', "Ошибка!");
+			}
+		});
+	}
 	return {
 		f7: f7,
 		mainView: mainView,
@@ -161,7 +173,8 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		LoginFB:LoginFB,
 		LogoutFB:LogoutFB,
 		LoginVK:LoginVK,
-		LogoutVK:LogoutVK
+		LogoutVK:LogoutVK,
+		tryConnection:tryConnection
 	};
 });
 
