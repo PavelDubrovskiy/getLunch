@@ -48,10 +48,13 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	}
 	
 	function exitToStart(){
-		//localStorage.clear();
-		try{
+		localStorage.clear();
+		document.location.href='index.html';
+		/*try{
 			navigator.app.exitApp();
-		}catch(e){}
+		}catch(e){
+			
+		}*/
 	}
 	
 	return {

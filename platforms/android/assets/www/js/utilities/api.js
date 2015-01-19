@@ -28,6 +28,8 @@ define(function() {
 		var data = values.filter;
 		if(data===null)data={};
 		data.q=values.address;
+		data.latitude=values.latitude;
+		data.longitude=values.longitude;
 		data.app=true;
 		$.ajax({
 			type: "POST",

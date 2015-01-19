@@ -108,6 +108,20 @@ module.exports = [
         "clobbers": [
             "window.open"
         ]
+    },
+    {
+        "file": "plugins/com.phonegap.core.phonedialer/www/dialer.js",
+        "id": "com.phonegap.core.phonedialer.phonedialer",
+        "merges": [
+            "phonedialer"
+        ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
+        "id": "com.phonegap.plugins.PushPlugin.PushNotification",
+        "clobbers": [
+            "PushNotification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -119,7 +133,9 @@ module.exports.metadata =
     "org.apache.cordova.device-motion": "0.2.8",
     "org.apache.cordova.device-orientation": "0.3.7",
     "org.apache.cordova.geolocation": "0.3.8",
-    "org.apache.cordova.inappbrowser": "0.5.2"
+    "org.apache.cordova.inappbrowser": "0.5.2",
+    "com.phonegap.core.phonedialer": "0.2.0",
+    "com.phonegap.plugins.PushPlugin": "2.4.0"
 }
 // BOTTOM OF METADATA
 });

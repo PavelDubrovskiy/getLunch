@@ -28,6 +28,10 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			element: '#externalSite',
 			event: 'click',
 			handler: externalSiteLoad
+		},{
+			element: '#callSomeone',
+			event: 'click',
+			handler: callSomeone
 		}
 	];
 	document.addEventListener("backbutton", onBackButtonFire, false); 
@@ -61,8 +65,8 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		initMap(lunch);
 		
 		gallery = new Gallery({wrapper: '.b_gallery', items: 'a'});
-		window.clearInterval(app.intervalCompass);
-		app.intervalCompass=window.setInterval(tryCompass, 100);
+		//window.clearInterval(app.intervalCompass);
+		//app.intervalCompass=window.setInterval(tryCompass, 100);
 	}
 	
 	// Получение расстояния между пользователем и кафе
@@ -93,22 +97,31 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 				iconImageHref: lunch.inactive === 'st_inactive' ? 'i/svg/geotag_inactive.svg' :'i/svg/geotag.svg'
 			}
 		}]);
-			
-		if( lunch.metres < 450 ) {			
+		/*console.log('lunch.latitude='+lunch.latitude+' lunch.longitude='+lunch.longitude);
+		console.log('app.latitude='+app.latitude+' app.longitude='+app.longitude);
+		if( lunch.metres < 450 ) {
 			//map.autoBoundsUser();
-			map.setBounds([
-				[lunch.latitude, lunch.longitude],
-				[app.latitude, app.longitude]
-			]);
+			console.log(lunch.metres);
+			if(lunch.longitude>app.longitude){
+				map.setBounds([
+					[lunch.latitude, app.longitude],
+					[app.latitude, lunch.longitude]
+				]);
+			}else{
+				map.setBounds([
+					[lunch.latitude, lunch.longitude],
+					[app.latitude, app.longitude]
+				]);
+			}
 			map.setUserPosition([app.latitude, app.longitude]);
-		}else{
+		}else{*/
 			map.map.setCenter(
 				map.getOffset(
 					[lunch.latitude, lunch.longitude]
 				)
 			);
 			map.setUserPosition([app.latitude, app.longitude]);
-		}		
+		//}		
 	}
 			
 	// Функция управления избранным
@@ -122,6 +135,18 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		if(externalSite!==null && externalSite!=''){
 			navigator.app.loadUrl('http://'+externalSite, {openExternal:true});
 		}
+	}
+	function callSomeone(){
+		/*var msg = Ext.Msg.confirm('Please Confirm','Are you sure you want to make a phone call?',
+		function(r){*/
+			//if (r == 'yes'){
+				if (Ext.is.Android){
+					document.location.href = 'tel:'+lunch.phone;
+				} else { // we assume the device is running iOS
+					window.plugins.phoneDialer.dial(lunch.phone);
+				}
+			//}
+		//});
 	}
 	return {
 		init: init

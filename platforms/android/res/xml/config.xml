@@ -20,6 +20,9 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
+    <feature name="PushPlugin">
+        <param name="android-package" value="com.plugin.gcm.PushPlugin" />
+    </feature>
     <name>GetLunch</name>
     <description>
         GetLunch - application for search lunch

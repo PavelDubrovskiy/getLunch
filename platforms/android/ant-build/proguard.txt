@@ -1,6 +1,15 @@
 # view AndroidManifest.xml #generated:6
 -keep class com.example.hello.GetLunch { <init>(...); }
 
+# view AndroidManifest.xml #generated:13
+-keep class com.plugin.gcm.CordovaGCMBroadcastReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:20
+-keep class com.plugin.gcm.GCMIntentService { <init>(...); }
+
+# view AndroidManifest.xml #generated:12
+-keep class com.plugin.gcm.PushHandlerActivity { <init>(...); }
+
 # view res/layout/color_picker_dialog_content.xml #generated:15
 # view v17\res/layout-v17/color_picker_dialog_content.xml #generated:18
 -keep class org.chromium.ui.ColorPickerAdvanced { <init>(...); }

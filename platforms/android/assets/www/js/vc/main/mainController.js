@@ -5,6 +5,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	var $ = Framework7.$;
 	var sought=[];
 	var searchInput='';
+	var userPosition=true;
+	
 	if(localStorage.getItem('sought')!==null){
 		sought=localStorage.getItem('sought').split('!__;__!');
 	}
@@ -113,13 +115,15 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
 		var itemList={};
-		
+		//getLunchBySquareCoords();
+		map.boundsChange(function(){userPosition=false;getLunchBySquareCoords();});
+		geolocation();
 		//setTimeout(getNearestLunches, 400);
-		setTimeout(getLunchBySquareCoords, 400);
+		//setTimeout(getLunchBySquareCoords, 400);
 		
-		window.clearInterval(app.interval);
+		//window.clearInterval(app.interval);
 		//var mainSetMePosInterval=window.setInterval(getNearestLunches, 5000);
-		var mainSetMePosInterval=window.setInterval(getLunchBySquareCoords, 5000);
+		//var mainSetMePosInterval=window.setInterval(getLunchBySquareCoords, 5000);
 		
 		// Изменение состояния метки (если вторым параметром передано true, 1, "active" — метка становится активной, если false, 0, "inactive" или параметр не передан — неактивной)
 		//map.changeMarkState( map.marks.get(0), "inactive");
@@ -132,11 +136,14 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		if(app.latitude==0 && app.longitude==0){
 			app.watchID = navigator.geolocation.watchPosition(function(position){
 					try{
-						app.latitude=position.coords.latitude;
-						app.longitude=position.coords.longitude;
-						//getNearestLunches();
-						getLunchBySquareCoords();
-						map.setUserPosition([app.latitude, app.longitude], true);
+						console.log(position.coords.latitude+'!='+app.latitude+' && '+app.longitude+'!='+position.coords.longitude);
+						if(position.coords.latitude!=app.latitude && app.longitude!=position.coords.longitude){
+							app.latitude=position.coords.latitude;
+							app.longitude=position.coords.longitude;
+							//getNearestLunches();
+							getLunchBySquareCoords();
+							if(userPosition==true && app.latitude!=0) map.setUserPosition([app.latitude, app.longitude], true);
+						}
 					}catch(e){}
 				}, 
 				function(){
@@ -170,7 +177,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		if($('.p_main_search_input').val()!=''){
 			searchInput=$('.p_main_search_input').val();
 			var filter=JSON.parse(localStorage.getItem('filter'));
-			var values={source:app.config.source, map:map, address:searchInput, filter:filter};
+			var values={source:app.config.source, map:map, address:searchInput, filter:filter, latitude:app.latitude, longitude:app.longitude};
 			var msg=api.getLunchByAddress(values);
 			if(typeof msg !== 'undefined'){
 				sought.forEach(function(element, index, array){
@@ -188,14 +195,14 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				$('.b_cards_item').off('click').on('click', setCurrent);
 				
 				app.firstEnter=false;
-				map.setBounds([msg.latitude, msg.longitude]);
+				map.setBounds([msg.coords.coordsTL, msg.coords.coordsBR]);
 				$(".p_main_search_close").click();
 			}
 		}
 	}
 	// Получение адресов по крайним точкам карты
 	function getLunchBySquareCoords(){
-		if(searchInput==''){
+		if(searchInput=='' && map.map.getZoom()>13){
 			var filter=JSON.parse(localStorage.getItem('filter'));
 			var coords=map.map.getBounds();
 			var latitude=(coords[0][0]+coords[1][0])/2;

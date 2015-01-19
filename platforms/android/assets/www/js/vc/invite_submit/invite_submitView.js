@@ -13,8 +13,8 @@ define(["js/utilities/common", "moment"], function(utilities, moment) {
 		var $wrap = $input.parent();
 				
 		$input
-			.val(dateLocal)
-			.attr('min', dateLocal);
+			.val(dateLocal);
+			//.attr('min', dateLocal);
 	}
 	
 	return {

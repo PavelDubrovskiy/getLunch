@@ -396,11 +396,17 @@ D:\GITHUB\getLunch\platforms\android\assets\www\lib\spinningwheel.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\text.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\css\framework7.css \
 D:\GITHUB\getLunch\platforms\android\assets\www\lib\css\framework7.rtl.css \
+D:\GITHUB\getLunch\platforms\android\assets\www\plugins\com.phonegap.core.phonedialer \
+D:\GITHUB\getLunch\platforms\android\assets\www\plugins\com.phonegap.plugins.PushPlugin \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\nl.x-services.plugins.socialsharing \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.contacts \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.device-motion \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.device-orientation \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.inappbrowser \
+D:\GITHUB\getLunch\platforms\android\assets\www\plugins\com.phonegap.core.phonedialer\www \
+D:\GITHUB\getLunch\platforms\android\assets\www\plugins\com.phonegap.core.phonedialer\www\dialer.js \
+D:\GITHUB\getLunch\platforms\android\assets\www\plugins\com.phonegap.plugins.PushPlugin\www \
+D:\GITHUB\getLunch\platforms\android\assets\www\plugins\com.phonegap.plugins.PushPlugin\www\PushNotification.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\nl.x-services.plugins.socialsharing\www \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\nl.x-services.plugins.socialsharing\www\SocialSharing.js \
 D:\GITHUB\getLunch\platforms\android\assets\www\plugins\org.apache.cordova.contacts\www \

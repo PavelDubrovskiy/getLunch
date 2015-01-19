@@ -1,6 +1,8 @@
 D:\GITHUB\getLunch\platforms\android\ant-build\classes.dex : \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\BuildConfig.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\GetLunch.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\Manifest$permission.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\Manifest.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$array.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$attr.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$color.class \
@@ -15,6 +17,10 @@ D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$strin
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$style.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R$xml.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\example\hello\R.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\plugin\gcm\CordovaGCMBroadcastReceiver.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\plugin\gcm\GCMIntentService.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\plugin\gcm\PushHandlerActivity.class \
+D:\GITHUB\getLunch\platforms\android\ant-build\classes\com\plugin\gcm\PushPlugin.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\GetLunch\GetLunch.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$1.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\classes\nl\xservices\plugins\SocialSharing$2$1$1.class \
@@ -80,4 +86,6 @@ D:\GITHUB\getLunch\platforms\android\ant-build\classes\org\xwalk\core\R.class \
 D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\classes-30d7c0bf91301b94cf6fc40f2dab8747.jar \
 D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\classes-14c2d3de3f5ede73e752f34bdb9e62f0.jar \
 D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\xwalk_core_library_java_library_part-3c9866c5abfb8391679b8b9847bbc6c2.jar \
+D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\gcm-9ad2d2909d342948d307bad340a4c6c8.jar \
+D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\android-support-v13-40ad45cc4c7e0a51429de26cfcc3a705.jar \
 D:\GITHUB\getLunch\platforms\android\ant-build\dexedLibs\xwalk_core_library_java_app_part-9e3e7ee15d26e66b52623366e71c00dd.jar \
