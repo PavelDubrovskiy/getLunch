@@ -32,7 +32,9 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		pushState: true,
 		swipeout: false,
 		sortable: false,
-		swipeBackPageBoxShadow: false
+		swipeBackPageBoxShadow: false,
+		smartSelectBackTemplate: '<div class="left sliding"><a href="#" class="link icon-only back p_addreview_back"><i class="icon icon-arrow-back"></i><span></span></a></div>',
+		smartSelectBackOnSelect: true
 	});
 	
 	f7.allowPanelOpen = false;
@@ -170,6 +172,8 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		disablePanel: function() {
 			f7.allowPanelOpen = false;
 		},
+		mapFullscreen: false,
+		
 		LoginFB:LoginFB,
 		LogoutFB:LogoutFB,
 		LoginVK:LoginVK,

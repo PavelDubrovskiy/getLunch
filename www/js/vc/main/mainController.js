@@ -109,7 +109,19 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			}
 		);
 		
-		map.map.events.add('click', view.toggleMapSize );
+		map.map.events.add('click', function(e){
+			if(!app.mapFullscreen){
+				view.expandMap(e);
+				app.mapFullscreen = true;
+			}else{
+				view.reduceMap(e);
+				app.mapFullscreen = false;
+			}
+		});
+		
+		if(app.mapFullscreen){
+			view.expandMap(map);
+		}
 		
 		// Предотвращение открытия меню по свайпу при перетаскивании карты
 		map.map.events.add('mouseenter', app.disablePanel);

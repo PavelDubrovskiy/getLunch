@@ -7,7 +7,9 @@ define(function() {
     function init() {
 		$(document).on('pageBeforeInit', function (e) {
 			var page = e.detail.page;
-			load(page.name, page.query);
+			if(!$(page.container).hasClass('smart-select-page')) {
+				load(page.name, page.query);
+			}
 		});
     }
 

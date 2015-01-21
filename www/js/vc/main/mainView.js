@@ -1,8 +1,5 @@
 define(["app", "js/utilities/common"], function( app, utilities ) {
 	var $ = Framework7.$;
-	var $cnt = $(".page-content");
-	var $map = $(".b_map");
-	var fullscreen = false;
 	
 	var template = $('#lunchItem').html();
 	var compiledTemplate = Template7.compile(template);
@@ -25,24 +22,6 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 			});
 		}
 		utilities.bindEvents(params.bindings);
-	}
-	
-	// Переключение размера карты
-	function toggleMapSize( e ) {
-		fullscreen = !fullscreen;
-		
-		if( fullscreen === true ){
-			$cnt.toggleClass("st_map_fullscreen");
-			e.originalEvent.map.container.fitToViewport(true);
-			$cnt.toggleClass("st_cards_list_hidden");
-		}else{
-			$cnt.toggleClass("st_cards_list_hidden");
-
-			setTimeout( function(){
-				$cnt.toggleClass("st_map_fullscreen");
-				e.originalEvent.map.container.fitToViewport(true);				
-			}, 400);
-		}
 	}
 	
 	// Показать поиск
@@ -140,7 +119,8 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 	}
 	return {
 		render: render,
-		toggleMapSize: toggleMapSize,
+		expandMap: utilities.expandMap,
+		reduceMap: utilities.reduceMap,
 		openSearch: openSearch,
 		toggleFavouriteState: utilities.toggleFavouriteState,
 		attachLunches: attachLunches
