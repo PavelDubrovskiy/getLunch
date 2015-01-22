@@ -146,11 +146,17 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		//navigator.compass.getCurrentHeading(onSuccessHeading, onErrorHeading);
 	}
 	function externalSiteLoad(){
+		console.log('externalSiteLoad ('+externalSite+');');
 		if(externalSite!==null && externalSite!=''){
-			navigator.app.loadUrl('http://'+externalSite, {openExternal:true});
+			if( navigator.app ){
+			    navigator.app.loadUrl('http://'+externalSite.replace('http://',''), {openExternal:true});
+			}else{
+			    window.open('http://'+externalSite.replace('http://',''), "_system" );
+			}			
 		}
 	}
 	function callSomeone(){
+		console.log('callSomeone ('+lunch.phone+');');
 		/*var msg = Ext.Msg.confirm('Please Confirm','Are you sure you want to make a phone call?',
 		function(r){*/
 			//if (r == 'yes'){
