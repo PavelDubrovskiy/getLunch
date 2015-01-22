@@ -1,7 +1,7 @@
 define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], function(app, view, User, fb) {
 	var user = new User();
 	var $ = Framework7.$;
-	
+
 	var bindings = [
 		{
 			element: '.p_start_facebook-login',
@@ -28,6 +28,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 		{timeout: 10000, enableHighAccuracy: false}
 	);
 	function init() {
+		app.tryConnection();
 		if(user.id!=''){
 			$('.p_start_buttons').hide();
 			$('.b_logo').transitionEnd( function(){
@@ -48,10 +49,13 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	}
 	
 	function exitToStart(){
-		//localStorage.clear();
-		try{
+		localStorage.clear();
+		document.location.href='index.html';
+		/*try{
 			navigator.app.exitApp();
-		}catch(e){}
+		}catch(e){
+			
+		}*/
 	}
 	
 	return {

@@ -1,0 +1,51 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left sliding">
+			<a href="#" class="link icon-only open-panel">
+				<i class="icon icon-sidebar"></i><span></span>
+			</a>
+		</div>
+		<div class="center sliding">
+			Напоминание
+		</div>
+		<div class="right sliding">
+		</div>
+	</div>
+</div>
+<div class="pages navbar-through">
+	<div data-page="reminder" class="page page-gray">
+	
+		<div class="page-content">
+			<!--<div class="content-block-title">Время напоминания</div>-->
+			<div class="b_invite_datetime b_reminder list-block">
+				<input type="time" id="reminderTime">
+				<a href="#" class="b_reminder_prompt">Выбрать время</a>
+			</div>
+			<div class="list-block">
+				<ul>
+					<!-- Smart select item -->
+					<li>
+						<a href="#" class="item-link smart-select">
+							<!-- select -->
+							<select name="repeat">
+								<option value="0" selected>Никогда</option>
+								<option value="1">Каждый день</option>
+								<option value="7">Каждую неделю</option>
+								<option value="30">Каждый месяц</option>
+							</select>
+							<div class="item-content">
+								<div class="item-inner">
+									<!-- Select label -->
+									<div class="item-title">Повторять</div>
+									<!-- Selected value, not required -->
+									<div class="item-after">Никогда</div>
+								</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+</div>

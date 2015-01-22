@@ -5,12 +5,9 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		16AD4FEBE0EE430C8DF11D38 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD1CD63C62244EB854CE5B3 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		18CFE62E1A529E1C00FF887A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CFE62D1A529E1C00FF887A /* CoreLocation.framework */; };
-		18CFE62F1A52A0C200FF887A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18CFE62D1A529E1C00FF887A /* CoreLocation.framework */; };
-		18CFE6301A52A0C200FF887A /* CoreLocation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 18CFE62D1A529E1C00FF887A /* CoreLocation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDC13BBADB100FB74C0 /* Localizable.strings */; };
@@ -72,20 +69,6 @@
 			remoteInfo = CordovaLib;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		18CFE6311A52A0C200FF887A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				18CFE6301A52A0C200FF887A /* CoreLocation.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0CD72CF8613944838867F85F /* CDVLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVLogger.h; path = org.apache.cordova.console/CDVLogger.h; sourceTree = "<group>"; };
@@ -161,7 +144,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				18CFE62E1A529E1C00FF887A /* CoreLocation.framework in Frameworks */,
-				18CFE62F1A52A0C200FF887A /* CoreLocation.framework in Frameworks */,
 				5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */,
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -376,7 +358,6 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
-				18CFE6311A52A0C200FF887A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -571,7 +552,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "GetLunch/GetLunch-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -604,7 +585,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "GetLunch/GetLunch-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-weak_framework",

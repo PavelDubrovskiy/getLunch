@@ -109,7 +109,19 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			}
 		);
 		
-		map.map.events.add('click', view.toggleMapSize );
+		map.map.events.add('click', function(e){
+			if(!app.mapFullscreen){
+				view.expandMap(e);
+				app.mapFullscreen = true;
+			}else{
+				view.reduceMap(e);
+				app.mapFullscreen = false;
+			}
+		});
+		
+		if(app.mapFullscreen){
+			view.expandMap(map);
+		}
 		
 		// Предотвращение открытия меню по свайпу при перетаскивании карты
 		map.map.events.add('mouseenter', app.disablePanel);
@@ -142,7 +154,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 							app.longitude=position.coords.longitude;
 							//getNearestLunches();
 							getLunchBySquareCoords();
-							if(userPosition==true) map.setUserPosition([app.latitude, app.longitude], true);
+							if(userPosition==true && app.latitude!=0) map.setUserPosition([app.latitude, app.longitude], true);
 						}
 					}catch(e){}
 				}, 
@@ -177,7 +189,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		if($('.p_main_search_input').val()!=''){
 			searchInput=$('.p_main_search_input').val();
 			var filter=JSON.parse(localStorage.getItem('filter'));
-			var values={source:app.config.source, map:map, address:searchInput, filter:filter};
+			var values={source:app.config.source, map:map, address:searchInput, filter:filter, latitude:app.latitude, longitude:app.longitude};
 			var msg=api.getLunchByAddress(values);
 			if(typeof msg !== 'undefined'){
 				sought.forEach(function(element, index, array){
@@ -195,14 +207,14 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				$('.b_cards_item').off('click').on('click', setCurrent);
 				
 				app.firstEnter=false;
-				map.setBounds([msg.latitude, msg.longitude]);
+				map.setBounds([msg.coords.coordsTL, msg.coords.coordsBR]);
 				$(".p_main_search_close").click();
 			}
 		}
 	}
 	// Получение адресов по крайним точкам карты
 	function getLunchBySquareCoords(){
-		if(searchInput==''){
+		if(searchInput=='' && map.map.getZoom()>13){
 			var filter=JSON.parse(localStorage.getItem('filter'));
 			var coords=map.map.getBounds();
 			var latitude=(coords[0][0]+coords[1][0])/2;
