@@ -1040,7 +1040,7 @@ a{
 	.b_map + .b_cards_list{
 		height: 45%;
 		overflow: auto;
-		-webkit-overflow-scrolling: touch;
+		/*-webkit-overflow-scrolling: touch;*/
 	}
 	.b_map.m_small + .b_cards_list{
 		height: 67.5%;
@@ -1429,7 +1429,7 @@ a{
 
 /* b_gallery */
 .b_gallery{
-	-webkit-overflow-scrolling: touch;
+	/*-webkit-overflow-scrolling: touch;*/
 	overflow-x: scroll;
 	overflow-y: hidden;
 	white-space: nowrap;
