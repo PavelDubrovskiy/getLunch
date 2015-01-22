@@ -109,7 +109,19 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			}
 		);
 		
-		map.map.events.add('click', view.toggleMapSize );
+		map.map.events.add('click', function(e){
+			if(!app.mapFullscreen){
+				view.expandMap(e);
+				app.mapFullscreen = true;
+			}else{
+				view.reduceMap(e);
+				app.mapFullscreen = false;
+			}
+		});
+		
+		if(app.mapFullscreen){
+			view.expandMap(map);
+		}
 		
 		// Предотвращение открытия меню по свайпу при перетаскивании карты
 		map.map.events.add('mouseenter', app.disablePanel);
@@ -135,6 +147,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		searchInput='';
 		if(app.latitude==0 && app.longitude==0){
 			app.watchID = navigator.geolocation.watchPosition(function(position){
+					console.log('geo success from main');
 					try{
 						console.log(position.coords.latitude+'!='+app.latitude+' && '+app.longitude+'!='+position.coords.longitude);
 						if(position.coords.latitude!=app.latitude && app.longitude!=position.coords.longitude){
@@ -147,9 +160,10 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 					}catch(e){}
 				}, 
 				function(){
+					console.log('geo fail from main');
 					getLunchBySquareCoords();
 				}, 
-				{timeout: 10000, enableHighAccuracy: false}
+				{timeout: 9000, enableHighAccuracy: true}
 			);
 		}else{
 			//getNearestLunches();

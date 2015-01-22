@@ -40,9 +40,25 @@ define( function() {
 		$(".b_compass_tx").text( tx );
 	}
 	
+	// Увеличение размера карты
+	function expandMap(e) {
+		var $map = $(".b_map");
+		$map.addClass("st_fullscreen");
+		e.originalEvent ? e.originalEvent.map.container.fitToViewport(true) : e.map.container.fitToViewport(true);
+	}
+	
+	// Уменьшение размера карты
+	function reduceMap(e) {
+		var $map = $(".b_map");
+		$map.removeClass("st_fullscreen");
+		e.originalEvent ? e.originalEvent.map.container.fitToViewport(true) : e.map.container.fitToViewport(true);
+	}
+	
 	return {
 		setPreloader: setPreloader,
 		bindEvents: bindEvents,
+		expandMap: expandMap,
+		reduceMap: reduceMap,
 		toggleFavouriteState: toggleFavouriteState,
 		setCompassState: setCompassState
 	};	

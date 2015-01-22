@@ -132,7 +132,7 @@ module.exports.metadata =
     "org.apache.cordova.contacts": "0.2.12",
     "org.apache.cordova.device-motion": "0.2.8",
     "org.apache.cordova.device-orientation": "0.3.7",
-    "org.apache.cordova.geolocation": "0.3.8",
+    "org.apache.cordova.geolocation": "0.3.11",
     "org.apache.cordova.inappbrowser": "0.5.2",
     "com.phonegap.core.phonedialer": "0.2.0",
     "com.phonegap.plugins.PushPlugin": "2.4.0"

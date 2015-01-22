@@ -1,6 +1,20 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/com.phonegap.core.phonedialer/www/dialer.js",
+        "id": "com.phonegap.core.phonedialer.phonedialer",
+        "merges": [
+            "phonedialer"
+        ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
+        "id": "com.phonegap.plugins.PushPlugin.PushNotification",
+        "clobbers": [
+            "PushNotification"
+        ]
+    },
+    {
         "file": "plugins/nl.x-services.plugins.socialsharing/www/SocialSharing.js",
         "id": "nl.x-services.plugins.socialsharing.SocialSharing",
         "clobbers": [
@@ -169,6 +183,8 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "com.phonegap.core.phonedialer": "0.2.0",
+    "com.phonegap.plugins.PushPlugin": "2.4.0",
     "nl.x-services.plugins.socialsharing": "4.3.10",
     "org.apache.cordova.console": "0.2.9",
     "org.apache.cordova.contacts": "0.2.12",

@@ -1,7 +1,7 @@
 define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], function(app, view, User, fb) {
 	var user = new User();
 	var $ = Framework7.$;
-	
+
 	var bindings = [
 		{
 			element: '.p_start_facebook-login',
@@ -19,15 +19,17 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	];
 	
 	app.watchID = navigator.geolocation.watchPosition(function(position){
+			console.log('geo success from start');
 			try{
 				app.latitude=position.coords.latitude;
 				app.longitude=position.coords.longitude;
 			}catch(e){}
 		}, 
-		function(){}, 
-		{timeout: 10000, enableHighAccuracy: false}
+		function(){console.log('geo fail from start');}, 
+		{timeout: 9000, enableHighAccuracy: true}
 	);
 	function init() {
+		app.tryConnection();
 		if(user.id!=''){
 			$('.p_start_buttons').hide();
 			$('.b_logo').transitionEnd( function(){

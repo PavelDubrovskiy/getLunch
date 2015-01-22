@@ -62,6 +62,20 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			autoPanOffset: [20, 0, 0, 40]
 		});
 		
+		map.map.events.add('click', function(e){
+			if(!app.mapFullscreen){
+				view.expandMap(e);
+				app.mapFullscreen = true;
+			}else{
+				view.reduceMap(e);
+				app.mapFullscreen = false;
+			}
+		});
+		
+		if(app.mapFullscreen){
+			view.expandMap(map);
+		}
+		
 		initMap(lunch);
 		
 		gallery = new Gallery({wrapper: '.b_gallery', items: 'a'});
@@ -98,10 +112,10 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			}
 		}]);
 		/*console.log('lunch.latitude='+lunch.latitude+' lunch.longitude='+lunch.longitude);
-		console.log('app.latitude='+app.latitude+' app.longitude='+app.longitude);
-		if( lunch.metres < 450 ) {
+		console.log('app.latitude='+app.latitude+' app.longitude='+app.longitude);*/
+		
+		//if( lunch.metres < 450 ) {
 			//map.autoBoundsUser();
-			console.log(lunch.metres);
 			if(lunch.longitude>app.longitude){
 				map.setBounds([
 					[lunch.latitude, app.longitude],
@@ -114,14 +128,14 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 				]);
 			}
 			map.setUserPosition([app.latitude, app.longitude]);
-		}else{*/
+		/*}else{
 			map.map.setCenter(
 				map.getOffset(
 					[lunch.latitude, lunch.longitude]
 				)
 			);
 			map.setUserPosition([app.latitude, app.longitude]);
-		//}		
+		}*/		
 	}
 			
 	// Функция управления избранным
@@ -141,8 +155,10 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		function(r){*/
 			//if (r == 'yes'){
 				if (Ext.is.Android){
+					console.log('document.location.href = tel:'+lunch.phone+';');
 					document.location.href = 'tel:'+lunch.phone;
 				} else { // we assume the device is running iOS
+					console.log('window.plugins.phoneDialer.dial('+lunch.phone+');');
 					window.plugins.phoneDialer.dial(lunch.phone);
 				}
 			//}

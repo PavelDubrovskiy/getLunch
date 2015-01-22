@@ -1,5 +1,6 @@
 define(["app", "js/utilities/common"], function( app, utilities ) {
 	var $ = Framework7.$;
+	
 	function render(params) {
 		$('.p_card_header span').text(params.card.name);
 		var html='',
@@ -44,6 +45,8 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 
 	return {
 		render: render,
+		expandMap: utilities.expandMap,
+		reduceMap: utilities.reduceMap,
 		toggleFavouriteState: utilities.toggleFavouriteState,
 		setCompassState: utilities.setCompassState
 	};
