@@ -146,18 +146,27 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		//navigator.compass.getCurrentHeading(onSuccessHeading, onErrorHeading);
 	}
 	function externalSiteLoad(){
+		console.log('externalSiteLoad ('+externalSite+');');
 		if(externalSite!==null && externalSite!=''){
-			navigator.app.loadUrl('http://'+externalSite, {openExternal:true});
+			if( navigator.app ){
+			    navigator.app.loadUrl('http://'+externalSite.replace('http://',''), {openExternal:true});
+			}else{
+			    window.open('http://'+externalSite.replace('http://',''), "_system" );
+			}			
 		}
 	}
 	function callSomeone(){
+		console.log('callSomeone ('+lunch.phone+');');
+		console.log(device);
+		console.log(device.platform);
+		console.log('device up');
 		/*var msg = Ext.Msg.confirm('Please Confirm','Are you sure you want to make a phone call?',
 		function(r){*/
 			//if (r == 'yes'){
-				if (Ext.is.Android){
+				if(device.model!='iOS'){
 					console.log('document.location.href = tel:'+lunch.phone+';');
 					document.location.href = 'tel:'+lunch.phone;
-				} else { // we assume the device is running iOS
+				}else{ // we assume the device is running iOS
 					console.log('window.plugins.phoneDialer.dial('+lunch.phone+');');
 					window.plugins.phoneDialer.dial(lunch.phone);
 				}

@@ -29,8 +29,7 @@ import android.annotation.TargetApi;
 import android.net.Uri;
 import android.os.Build;
 import android.webkit.WebResourceResponse;
-//import android.webkit.WebView;
-import org.xwalk.core.XWalkView;
+import android.webkit.WebView;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class IceCreamCordovaWebViewClient extends CordovaWebViewClient {
@@ -47,7 +46,7 @@ public class IceCreamCordovaWebViewClient extends CordovaWebViewClient {
     }
 
     @Override
-    public WebResourceResponse shouldInterceptLoadRequest(XWalkView view, String url) {
+    public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
         try {
             // Check the against the whitelist and lock out access to the WebView directory
             // Changing this will cause problems for your application
@@ -78,7 +77,7 @@ public class IceCreamCordovaWebViewClient extends CordovaWebViewClient {
     }
 
     private boolean isUrlHarmful(String url) {
-        return ((url.startsWith("http:") || url.startsWith("https:")) && !Config.isUrlWhiteListed(url))
+        return ((url.startsWith("http:") || url.startsWith("https:")) && !appView.getWhitelist().isUrlWhiteListed(url))
             || url.contains("app_webview");
     }
 

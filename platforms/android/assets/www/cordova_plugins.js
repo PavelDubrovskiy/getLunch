@@ -1,6 +1,20 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/com.phonegap.core.phonedialer/www/dialer.js",
+        "id": "com.phonegap.core.phonedialer.phonedialer",
+        "merges": [
+            "phonedialer"
+        ]
+    },
+    {
+        "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
+        "id": "com.phonegap.plugins.PushPlugin.PushNotification",
+        "clobbers": [
+            "PushNotification"
+        ]
+    },
+    {
         "file": "plugins/nl.x-services.plugins.socialsharing/www/SocialSharing.js",
         "id": "nl.x-services.plugins.socialsharing.SocialSharing",
         "clobbers": [
@@ -68,6 +82,13 @@ module.exports = [
         "id": "org.apache.cordova.contacts.ContactFieldType"
     },
     {
+        "file": "plugins/org.apache.cordova.device/www/device.js",
+        "id": "org.apache.cordova.device.device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.device-motion/www/Acceleration.js",
         "id": "org.apache.cordova.device-motion.Acceleration",
         "clobbers": [
@@ -108,34 +129,21 @@ module.exports = [
         "clobbers": [
             "window.open"
         ]
-    },
-    {
-        "file": "plugins/com.phonegap.core.phonedialer/www/dialer.js",
-        "id": "com.phonegap.core.phonedialer.phonedialer",
-        "merges": [
-            "phonedialer"
-        ]
-    },
-    {
-        "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
-        "id": "com.phonegap.plugins.PushPlugin.PushNotification",
-        "clobbers": [
-            "PushNotification"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "com.phonegap.core.phonedialer": "0.2.0",
+    "com.phonegap.plugins.PushPlugin": "2.4.0",
     "nl.x-services.plugins.socialsharing": "4.3.10",
     "org.apache.cordova.console": "0.2.9",
     "org.apache.cordova.contacts": "0.2.12",
+    "org.apache.cordova.device": "0.2.13",
     "org.apache.cordova.device-motion": "0.2.8",
     "org.apache.cordova.device-orientation": "0.3.7",
     "org.apache.cordova.geolocation": "0.3.11",
-    "org.apache.cordova.inappbrowser": "0.5.2",
-    "com.phonegap.core.phonedialer": "0.2.0",
-    "com.phonegap.plugins.PushPlugin": "2.4.0"
+    "org.apache.cordova.inappbrowser": "0.5.2"
 }
 // BOTTOM OF METADATA
 });
