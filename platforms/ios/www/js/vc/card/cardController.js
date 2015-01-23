@@ -158,6 +158,8 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	function callSomeone(){
 		console.log('callSomeone ('+lunch.phone+');');
 		console.log(device);
+console.log(device.platform);
+console.log(‘device up’)
 		/*var msg = Ext.Msg.confirm('Please Confirm','Are you sure you want to make a phone call?',
 		function(r){*/
 			//if (r == 'yes'){
