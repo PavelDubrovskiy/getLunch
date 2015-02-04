@@ -165,21 +165,8 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	function callSomeone(){
 		console.log('callSomeone ('+lunch.phone+');');
-		console.log(device);
-		console.log(device.platform);
-		console.log('device up');
-		/*var msg = Ext.Msg.confirm('Please Confirm','Are you sure you want to make a phone call?',
-		function(r){*/
-			//if (r == 'yes'){
-				if(device.model!='iOS'){
-					console.log('document.location.href = tel:'+lunch.phone+';');
-					document.location.href = 'tel:'+lunch.phone;
-				}else{ // we assume the device is running iOS
-					console.log('window.plugins.phoneDialer.dial('+lunch.phone+');');
-					window.plugins.phoneDialer.dial(lunch.phone);
-				}
-			//}
-		//});
+		//navigator.callphone.call(function () {}, function (error) { showErrorDialog(errors.call); log(error); }, lunch.phone );
+		navigator.callphone.call(function () {}, function (error) {}, lunch.phone );
 	}
 	return {
 		init: init
