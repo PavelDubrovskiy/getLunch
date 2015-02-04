@@ -59,7 +59,7 @@ define(["app","js/vc/registration/registrationView", "js/m/user", "js/utilities/
 								app.mainView.loadPage('main.html');
 							});
 						}else{
-							forms.showMessage('Неправильно введены логин или пароль', "error");
+							forms.showMessage('Такой пользователь уже существует', "error");
 						}
 					}
 				});
