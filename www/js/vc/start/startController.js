@@ -28,14 +28,22 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 		function(){console.log('geo fail from start');}, 
 		{timeout: 9000, enableHighAccuracy: true}
 	);
-	function init() {
-		app.tryConnection();
-		if(user.id!=''){
-			$('.p_start_buttons').hide();
-			$('.b_logo').transitionEnd( function(){
-				app.mainView.loadPage('main.html');
-			});
-		}
+	function init(){
+		app.tryConnection(function(){
+			if(localStorage.getItem('lunchesArray')!==null){
+				var lunchesArray=JSON.parse(localStorage.getItem('lunchesArray'));
+				for(key in lunchesArray){
+					localStorage.removeItem('lunch'+lunchesArray[key]);
+				}
+				localStorage.removeItem('lunchesArray');
+			}
+			if(user.id!=''){
+				$('.p_start_buttons').hide();
+				$('.b_logo').transitionEnd( function(){
+					app.mainView.loadPage('main.html');
+				});
+			}
+		});
 		view.render({
 			bindings: bindings
 		});

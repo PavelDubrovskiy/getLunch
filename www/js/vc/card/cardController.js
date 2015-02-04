@@ -6,6 +6,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	var interval = null;
 	var lunch = null;
 	var externalSite = null;
+	var mapFullscreen = false;
 	var bindings = [
 		// Управление избранным
 		{
@@ -48,6 +49,13 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		}else{
 			lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
 		}
+		if(localStorage.getItem('lunchesArray')===null){
+			var lunchesArray=[localStorage.getItem("currentId")];
+		}else{
+			var lunchesArray=JSON.parse(localStorage.getItem('lunchesArray'));
+			lunchesArray.push(localStorage.getItem("currentId"));
+		}
+		localStorage.setItem('lunchesArray',JSON.stringify(lunchesArray));
 		lunch.metres=getDistance();		
 		lunch.mainSource=app.config.source;
 		externalSite=lunch.site;
@@ -63,16 +71,16 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		});
 		
 		map.map.events.add('click', function(e){
-			if(!app.mapFullscreen){
+			if(!mapFullscreen){
 				view.expandMap(e);
-				app.mapFullscreen = true;
+				mapFullscreen = true;
 			}else{
 				view.reduceMap(e);
-				app.mapFullscreen = false;
+				mapFullscreen = false;
 			}
 		});
 		
-		if(app.mapFullscreen){
+		if(mapFullscreen){
 			view.expandMap(map);
 		}
 		

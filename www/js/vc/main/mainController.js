@@ -6,6 +6,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	var sought=[];
 	var searchInput='';
 	var userPosition=true;
+	var mapFullscreen = false;
 	
 	if(localStorage.getItem('sought')!==null){
 		sought=localStorage.getItem('sought').split('!__;__!');
@@ -110,16 +111,16 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		);
 		
 		map.map.events.add('click', function(e){
-			if(!app.mapFullscreen){
+			if(!mapFullscreen){
 				view.expandMap(e);
-				app.mapFullscreen = true;
+				mapFullscreen = true;
 			}else{
 				view.reduceMap(e);
-				app.mapFullscreen = false;
+				mapFullscreen = false;
 			}
 		});
 		
-		if(app.mapFullscreen){
+		if(mapFullscreen){
 			view.expandMap(map);
 		}
 		
@@ -240,7 +241,6 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			var lunchList=api.getLunchBySquareCoords(values);
 			var mainLunchesList=JSON.parse(localStorage.getItem('mainLunchesList'));
 			var isChangeInList=false;
-			
 			lunchList.forEach(function(element, index, array){
 				if(mainLunchesList!==null && mainLunchesList[index]!==undefined){
 					if(element.id*1!==mainLunchesList[index].id*1){
