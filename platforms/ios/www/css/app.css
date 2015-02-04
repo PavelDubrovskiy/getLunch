@@ -1037,12 +1037,12 @@ a{
 		border-top: 0;
 		-webkit-transform: translate3d(0, 0, 0);
 	}
-	.b_map + .b_cards_list{
+	.b_map ~ .b_cards_list{
 		height: 45%;
 		overflow: auto;
-		/*-webkit-overflow-scrolling: touch;*/
+		-webkit-overflow-scrolling: touch;
 	}
-	.b_map.m_small + .b_cards_list{
+	.b_map.m_small ~ .b_cards_list{
 		height: 67.5%;
 	}
 
@@ -1429,7 +1429,7 @@ a{
 
 /* b_gallery */
 .b_gallery{
-	/*-webkit-overflow-scrolling: touch;*/
+	-webkit-overflow-scrolling: touch;
 	overflow-x: scroll;
 	overflow-y: hidden;
 	white-space: nowrap;

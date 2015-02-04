@@ -1,0 +1,17 @@
+{
+    "version": "0.0.1",
+    "name": "mobi.roshka.cordova.callphone",
+    "cordova_name": "CallPhone",
+    "description": "Plugin for dialing a number",
+    "license": "Apache 2.0",
+    "keywords": [
+        "cordova",
+        "call",
+        "dial"
+    ],
+    "platforms": [
+        "ios",
+        "android"
+    ],
+    "engines": []
+}

@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		009A0EF3D3D0444E91471FF8 /* CDVContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1802DB99864266A343C352 /* CDVContact.m */; };
 		0E3417D0A01B4DA2B4E56C22 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 637956048E0D436B9C7C69AC /* MessageUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };

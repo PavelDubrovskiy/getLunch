@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+            id="mobi.roshka.cordova.callphone" version="0.0.1">
+        <name>CallPhone</name>
+        <description>Plugin for dialing a number</description>
+        <license>Apache 2.0</license>
+        <keywords>cordova,call,dial</keywords>
+
+        <js-module src="www/callphone.js" name="CallPhone">
+            <clobbers target="navigator.callphone" />
+        </js-module>
+        
+        <platform name="ios">
+            <config-file target="config.xml" parent="/*">
+                <feature name="CallPhone">
+                    <param name="ios-package" value="CallPhone"/>
+                </feature>
+            </config-file>
+            <header-file src="src/ios/CallPhone.h" />
+            <source-file src="src/ios/CallPhone.m" />
+        </platform>
+        
+        <platform name="android">
+            <config-file target="res/xml/config.xml" parent="/*">
+                <feature name="CallPhone">
+                    <param name="android-package" value="mobi.roshka.cordova.callphone.CallPhone"/>
+                </feature>
+            </config-file>
+            <source-file src="src/android/CallPhone.java" target-dir="src/mobi/roshka/cordova/callphone" />
+        </platform> 
+    </plugin>   
