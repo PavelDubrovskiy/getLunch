@@ -1235,6 +1235,31 @@ a{
 	border-top: 0;
 }
 
+/* $b_phone */
+.b_phone{
+	font-size: 20px;
+	text-align: center;
+}
+
+.b_phone + .b_site{
+	margin: 10px 0 0;
+}
+
+/* $b_contact */
+.b_contact{
+	padding: 20px 18px 20px 29px;
+	margin: 20px 0 0;
+}
+	.b_contact:empty{
+		display: none;
+	}
+	
+/* $b_site */
+.b_site{
+	display: block;
+	text-align: center;
+}
+
 /* $b_address */
 .b_address{
 	position: relative;
