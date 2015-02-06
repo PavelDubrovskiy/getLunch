@@ -7,6 +7,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	var searchInput='';
 	var userPosition=true;
 	var mapFullscreen = false;
+	var minZoom = 13;
 	
 	if(localStorage.getItem('sought')!==null){
 		sought=localStorage.getItem('sought').split('!__;__!');
@@ -170,12 +171,18 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			//getNearestLunches();
 			getLunchBySquareCoords();
 			map.setUserPosition([app.latitude, app.longitude], true);
+			if(map.map.getZoom() < minZoom) {
+				map.map.setZoom(minZoom+1);
+			}
 		}
 	}
 	
 	// Найти меня
 	function findMe() {
 		map.setUserPosition([app.latitude, app.longitude], true);
+		if(map.map.getZoom() < minZoom) {
+			map.map.setZoom(minZoom+1);
+		}
 	}
 	
 	// Функция управления избранным
@@ -217,60 +224,77 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	}
 	// Получение адресов по крайним точкам карты
 	function getLunchBySquareCoords(){
-		if(searchInput=='' && map.map.getZoom()>13){
-			var filter=JSON.parse(localStorage.getItem('filter'));
-			var coords=map.map.getBounds();
-			var latitude=(coords[0][0]+coords[1][0])/2;
-			var longitude=(coords[0][1]+coords[1][1])/2;
-			if(app.latitude==0 && app.longitude==0){
-				app.latitude=latitude;
-				app.longitude=longitude;
-			}
-			var values={
-				coords: coords,
-				latitude: app.latitude,
-				longitude: app.longitude,
-				panTo: app.firstEnter,
-				source: app.config.source,
-				map:map,
-				filter:filter
-			};
-			
-			//map.geolocation(values);
-			
-			var lunchList=api.getLunchBySquareCoords(values);
-			var mainLunchesList=JSON.parse(localStorage.getItem('mainLunchesList'));
-			var isChangeInList=false;
-			lunchList.forEach(function(element, index, array){
-				if(mainLunchesList!==null && mainLunchesList[index]!==undefined){
-					if(element.id*1!==mainLunchesList[index].id*1){
+		if(searchInput==''){
+			if(map.map.getZoom()>minZoom){
+				var filter=JSON.parse(localStorage.getItem('filter'));
+				var coords=map.map.getBounds();
+				var latitude=(coords[0][0]+coords[1][0])/2;
+				var longitude=(coords[0][1]+coords[1][1])/2;
+				if(app.latitude==0 && app.longitude==0){
+					app.latitude=latitude;
+					app.longitude=longitude;
+				}
+				var values={
+					coords: coords,
+					latitude: app.latitude,
+					longitude: app.longitude,
+					panTo: app.firstEnter,
+					source: app.config.source,
+					map:map,
+					filter:filter
+				};
+				
+				//map.geolocation(values);
+				
+				var lunchList=api.getLunchBySquareCoords(values);
+				var mainLunchesList=JSON.parse(localStorage.getItem('mainLunchesList'));
+				var isChangeInList=false;
+				var clearList=[];
+				
+				lunchList.forEach(function(element, index, array){
+					if(mainLunchesList!==null && mainLunchesList[index]!==undefined){
+						if(element.id*1!==mainLunchesList[index].id*1){
+							isChangeInList=true;
+						}
+					}else{
 						isChangeInList=true;
 					}
-				}else{
-					isChangeInList=true;
+					//lunchList[index].metr=222;//SQRT(POW((longitude*COS('.$coord[1].')-'.$coord[0].'*COS('.$coord[1].')),2)+POW((latitude-'.$coord[1].'),2))*10000*11.12 AS metr
+				});
+				
+				if(mainLunchesList!==null){
+					mainLunchesList.forEach(function(element, index, array){
+						if(lunchList[index]===undefined){
+							clearList.push(mainLunchesList[index]);
+						}
+					});
 				}
-				//lunchList[index].metr=222;//SQRT(POW((longitude*COS('.$coord[1].')-'.$coord[0].'*COS('.$coord[1].')),2)+POW((latitude-'.$coord[1].'),2))*10000*11.12 AS metr
-			});
-			
-			if(mainLunchesList===null || isChangeInList==true){
-				localStorage.setItem('mainLunchesList',JSON.stringify(lunchList));
-			}
-			
-			if(typeof lunchList !== 'undefined'){
-				if(isChangeInList==true || app.firstEnter==true){
-					var valuesItem={lunchList:lunchList,map:map};
-					view.attachLunches(valuesItem);
-					
-					$('.b_cards_item').off('click').on('click', setCurrent);
-					
-					app.firstEnter=false;
-					app.useFilter=false;
+				
+				if(mainLunchesList===null || isChangeInList==true){
+					localStorage.setItem('mainLunchesList',JSON.stringify(lunchList));
 				}
+				
+				if(typeof lunchList !== 'undefined'){
+					if(isChangeInList==true || app.firstEnter==true){
+						var valuesItem={lunchList:lunchList,map:map};
+						map.removeMarks(clearList);
+						//localStorage.removeItem('mainLunchesList');
+						view.attachLunches(valuesItem);
+						
+						$('.b_cards_item').off('click').on('click', setCurrent);
+						
+						app.firstEnter=false;
+						app.useFilter=false;
+					}
+				}
+			}else{
+				map.removeAllMarks();
+				localStorage.removeItem('mainLunchesList');
 			}
 		}
 	}
 	function getNearestLunches(){
-		console.log(map.map.getBounds());
+		//console.log(map.map.getBounds());
 		if(app.latitude!=0 && app.longitude!=0 && searchInput==''){
 			var filter=JSON.parse(localStorage.getItem('filter'));
 			var values={
@@ -281,7 +305,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				map:map,
 				filter:filter
 			};
-			
+
 			map.geolocation(values);
 			
 			var lunchList=api.getLunchByCoords(values);
