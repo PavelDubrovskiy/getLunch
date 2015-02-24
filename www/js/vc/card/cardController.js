@@ -6,7 +6,6 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	var interval = null;
 	var lunch = null;
 	var externalSite = null;
-	var mapFullscreen = false;
 	var bindings = [
 		// Управление избранным
 		{
@@ -41,6 +40,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	// Инициализация страницы
 	function init(query) {
+		var mapFullscreen = false;
 		var values={latitude:app.latitude, longitude:app.longitude, source:app.config.source, id:localStorage.getItem("currentId")};
 		
 		if(localStorage.getItem('lunch'+localStorage.getItem("currentId"))===null){
@@ -70,7 +70,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			autoPanOffset: [20, 0, 0, 40]
 		});
 		
-		map.map.events.add('click', function(e){
+		map.map.events.add('dblclick', function(e){
 			if(!mapFullscreen){
 				view.expandMap(e);
 				mapFullscreen = true;

@@ -6,7 +6,6 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	var sought=[];
 	var searchInput='';
 	var userPosition=true;
-	var mapFullscreen = false;
 	var minZoom = 13;
 	
 	if(localStorage.getItem('sought')!==null){
@@ -81,6 +80,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	
 	// Инициализация карты
 	function initMap() {
+		var mapFullscreen = false;
+		
 		// Создание карты
 		map = new Map({
 			mapId: 'mainMap',
@@ -111,7 +112,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			}
 		);
 		
-		map.map.events.add('click', function(e){
+		map.map.events.add('dblclick', function(e){
 			if(!mapFullscreen){
 				view.expandMap(e);
 				mapFullscreen = true;
