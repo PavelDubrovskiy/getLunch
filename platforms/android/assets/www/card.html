@@ -101,11 +101,12 @@
 				</div>
 				{{/if}}
 				
-				<div class="b_btn_row">
-					<div class="buttons-row">
-						{{#if phone}}<a href="#" class="button b_btn" id="callSomeone">Позвонить</a>{{/if}}
-						{{#if site}}<a href="#" class="button b_btn" id="externalSite">Посетить сайт</a>{{/if}}
-					</div>
+				<div class="b_content-block b_contact">
+					{{#if phone}}<div class="b_phone">{{phone}}</div>{{/if}}
+					{{#if site}}
+							<!--{{#if phone}}<a href="#" class="button b_btn" id="callSomeone">Позвонить</a>{{/if}}-->
+							<a href="#" class="b_site" id="externalSite">{{site}}</a>
+					{{/if}}
 				</div>
 				
 				{{#if reviews.list.length}}

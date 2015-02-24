@@ -13,6 +13,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"CallPhone\"><param name=\"android-package\" value=\"mobi.roshka.cordova.callphone.CallPhone\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
                             "count": 1
                         },
@@ -63,11 +67,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<permission android:name=\"com.example.hello.permission.C2D_MESSAGE\" android:protectionLevel=\"signature\" />",
+                            "xml": "<permission android:name=\"ru.one_touch.getlunch.permission.C2D_MESSAGE\" android:protectionLevel=\"signature\" />",
                             "count": 1
                         },
                         {
-                            "xml": "<uses-permission android:name=\"com.example.hello.permission.C2D_MESSAGE\" />",
+                            "xml": "<uses-permission android:name=\"ru.one_touch.getlunch.permission.C2D_MESSAGE\" />",
                             "count": 1
                         },
                         {
@@ -81,7 +85,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<receiver android:name=\"com.plugin.gcm.CordovaGCMBroadcastReceiver\" android:permission=\"com.google.android.c2dm.permission.SEND\"><intent-filter><action android:name=\"com.google.android.c2dm.intent.RECEIVE\" /><action android:name=\"com.google.android.c2dm.intent.REGISTRATION\" /><category android:name=\"com.example.hello\" /></intent-filter></receiver>",
+                            "xml": "<receiver android:name=\"com.plugin.gcm.CordovaGCMBroadcastReceiver\" android:permission=\"com.google.android.c2dm.permission.SEND\"><intent-filter><action android:name=\"com.google.android.c2dm.intent.RECEIVE\" /><action android:name=\"com.google.android.c2dm.intent.REGISTRATION\" /><category android:name=\"ru.one_touch.getlunch\" /></intent-filter></receiver>",
                             "count": 1
                         },
                         {
@@ -117,34 +121,37 @@
     },
     "installed_plugins": {
         "com.phonegap.core.phonedialer": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "com.phonegap.plugins.PushPlugin": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
+        "mobi.roshka.cordova.callphone": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "nl.x-services.plugins.socialsharing": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "org.apache.cordova.console": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "org.apache.cordova.contacts": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "org.apache.cordova.device": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "org.apache.cordova.device-motion": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "org.apache.cordova.device-orientation": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "org.apache.cordova.geolocation": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "org.apache.cordova.inappbrowser": {
-            "PACKAGE_NAME": "com.example.hello"
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         }
     },
     "dependent_plugins": {}

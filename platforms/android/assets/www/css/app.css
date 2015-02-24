@@ -68,6 +68,21 @@ a{
 	.navbar .right .icon-only .icon{
 		text-align: right;
 	}
+	.navbar .icon-only:before{
+		content: '';
+		position: absolute;
+		top: 0; bottom: -5px;
+	}
+	
+	.navbar .left .icon-only:before{
+		right: 0;
+		left: -10px;
+	}
+	
+	.navbar .right .icon-only:before{
+		left: 0;
+		right: -10px;
+	}
 
 ::-webkit-input-placeholder {
   color: #999;
@@ -816,6 +831,11 @@ a{
 	/*-webkit-transition: top .3s ease-in-out;
 	transition: top .3s ease-in-out;*/
 }
+	.b_map_btn:before{
+		content: '';
+		position: absolute;
+		top: -5px; bottom: -5px; left: -5px; right: -5px;
+	}
 	.b_map_btn.active-state{
 		background: #f7f7f7;
 		opacity: 1;
@@ -1037,12 +1057,12 @@ a{
 		border-top: 0;
 		-webkit-transform: translate3d(0, 0, 0);
 	}
-	.b_map + .b_cards_list{
+	.b_map ~ .b_cards_list{
 		height: 45%;
 		overflow: auto;
-		/*-webkit-overflow-scrolling: touch;*/
+		-webkit-overflow-scrolling: touch;
 	}
-	.b_map.m_small + .b_cards_list{
+	.b_map.m_small ~ .b_cards_list{
 		height: 67.5%;
 	}
 
@@ -1233,6 +1253,31 @@ a{
 .b_content-block + .list-block,
 .b_content-block + .list-block ul{
 	border-top: 0;
+}
+
+/* $b_phone */
+.b_phone{
+	font-size: 20px;
+	text-align: center;
+}
+
+.b_phone + .b_site{
+	margin: 10px 0 0;
+}
+
+/* $b_contact */
+.b_contact{
+	padding: 20px 18px 20px 29px;
+	margin: 20px 0 0;
+}
+	.b_contact:empty{
+		display: none;
+	}
+	
+/* $b_site */
+.b_site{
+	display: block;
+	text-align: center;
 }
 
 /* $b_address */
@@ -1429,7 +1474,7 @@ a{
 
 /* b_gallery */
 .b_gallery{
-	/*-webkit-overflow-scrolling: touch;*/
+	-webkit-overflow-scrolling: touch;
 	overflow-x: scroll;
 	overflow-y: hidden;
 	white-space: nowrap;

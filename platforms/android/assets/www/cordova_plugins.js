@@ -15,6 +15,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/mobi.roshka.cordova.callphone/www/callphone.js",
+        "id": "mobi.roshka.cordova.callphone.CallPhone",
+        "clobbers": [
+            "navigator.callphone"
+        ]
+    },
+    {
         "file": "plugins/nl.x-services.plugins.socialsharing/www/SocialSharing.js",
         "id": "nl.x-services.plugins.socialsharing.SocialSharing",
         "clobbers": [
@@ -136,6 +143,7 @@ module.exports.metadata =
 {
     "com.phonegap.core.phonedialer": "0.2.0",
     "com.phonegap.plugins.PushPlugin": "2.4.0",
+    "mobi.roshka.cordova.callphone": "0.0.1",
     "nl.x-services.plugins.socialsharing": "4.3.10",
     "org.apache.cordova.console": "0.2.9",
     "org.apache.cordova.contacts": "0.2.12",
