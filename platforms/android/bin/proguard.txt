@@ -1,0 +1,24 @@
+# view AndroidManifest.xml #generated:13
+-keep class com.plugin.gcm.CordovaGCMBroadcastReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:20
+-keep class com.plugin.gcm.GCMIntentService { <init>(...); }
+
+# view AndroidManifest.xml #generated:12
+-keep class com.plugin.gcm.PushHandlerActivity { <init>(...); }
+
+# view res/layout/color_picker_dialog_content.xml #generated:15
+# view v17\res/layout-v17/color_picker_dialog_content.xml #generated:18
+-keep class org.chromium.ui.ColorPickerAdvanced { <init>(...); }
+
+# view res/layout/color_picker_dialog_content.xml #generated:30
+# view v17\res/layout-v17/color_picker_dialog_content.xml #generated:42
+-keep class org.chromium.ui.ColorPickerMoreButton { <init>(...); }
+
+# view res/layout/color_picker_dialog_content.xml #generated:22
+# view v17\res/layout-v17/color_picker_dialog_content.xml #generated:24
+-keep class org.chromium.ui.ColorPickerSimple { <init>(...); }
+
+# view AndroidManifest.xml #generated:6
+-keep class ru.one_touch.getlunch.CordovaApp { <init>(...); }
+

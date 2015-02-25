@@ -1692,6 +1692,10 @@ a{
 	width: 56.25%;
 }
 
+.b_contact + .b_reviews_toolbar{
+	padding-top: 22px;
+}
+
 /* $b_rating */
 .b_rating{
 	padding: 2px 0 0;
