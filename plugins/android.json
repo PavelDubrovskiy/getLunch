@@ -39,6 +39,10 @@
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"GoogleAnalyticsPlugin\"><param name=\"android-package\" value=\"org.nypr.cordova.googleanalyticsplugin.GoogleAnalyticsPlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -113,6 +117,14 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
                             "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
                         }
                     ]
                 }
@@ -151,6 +163,9 @@
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "org.apache.cordova.inappbrowser": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
+        "org.nypr.cordova.googleanalyticsplugin": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         }
     },

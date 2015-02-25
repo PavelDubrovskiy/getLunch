@@ -34,4 +34,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <feature name="GoogleAnalyticsPlugin">
+        <param name="android-package" value="org.nypr.cordova.googleanalyticsplugin.GoogleAnalyticsPlugin" />
+    </feature>
 </widget>

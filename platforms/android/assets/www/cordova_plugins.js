@@ -136,6 +136,13 @@ module.exports = [
         "clobbers": [
             "window.open"
         ]
+    },
+    {
+        "file": "plugins/org.nypr.cordova.googleanalyticsplugin/www/googleanalytics.js",
+        "id": "org.nypr.cordova.googleanalyticsplugin.GoogleAnalytics",
+        "clobbers": [
+            "googleanalytics"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -151,7 +158,8 @@ module.exports.metadata =
     "org.apache.cordova.device-motion": "0.2.8",
     "org.apache.cordova.device-orientation": "0.3.7",
     "org.apache.cordova.geolocation": "0.3.11",
-    "org.apache.cordova.inappbrowser": "0.5.2"
+    "org.apache.cordova.inappbrowser": "0.5.2",
+    "org.nypr.cordova.googleanalyticsplugin": "0.1.0"
 }
 // BOTTOM OF METADATA
 });
