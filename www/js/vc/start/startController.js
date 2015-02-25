@@ -44,6 +44,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 				});
 			}
 		});
+		app.GAScreen('start');
 		view.render({
 			bindings: bindings
 		});

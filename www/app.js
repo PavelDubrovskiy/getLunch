@@ -158,6 +158,14 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 			}
 		});
 	}
+	var GAScreen = function(screen) {
+		var screen=screen || '';
+		try{
+			//window.googleanalytics.logevent(  successCallback, failureCallback, category, action, label, value );
+			screen.=device.platform.': '.screen;
+			window.googleanalytics.logscreenview(  successCallback, failureCallback, screen );
+		}catch(e){}
+	}
 	return {
 		f7: f7,
 		mainView: mainView,
@@ -179,7 +187,8 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		LogoutFB:LogoutFB,
 		LoginVK:LoginVK,
 		LogoutVK:LogoutVK,
-		tryConnection:tryConnection
+		tryConnection:tryConnection,
+		GAScreen:GAScreen
 	};
 });
 

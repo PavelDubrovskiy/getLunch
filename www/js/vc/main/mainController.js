@@ -67,7 +67,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			app.firstEnter=true;
 		});*/
 		initMap();
-		
+		app.GAScreen('start');
 		view.render({
 			bindings: bindings,
 			user: user,
