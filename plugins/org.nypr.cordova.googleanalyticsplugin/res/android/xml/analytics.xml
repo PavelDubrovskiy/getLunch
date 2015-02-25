@@ -2,7 +2,7 @@
 
 <resources xmlns:tools="https://schemas.android.com/tools" tools:ignore="TypographyDashes">
   <!--Replace placeholder ID with your tracking ID-->
-  <string name="ga_trackingId">__GA_KEY__</string>
+  <string name="ga_trackingId">UA-59280392-1</string>
 
   <!--Enable automatic activity tracking-->
   <bool name="ga_autoActivityTracking">true</bool>

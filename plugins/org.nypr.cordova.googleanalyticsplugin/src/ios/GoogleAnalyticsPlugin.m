@@ -20,7 +20,7 @@
     // Optional: set debug to YES for extra debugging information.
     //[GAI sharedInstance].debug = YES;
     
-    NSString * gaKey = @"__GA_KEY__";
+    NSString * gaKey = @"UA-59280392-1";
     if( gaKey!=nil && [gaKey isEqualToString:@""]==NO && [gaKey rangeOfString:@"GA_KEY"].location == NSNotFound ){
         // Create tracker instance. This tracker can later be retreived by calling defaultTracker
         [[GAI sharedInstance] trackerWithTrackingId:gaKey];
