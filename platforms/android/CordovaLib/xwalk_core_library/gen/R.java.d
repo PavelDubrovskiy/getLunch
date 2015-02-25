@@ -29,7 +29,12 @@ D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\drawable-
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\drawable-xhdpi\ic_menu_share_holo_light.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\drawable-xhdpi\ondemand_overlay.9.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\drawable-xhdpi\pageinfo_warning_major.png \
+D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\drawable-xxhdpi\ic_menu_search_holo_light.png \
+D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\drawable-xxhdpi\ic_menu_share_holo_light.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\drawable-xxhdpi\pageinfo_warning_major.png \
+D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\drawable-xxxhdpi\ic_menu_search_holo_light.png \
+D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\drawable-xxxhdpi\ic_menu_share_holo_light.png \
+D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\drawable-xxxhdpi\pageinfo_warning_major.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\layout\color_picker_advanced_component.xml \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\layout\color_picker_dialog_content.xml \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\layout\color_picker_dialog_title.xml \
@@ -49,10 +54,6 @@ D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\layout-v1
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\layout-v17\two_field_date_picker.xml \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\layout-v17\validation_message_bubble.xml \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\menu\select_action_menu.xml \
-D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\mipmap-hdpi\app_icon.png \
-D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\mipmap-mdpi\app_icon.png \
-D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\mipmap-xhdpi\app_icon.png \
-D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\mipmap-xxhdpi\app_icon.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\raw\contacts_api.js \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\raw\device_capabilities_api.js \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\xwalk_core_library\res\raw\icudtl.dat \

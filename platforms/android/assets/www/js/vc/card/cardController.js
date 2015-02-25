@@ -40,6 +40,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	// Инициализация страницы
 	function init(query) {
+		var mapFullscreen = false;
 		var values={latitude:app.latitude, longitude:app.longitude, source:app.config.source, id:localStorage.getItem("currentId")};
 		
 		if(localStorage.getItem('lunch'+localStorage.getItem("currentId"))===null){
@@ -48,6 +49,13 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		}else{
 			lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
 		}
+		if(localStorage.getItem('lunchesArray')===null){
+			var lunchesArray=[localStorage.getItem("currentId")];
+		}else{
+			var lunchesArray=JSON.parse(localStorage.getItem('lunchesArray'));
+			lunchesArray.push(localStorage.getItem("currentId"));
+		}
+		localStorage.setItem('lunchesArray',JSON.stringify(lunchesArray));
 		lunch.metres=getDistance();		
 		lunch.mainSource=app.config.source;
 		externalSite=lunch.site;
@@ -62,17 +70,17 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			autoPanOffset: [20, 0, 0, 40]
 		});
 		
-		map.map.events.add('click', function(e){
-			if(!app.mapFullscreen){
+		map.map.events.add('dblclick', function(e){
+			if(!mapFullscreen){
 				view.expandMap(e);
-				app.mapFullscreen = true;
+				mapFullscreen = true;
 			}else{
 				view.reduceMap(e);
-				app.mapFullscreen = false;
+				mapFullscreen = false;
 			}
 		});
 		
-		if(app.mapFullscreen){
+		if(mapFullscreen){
 			view.expandMap(map);
 		}
 		
@@ -157,21 +165,8 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	function callSomeone(){
 		console.log('callSomeone ('+lunch.phone+');');
-		console.log(device);
-		console.log(device.platform);
-		console.log('device up');
-		/*var msg = Ext.Msg.confirm('Please Confirm','Are you sure you want to make a phone call?',
-		function(r){*/
-			//if (r == 'yes'){
-				if(device.model!='iOS'){
-					console.log('document.location.href = tel:'+lunch.phone+';');
-					document.location.href = 'tel:'+lunch.phone;
-				}else{ // we assume the device is running iOS
-					console.log('window.plugins.phoneDialer.dial('+lunch.phone+');');
-					window.plugins.phoneDialer.dial(lunch.phone);
-				}
-			//}
-		//});
+		//navigator.callphone.call(function () {}, function (error) { showErrorDialog(errors.call); log(error); }, lunch.phone );
+		navigator.callphone.call(function () {}, function (error) {}, lunch.phone );
 	}
 	return {
 		init: init
