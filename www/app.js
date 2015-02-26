@@ -160,6 +160,7 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 	}
 	var GAPage = function(page) {
 		var page=page || 'unknown';
+		alert(page);
 		gaPlugin.trackPage( function(){}, function(){}, page);
 	}
 	return {

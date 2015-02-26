@@ -55,6 +55,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			var lunchesArray=JSON.parse(localStorage.getItem('lunchesArray'));
 			lunchesArray.push(localStorage.getItem("currentId"));
 		}
+		app.GAPage('card: '+lunch.Name);
 		localStorage.setItem('lunchesArray',JSON.stringify(lunchesArray));
 		lunch.metres=getDistance();		
 		lunch.mainSource=app.config.source;
