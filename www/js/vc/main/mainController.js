@@ -62,12 +62,13 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 
 	// Инициализация страницы
 	function init(query) {
+		app.GAPage:GAPage('main');
 		var filter=JSON.parse(localStorage.getItem('filter'));
 		/*$(document).on('pageBeforeRemove', function (e) {
 			app.firstEnter=true;
 		});*/
 		initMap();
-		app.GAScreen('start');
+		
 		view.render({
 			bindings: bindings,
 			user: user,

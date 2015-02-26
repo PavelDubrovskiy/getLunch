@@ -1,2 +1,2 @@
-D:\GITHUB\getLunch\platforms\android\ant-build\AndroidManifest.xml : \
-D:\GITHUB\getLunch\platforms\android\AndroidManifest.xml \
+D:\GITHUB\_getLunch\platforms\android\ant-build\AndroidManifest.xml : \
+D:\GITHUB\_getLunch\platforms\android\AndroidManifest.xml \

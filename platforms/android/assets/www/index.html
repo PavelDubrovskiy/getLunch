@@ -268,8 +268,11 @@
 <!-- scripts -->
 <script type="text/javascript" src="cordova.js"></script>
 <script>
+	var gaPlugin;
 	function onLoad() {
         document.addEventListener("deviceready", function(){
+        	gaPlugin = window.plugins.gaPlugin;
+			gaPlugin.init(function(){}, function(){}, "UA-12345678-1", 60);
 			var f7 = document.createElement('script'),
 				ymaps = document.createElement('script'),
 				requirejs = document.createElement('script')

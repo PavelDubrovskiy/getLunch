@@ -203,8 +203,4 @@ D:\GITHUB\getLunch\platforms\android\CordovaLib\res\drawable-mdpi\icon.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\res\layout\main.xml \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\res\values\strings.xml \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\res\xml\config.xml \
-D:\GITHUB\getLunch\platforms\android\CordovaLib\bin\res\drawable\splash.png \
-D:\GITHUB\getLunch\platforms\android\CordovaLib\bin\res\drawable-hdpi\icon.png \
-D:\GITHUB\getLunch\platforms\android\CordovaLib\bin\res\drawable-ldpi\icon.png \
-D:\GITHUB\getLunch\platforms\android\CordovaLib\bin\res\drawable-mdpi\icon.png \
 D:\GITHUB\getLunch\platforms\android\CordovaLib\bin\AndroidManifest.xml \

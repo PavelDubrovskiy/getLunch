@@ -30,6 +30,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	);
 	function init(){
 		app.tryConnection(function(){
+			app.GAPage:GAPage('start');
 			if(localStorage.getItem('lunchesArray')!==null){
 				var lunchesArray=JSON.parse(localStorage.getItem('lunchesArray'));
 				for(key in lunchesArray){
@@ -44,7 +45,6 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 				});
 			}
 		});
-		app.GAScreen('start');
 		view.render({
 			bindings: bindings
 		});

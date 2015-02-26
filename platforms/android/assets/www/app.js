@@ -158,6 +158,10 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 			}
 		});
 	}
+	var GAPage = function(page) {
+		var page=page || 'unknown';
+		gaPlugin.trackPage( function(){}, function(){}, page);
+	}
 	return {
 		f7: f7,
 		mainView: mainView,
@@ -173,13 +177,13 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		},
 		disablePanel: function() {
 			f7.allowPanelOpen = false;
-		},
-		
+		},		
 		LoginFB:LoginFB,
 		LogoutFB:LogoutFB,
 		LoginVK:LoginVK,
 		LogoutVK:LogoutVK,
-		tryConnection:tryConnection
+		tryConnection:tryConnection,
+		GAPage:GAPage
 	};
 });
 

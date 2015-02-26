@@ -25,6 +25,9 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
+    <feature name="GAPlugin">
+        <param name="android-package" value="com.adobe.plugins.GAPlugin" />
+    </feature>
     <name>GetLunch</name>
     <description>
         GetLunch - application for search lunch
@@ -34,7 +37,4 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <feature name="GoogleAnalyticsPlugin">
-        <param name="android-package" value="org.nypr.cordova.googleanalyticsplugin.GoogleAnalyticsPlugin" />
-    </feature>
 </widget>

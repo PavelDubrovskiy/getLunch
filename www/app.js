@@ -158,13 +158,9 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 			}
 		});
 	}
-	var GAScreen = function(screen) {
-		var screen=screen || '';
-		try{
-			//window.googleanalytics.logevent(  successCallback, failureCallback, category, action, label, value );
-			screen.=device.platform.': '.screen;
-			window.googleanalytics.logscreenview(  successCallback, failureCallback, screen );
-		}catch(e){}
+	var GAPage = function(page) {
+		var page=page || 'unknown';
+		gaPlugin.trackPage( function(){}, function(){}, page);
 	}
 	return {
 		f7: f7,
@@ -181,14 +177,13 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		},
 		disablePanel: function() {
 			f7.allowPanelOpen = false;
-		},
-		
+		},		
 		LoginFB:LoginFB,
 		LogoutFB:LogoutFB,
 		LoginVK:LoginVK,
 		LogoutVK:LogoutVK,
 		tryConnection:tryConnection,
-		GAScreen:GAScreen
+		GAPage:GAPage
 	};
 });
 
