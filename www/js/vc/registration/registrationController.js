@@ -31,6 +31,7 @@ define(["app","js/vc/registration/registrationView", "js/m/user", "js/utilities/
 	];
 
 	function init(query) {
+		app.GAPage('/registration/');
 		view.render({
 			bindings: bindings
 		});

@@ -24,6 +24,7 @@ define(["app","js/vc/profile/profileView","js/m/user"], function(app, view, User
 				}
 			}
 		});
+		app.GAPage('/cabinet/');
 		view.render({
 			bindings: bindings,
 			user:user,

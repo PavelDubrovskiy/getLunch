@@ -26,6 +26,7 @@ define(["app","js/vc/editprofile/editprofileView", "js/utilities/forms","js/m/us
 	];
 
 	function init(query) {
+		app.GAPage('/cabinet/profile/');
 		view.render({
 			bindings: bindings,
 			user:user

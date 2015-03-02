@@ -7,6 +7,7 @@ define(["app","js/vc/start/startView"], function(app,view) {
 		}
 	];
 	function init(query) {
+		app.GAPage('/about/');
 		view.render({
 			bindings: bindings
 		});

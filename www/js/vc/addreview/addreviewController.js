@@ -18,6 +18,7 @@ define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilit
 	// Инициализация страницы
 	function init(query) {
 		lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
+		app.GAPage('/restaurant/'+lunch.Name+'/'+lunch.id+'/review/');
 		var textarea = new DynamicArea({
 			selector: '.b_review_block textarea',
 			afterInit: function(e) {

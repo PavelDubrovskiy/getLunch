@@ -160,8 +160,17 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 	}
 	var GAPage = function(page) {
 		var page=page || 'unknown';
-		alert(page);
-		gaPlugin.trackPage( function(){}, function(){}, page);
+		try{
+			gaPlugin.trackPage( function(){}, function(){}, page);
+		}catch(e){}
+	}
+	var GAEvent = function(page,action,event) {
+		var page=page || 'unknown page';
+		var action=action || 'unknown action';
+		var event=event || 'unknown event';
+		try{
+			gaPlugin.trackEvent( function(){}, function(){}, page, action, event, 1);
+		}catch(e){}
 	}
 	return {
 		f7: f7,
@@ -184,7 +193,8 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		LoginVK:LoginVK,
 		LogoutVK:LogoutVK,
 		tryConnection:tryConnection,
-		GAPage:GAPage
+		GAPage:GAPage,
+		GAEvent:GAEvent
 	};
 });
 

@@ -23,6 +23,7 @@ define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/]
 	function init(query) {
 		//invite.fillSelectedContent();
 		lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
+		app.GAPage('/restaurant/'+lunch.Name+'/'+lunch.id+'/callfriends/');
 		//console.log(lunch);
 		header='Приглашаю на ланч в заведение: '+lunch.name+"\n";
 		date="Сегодня в 13:00 \n";
@@ -39,6 +40,7 @@ define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/]
 		var subject='Приглашаю на ланч в заведение: '+lunch.name;
 		var logo=app.config.source+lunch.logo;
 		var url=app.config.source+'/restaurant/'+lunch.id+'/';
+		app.GAEvent('callfriends', 'send', lunch.name+' - '+lunch.id);
 		try{
 			window.plugins.socialsharing.share(text, subject);
 		}catch(e){

@@ -18,6 +18,7 @@ define(["app", "js/vc/checkin/checkinView", "js/utilities/forms", "js/utilities/
 	// Инициализация страницы
 	function init(query) {
 		lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
+		app.GAPage('/restaurant/'+lunch.Name+'/'+lunch.id+'/me/');
 		var textarea = new DynamicArea({
 			selector: '.b_review_block textarea',
 			afterInit: function(e) {
@@ -36,6 +37,7 @@ define(["app", "js/vc/checkin/checkinView", "js/utilities/forms", "js/utilities/
 		var formInput = app.f7.formToJSON('#checkinForm');
 		formInput.code=user.code;
 		formInput.id=lunch.id;
+		app.GAEvent('me', 'send', lunch.name+' - '+lunch.id);
 		if(formInput.message!=''){
 			$.ajax({
 				type: "POST",
