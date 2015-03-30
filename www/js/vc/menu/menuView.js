@@ -8,6 +8,11 @@ define(["js/utilities/common"], function( utilities ) {
 		html=compiledTemplateMenu(params.menu);
 		$('#menuPage').html(html);
 		var user=JSON.parse(localStorage.getItem('User'));
+		
+		$('.checkinBtn').on('click', function(e) {
+			localStorage.setItem('soughtUrl', 'checkin.html');
+		});
+		
 		if(user){
 			$('.checkinBtn').attr('href','checkin.html');
 		}else{

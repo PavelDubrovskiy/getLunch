@@ -67,10 +67,14 @@ define(["app","js/vc/authorization/authorizationView", "js/m/user", "js/utilitie
 					if(msg!='error'){
 						app.LoginUser();
 						user.setValues(JSON.parse(msg));
-						ymaps.ready(function () {
-							//app.mainView.loadPage('main.html');
-							$('.back').click();
-						});
+						//app.mainView.loadPage('main.html');
+						
+						$(document).once('pageAfterAnimation', function() {
+							app.mainView.history.splice(app.mainView.history.length-1, 1);
+							$('.view-main .page-on-left, .view-main .navbar-on-left').remove();
+						});							
+						
+						app.mainView.loadPage(localStorage.getItem('soughtUrl') || app.mainView.history[app.mainView.history.length-1]);
 					}else{
 						forms.showMessage('Неправильно введены логин или пароль', "error");
 					}

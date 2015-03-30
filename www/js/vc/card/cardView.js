@@ -23,7 +23,7 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		$('#lunchPage').html(html);
 		utilities.bindEvents(params.bindings);
 		
-		$('.addreviewBtn, .checkinBtn').click( function(e) {
+		$('.addreviewBtn, .checkinBtn').on('click', function(e) {
 			if($(e.target).hasClass('checkinBtn')) {
 				localStorage.setItem('soughtUrl', 'checkin.html');
 			}else {
