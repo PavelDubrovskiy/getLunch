@@ -8,7 +8,7 @@ define(["app","js/vc/menu/menuView"], function(app, view) {
 
 	function init(query) {
 		lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
-		app.GAPage('/restaurant/'+lunch.Name+'/'+lunch.id+'/menu/');
+		app.GAPage('/restaurant/'+lunch.name+'/'+lunch.id+'/menu/');
 		view.render({
 			bindings: bindings,
 			menu:lunch.menu

@@ -38,11 +38,15 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 				}
 				localStorage.removeItem('lunchesArray');
 			}
-			if(user.id!=''){
-				$('.p_start_buttons').hide();
-				$('.b_logo').transitionEnd( function(){
-					app.mainView.loadPage('main.html');
-				});
+			$('.b_logo').transitionEnd( function(){
+				app.mainView.loadPage('main.html');
+			});
+			var user=JSON.parse(localStorage.getItem('User'));
+			if(user){}
+			else{
+				$('.app_exit span').text('Вход');
+				$('.app_exit i').removeClass('icon-exit').addClass('icon-enter');
+				$('.app_profile').hide();
 			}
 		});
 		view.render({
@@ -59,8 +63,13 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	}
 	
 	function exitToStart(){
-		localStorage.clear();
-		document.location.href='index.html';
+		var CurrentUser=JSON.parse(localStorage.getItem('User'));
+		if(CurrentUser){
+			localStorage.clear();
+			document.location.href='index.html';
+		}else{
+			app.mainView.loadPage('authorization.html');
+		}
 		/*try{
 			navigator.app.exitApp();
 		}catch(e){

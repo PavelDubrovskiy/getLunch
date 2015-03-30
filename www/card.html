@@ -27,7 +27,7 @@
 				<span class="preloader"></span>
 			</div>
 			<div class="b_white-bg">
-				<div class="b_content-block">
+				<div class="b_content-block b_cards_main-info">
 					<div class="b_address">
 						<i class="icon icon-geotag"></i>
 						{{address}}
@@ -42,7 +42,7 @@
 				</div>
 				
 				{{#if menu.prices.length}}
-				<div class="b_cards_list list-block">
+				<div class="b_cards_list list-block b_cards_lunches">
 					<ul>
 						{{#each menu.prices}}
 							<li>
@@ -64,16 +64,16 @@
 					</ul>
 				</div>
 				{{/if}}
-
+				{{#if menu.lunches}}
 				<a href="menu.html" class="b_wide-btn">
 					<i class="icon icon-menu"></i>
 					Меню заведения
 				</a>
-				
+				{{/if}}
 				<div class="b_btn_row">
 					<div class="buttons-row">
 						<a href="invite_submit.html" class="button b_btn">Позвать друзей</a>
-						<a href="checkin.html" class="button b_btn">Я тут ем</a>
+						<a href="checkin.html" class="button b_btn checkinBtn">Я тут ем</a>
 					</div>
 				</div>
 				
@@ -83,7 +83,7 @@
 					{{comment}}
 				</div>
 				{{/if}}
-				{{#if files.length}}
+				{{#if files}}
 				<div class="b_gallery">
 					{{#each files}}
 						<a href="{{this.largePath}}"><img src="{{this.smallPath}}" alt=""></a>
@@ -135,7 +135,7 @@
 						<span><i class="icon icon-thumb-down-filled"></i>{{reviews.unlike}}</span>
 					</div>
 					<div class="b_reviews_toolbar_right">
-						<a href="addreview.html" class="button b_btn">Написать рецензию</a>
+						<a href="addreview.html" class="button b_btn addreviewBtn">Написать рецензию</a>
 					</div>
 				</div>
 				{{#if checkins}}

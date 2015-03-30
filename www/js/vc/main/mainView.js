@@ -34,6 +34,7 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		sought.forEach(function(element, index, array){
 			html+=compiledSoughtTemplate(element);
 		});
+		app.GAEvent('search', 'click', 'start');
 		$('#soughtList').html(html);
 		$(".p_main_search_input").focus();
 	}

@@ -632,6 +632,11 @@ a{
 	margin: 0 8px;
 }
 
+.b_cards_main-info + .b_btn_row,
+.b_cards_lunches + .b_btn_row{
+	margin-top: 20px;
+}
+
 /* $b_upic */
 .b_upic{
 	display: block;
@@ -1223,6 +1228,13 @@ a{
 	font-size: 24px;
 	margin: -0.55em 0 0;
 	left: 7px;
+}
+
+.b_sidebar_item .icon-enter {
+  color: #999;
+  font-size: 24px;
+  margin: -0.55em 0 0;
+  left: 7px;
 }
 
 .b_sidebar_item.m_bottom{

@@ -23,7 +23,7 @@ define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/]
 	function init(query) {
 		//invite.fillSelectedContent();
 		lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
-		app.GAPage('/restaurant/'+lunch.Name+'/'+lunch.id+'/callfriends/');
+		app.GAPage('/restaurant/'+lunch.name+'/'+lunch.id+'/callfriends/');
 		//console.log(lunch);
 		header='Приглашаю на ланч в заведение: '+lunch.name+"\n";
 		date="Сегодня в 13:00 \n";

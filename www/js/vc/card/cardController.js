@@ -55,7 +55,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			var lunchesArray=JSON.parse(localStorage.getItem('lunchesArray'));
 			lunchesArray.push(localStorage.getItem("currentId"));
 		}
-		app.GAPage('/restaurant/'+lunch.Name+'/'+lunch.id+'/');
+		app.GAPage('/restaurant/'+lunch.name+'/'+lunch.id+'/');
 		localStorage.setItem('lunchesArray',JSON.stringify(lunchesArray));
 		lunch.metres=getDistance();		
 		lunch.mainSource=app.config.source;
@@ -156,6 +156,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	function externalSiteLoad(){
 		console.log('externalSiteLoad ('+externalSite+');');
+		app.GAEvent('restaurant_link', 'click', lunch.name+' - '+lunch.id);
 		if(externalSite!==null && externalSite!=''){
 			if( navigator.app ){
 			    navigator.app.loadUrl('http://'+externalSite.replace('http://',''), {openExternal:true});

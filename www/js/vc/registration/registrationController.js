@@ -29,7 +29,7 @@ define(["app","js/vc/registration/registrationView", "js/m/user", "js/utilities/
 			handler: saveUser
 		}
 	];
-
+	
 	function init(query) {
 		app.GAPage('/registration/');
 		view.render({
@@ -55,10 +55,16 @@ define(["app","js/vc/registration/registrationView", "js/m/user", "js/utilities/
 					data: formInput,
 					success: function(msg){
 						if(msg!='error'){
+							app.LoginUser();
 							user.setValues(JSON.parse(msg));
-							ymaps.ready(function () {
-								app.mainView.loadPage('main.html');
-							});
+							//app.mainView.loadPage('main.html');
+							
+							$(document).once('pageAfterAnimation', function() {
+								app.mainView.history.splice(app.mainView.history.length-3, 2);								
+								$('.view-main .page-on-left, .view-main .navbar-on-left').remove();
+							});							
+							
+							app.mainView.loadPage(localStorage.getItem('soughtUrl') || app.mainView.history[app.mainView.history.length-2]);
 						}else{
 							forms.showMessage('Такой пользователь уже существует', "error");
 						}

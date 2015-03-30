@@ -18,7 +18,7 @@ define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilit
 	// Инициализация страницы
 	function init(query) {
 		lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
-		app.GAPage('/restaurant/'+lunch.Name+'/'+lunch.id+'/review/');
+		app.GAPage('/restaurant/'+lunch.name+'/'+lunch.id+'/review/');
 		var textarea = new DynamicArea({
 			selector: '.b_review_block textarea',
 			afterInit: function(e) {
@@ -37,6 +37,7 @@ define(["app", "js/vc/addreview/addreviewView", "js/utilities/forms", "js/utilit
 		var formInput = app.f7.formToJSON('#reviewForm');
 		formInput.code=user.code;
 		formInput.id=lunch.id;
+		app.GAEvent('review', 'send', lunch.name+' - '+lunch.id);
 		if(formInput.message!=''){
 			$.ajax({
 				type: "POST",

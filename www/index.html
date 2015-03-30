@@ -32,14 +32,14 @@
 			Избранное
 		</a>-->
 		
-		<a class="b_sidebar_item close-panel" href="profile.html">
+		<a class="b_sidebar_item close-panel app_profile" href="profile.html">
 			<i class="icon icon-sidebar-face"></i>
 			Профиль
 		</a>
 		
 		<a class="b_sidebar_item close-panel app_exit" href="#">
 			<i class="icon icon-exit"></i>
-			Выход
+			<span>Выход</span>
 		</a>
 	</div>
 	<!-- /САЙДБАР -->
@@ -74,7 +74,7 @@
 		<div class="navbar">
 			<div class="navbar-inner">
 				<div class="left sliding">
-					<a href="#" class="link f_cancel close-popup" data-popup=".filter-popup">
+					<a href="#" class="link f_cancel close-popup" id="filterCancelButton"  data-popup=".filter-popup">
 						Отменить
 					</a>
 				</div>
@@ -82,7 +82,7 @@
 					Фильтр
 				</div>
 				<div class="right sliding">
-					<a href="#" class="link close-popup" data-popup=".filter-popup" id="submitFilter">
+					<a href="#" class="link close-popup" id="filterSendButton" data-popup=".filter-popup" id="submitFilter">
 						Готово
 					</a>
 				</div>
@@ -98,7 +98,7 @@
 								<div class="item-inner">
 									<div class="item-title label">Начало</div>
 									<div class="item-input">
-										<input name="lunchfrom" type="time" step="1800">
+										<input name="lunchfrom" id="filterLunchfromInput" type="time" step="1800">
 									</div>									
 								</div>
 							</label>
@@ -108,7 +108,7 @@
 								<div class="item-inner">
 									<div class="item-title label">Конец</div>
 									<div class="item-input">
-										<input name="lunchto" type="time" step="1800">
+										<input name="lunchto" id="filterLunchtoInput" type="time" step="1800">
 									</div>									
 								</div>
 							</label>
@@ -123,7 +123,7 @@
 								<div class="item-inner">
 									<div class="item-title label">От</div>
 									<div class="item-input b_price">
-										<input name="pricefrom" min="1" max="999" type="number">
+										<input name="pricefrom" id="filterPricefromInput" min="1" max="999" type="number">
 									</div>
 								</div>
 							</label>
@@ -133,7 +133,7 @@
 								<div class="item-inner">
 									<div class="item-title label">До</div>
 									<div class="item-input b_price">
-										<input name="priceto" min="1" max="999" type="number">
+										<input name="priceto" id="filterPricetoInput" min="1" max="999" type="number">
 									</div>
 								</div>
 							</label>
@@ -149,7 +149,7 @@
 									<div class="item-title label">Вегетарианская кухня</div>
 									<div class="item-input b_switch">
 										<label class="label-switch">
-											<input type="checkbox" value="5" name="features[]">
+											<input type="checkbox" id="filterVegetarianCheckbox" value="5" name="features[]">
 											<div class="checkbox"></div>
 										</label>
 									</div>
@@ -162,7 +162,7 @@
 									<div class="item-title label">Wi-Fi</div>
 									<div class="item-input b_switch">
 										<label class="label-switch">
-											<input type="checkbox" value="2" name="features[]">
+											<input type="checkbox" id="filterWiFiCheckbox" value="2" name="features[]">
 											<div class="checkbox"></div>
 										</label>
 									</div>
@@ -175,7 +175,7 @@
 									<div class="item-title label">Парковка</div>
 									<div class="item-input b_switch">
 										<label class="label-switch">
-											<input type="checkbox" value="3" name="features[]">
+											<input type="checkbox" id="filterParkingCheckbox"  value="3" name="features[]">
 											<div class="checkbox"></div>
 										</label>
 									</div>
@@ -188,7 +188,7 @@
 									<div class="item-title label">Терраса</div>
 									<div class="item-input b_switch">
 										<label class="label-switch">
-											<input type="checkbox" value="4" name="features[]">
+											<input type="checkbox" id="filterTerracaCheckbox"  value="4" name="features[]">
 											<div class="checkbox"></div>
 										</label>
 									</div>
@@ -226,32 +226,6 @@
 							<img src="i/svg/logo.svg" alt="">
 							<div class="b_logo_slogan">Пора есть!</div>
 							<div class="b_logo_preloader"><span class="preloader"></span></div>
-						</div>
-						
-						<div class="p_start_buttons content-block">
-							<p class="p_start_item p_start_facebook-login">
-								<a href="#" class="button b_btn m_fb">
-									<i class="icon-facebook"></i>
-									Войти через Фейсбук
-								</a>
-							</p>
-							<p class="p_start_item p_start_vk-login">
-								<a href="#" class="button b_btn m_vk">
-									<i class="icon-vk"></i>
-									Войти через ВКонтакте
-								</a>
-							</p>
-							<p class="p_start_item">
-								<a href="registration.html" class="button b_btn m_reg">
-									<i class="icon-mail"></i>
-									Регистрация
-								</a>
-							</p>
-							<p class="p_start_login">
-								<a href="authorization.html" class="button b_btn m_login">
-									Вход
-								</a>
-							</p>
 						</div>
 						
 					</div>

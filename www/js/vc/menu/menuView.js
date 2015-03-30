@@ -7,6 +7,12 @@ define(["js/utilities/common"], function( utilities ) {
 		var compiledTemplateMenu = Template7.compile(templateMenu);
 		html=compiledTemplateMenu(params.menu);
 		$('#menuPage').html(html);
+		var user=JSON.parse(localStorage.getItem('User'));
+		if(user){
+			$('.checkinBtn').attr('href','checkin.html');
+		}else{
+			$('.checkinBtn').attr('href','authorization.html');
+		}
 		utilities.bindEvents(params.bindings);
 	}
 

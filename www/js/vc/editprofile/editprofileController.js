@@ -67,7 +67,7 @@ define(["app","js/vc/editprofile/editprofileView", "js/utilities/forms","js/m/us
 		console.log(formInput);
 		user.setValues( formInput );
 		validateResult = user.validate(["name"]);
-		
+		app.GAEvent('profile', 'send', 'ok');
 		if( validateResult.isValid === true ){
 			forms.hideMessage();
 			$.ajax({

@@ -18,10 +18,18 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		}else if(lunchPos.longitude<myPos.longitude && lunchPos.latitude<=myPos.latitude){
 			degrees=180+(Math.acos(((myPos.latitude-lunchPos.latitude)*10000*11.12)/metres))*180/Math.PI;
 		}*/
-		
+		if(params.card.files.length==0)params.card.files=false;
 		html=compiledTemplate(params.card);
 		$('#lunchPage').html(html);
 		utilities.bindEvents(params.bindings);
+		
+		$('.addreviewBtn, .checkinBtn').click( function(e) {
+			if($(e.target).hasClass('checkinBtn')) {
+				localStorage.setItem('soughtUrl', 'checkin.html');
+			}else {
+				localStorage.setItem('soughtUrl', 'addreview.html');
+			}
+		});
 		
 		$('.b_underground').each( function() {
 			var $this = $(this)
@@ -31,7 +39,14 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 				$prev.addClass('m_connect').text('');
 			}
 		});
-		
+		var user=JSON.parse(localStorage.getItem('User'));
+		if(user){
+			$('.addreviewBtn').attr('href','addreview.html');
+			$('.checkinBtn').attr('href','checkin.html');
+		}else{
+			$('.addreviewBtn').attr('href','authorization.html');
+			$('.checkinBtn').attr('href','authorization.html');
+		}
 		// Крутим компас
 		/*var i = 0;		
 		if( !interval ) {
