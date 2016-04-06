@@ -22,16 +22,16 @@ define(["app","js/vc/menu/menuView"], function(app, view) {
 		$days = $('.b_menu_pagination .b_btn');
 		
 		// Создаём слайдер дней и устанавливаем на текущий день
-		daysSlider = app.f7.slider('.p_menu_days', {
+		daysSlider = app.f7.swiper('.p_menu_days', {
 			initialSlide: currentDayIndex,
 			onSlideChangeStart: setActiveDay
 		});
-		setActiveDay({activeSlideIndex: currentDayIndex});
+		setActiveDay({activeIndex: currentDayIndex});
 	
 		// Создаём слайдеры изображений
 		for( var i = 0; i < 5; i++ ){
-			imagesSlider.push(app.f7.slider('.p_menu_images-'+(i+1), {
-				pagination:'.slider-pagination-'+(i+1),
+			imagesSlider.push(app.f7.swiper('.p_menu_images-'+(i+1), {
+				pagination:'.swiper-pagination-'+(i+1),
 				paginationHide: false
 			}));
 		}
@@ -72,7 +72,7 @@ define(["app","js/vc/menu/menuView"], function(app, view) {
 	
 	// Устанавливаем активный день
 	function setActiveDay(slider) {
-		$days.removeClass("st_active").eq(slider.activeSlideIndex).addClass("st_active");
+		$days.removeClass("st_active").eq(slider.activeIndex).addClass("st_active");
 	}
 	
 	// Переход на нужный день по тапу

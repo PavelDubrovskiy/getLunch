@@ -9,43 +9,59 @@
 			Напоминание
 		</div>
 		<div class="right sliding">
+			<a href="#" class="link p_reminder_submit">
+				<span>Готово</span>
+			</a>
 		</div>
 	</div>
 </div>
 <div class="pages navbar-through">
 	<div data-page="reminder" class="page page-gray">
-	
 		<div class="page-content">
 			<!--<div class="content-block-title">Время напоминания</div>-->
-			<div class="b_invite_datetime b_reminder list-block">
-				<input type="time" id="reminderTime">
-				<a href="#" class="b_reminder_prompt">Выбрать время</a>
-			</div>
-			<div class="list-block">
-				<ul>
-					<!-- Smart select item -->
-					<li>
-						<a href="#" class="item-link smart-select">
-							<!-- select -->
-							<select name="repeat">
-								<option value="0" selected>Никогда</option>
-								<option value="1">Каждый день</option>
-								<option value="7">Каждую неделю</option>
-								<option value="30">Каждый месяц</option>
-							</select>
+			<form id="reminderForm">
+				<div class="b_reminder list-block">
+					<input type="time" id="reminderTime" name="time" style="display:none;">
+					<div class="b_reminder_picker" id="reminderPicker"></div>
+				</div>
+				<div class="list-block">
+					<div class="b_btn_row">
+						<div class="buttons-row">
+							<a href="#" class="button b_btn b_reminder_checkbox" data-val="mon">П</a>						
+							<a href="#" class="button b_btn b_reminder_checkbox" data-val="tue">В</a>						
+							<a href="#" class="button b_btn b_reminder_checkbox" data-val="wed">С</a>						
+							<a href="#" class="button b_btn b_reminder_checkbox" data-val="thu">Ч</a>						
+							<a href="#" class="button b_btn b_reminder_checkbox" data-val="fri">П</a>						
+							<a href="#" class="button b_btn b_reminder_checkbox f_cancel" data-val="sat">С</a>						
+							<a href="#" class="button b_btn b_reminder_checkbox f_cancel" data-val="sun">В</a>						
+						</div>
+					</div>
+				</div>
+				<input type="checkbox" name="days[]" value="mon" id="b_reminder_checkbox_mon" style="display: none;">
+				<input type="checkbox" name="days[]" value="tue" id="b_reminder_checkbox_tue" style="display: none;">
+				<input type="checkbox" name="days[]" value="wed" id="b_reminder_checkbox_wed" style="display: none;">
+				<input type="checkbox" name="days[]" value="thu" id="b_reminder_checkbox_thu" style="display: none;">
+				<input type="checkbox" name="days[]" value="fri" id="b_reminder_checkbox_fri" style="display: none;">
+				<input type="checkbox" name="days[]" value="sat" id="b_reminder_checkbox_sat" style="display: none;">
+				<input type="checkbox" name="days[]" value="sun" id="b_reminder_checkbox_sun" style="display: none;">
+				<div class="list-block m_gray">
+					<ul>
+						<li>
 							<div class="item-content">
 								<div class="item-inner">
-									<!-- Select label -->
-									<div class="item-title">Повторять</div>
-									<!-- Selected value, not required -->
-									<div class="item-after">Никогда</div>
+									<div class="item-title label">Повторять еженедельно</div>
+									<div class="item-input b_switch">
+										<label class="label-switch">
+											<input type="checkbox" id="filterVegetarianCheckbox" value="1" name="weekly">
+											<div class="checkbox"></div>
+										</label>
+									</div>
 								</div>
 							</div>
-						</a>
-					</li>
-				</ul>
-			</div>
+						</li>
+					</ul>
+				</div>
+			</form>
 		</div>
-		
 	</div>
 </div>

@@ -23,17 +23,17 @@
 					<a href="#" class="button b_btn">Пт</a>
 				</div>
 			</div>
-			<div class="slider-container b_menu_days p_menu_days">
-				<div class="slider-wrapper">
+			<div class="swiper-container b_menu_days p_menu_days">
+				<div class="swiper-wrapper">
 					{{#each lunches}}
-						<div class="slider-slide">
+						<div class="swiper-slide">
 							<div class="page-content">
-								<div class="slider-container p_menu_images-{{this.day}}">
+								<div class="swiper-container p_menu_images-{{this.day}}">
 									<span class="preloader"></span>
-									<div class="slider-pagination slider-pagination-{{this.day}}"></div>
-									<div class="slider-wrapper">
+									<div class="swiper-pagination swiper-pagination-{{this.day}}"></div>
+									<div class="swiper-wrapper">
 										{{#each this.pics}}
-											<div class="slider-slide"><img src="{{this.path}}" alt=""></div>
+											<div class="swiper-slide"><img src="{{this.path}}" alt=""></div>
 										{{/each}}
 									</div>
 								</div>

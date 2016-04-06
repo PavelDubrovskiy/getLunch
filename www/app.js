@@ -11,24 +11,16 @@ paths: {
 	}
 });*/
 
-require.config({
-    paths: {
-        "moment": "lib/moment.min"
-    },
-    config: {
-        moment: {
-            noGlobal: true
-        }
-    }
-});
-
-define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
+define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	Router.init();
 	var $ = Framework7.$;
 	var user = new User();
 	var f7 = new Framework7({
 		modalTitle: ' ',
 		swipeBackPage: false,
+		panelsCloseByOutside: true,
+		swipePanel: "left",
+		
 		pushState: true,
 		swipeout: false,
 		sortable: false,
@@ -39,52 +31,42 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 	
 	f7.allowPanelOpen = false;
 	
-	
 	var mainView = f7.addView('.view-main', {
 		dynamicNavbar: true
 	});
 	var config={
 		source:'http://getlunch.ru'
 	};
-	var LoginFB = {
-	    wwwref: false,
-	    plugin_perms: "publish_actions,email,user_friends,offline_access",
-	    
-	    auth: function (force) {
-	        if (!window.localStorage.getItem("plugin_fb_token") || force || window.localStorage.getItem("plugin_fb_perms")!=LoginFB.plugin_perms) {
-	            var authURL="https://www.facebook.com/dialog/oauth?client_id=281560105368956&scope="+this.plugin_perms+"&redirect_uri=http://getlunch.ru/api/fbauth/&response_type=token";
-	            this.wwwref = window.open(encodeURI(authURL), '_blank', 'location=no');
-	            this.wwwref.addEventListener('loadstop', this.auth_event_url);
-	        }
-	    },
-	    auth_event_url: function (event) {
-	        var tmp=(event.url).split("#");
-	        if(tmp[0]=='http://getlunch.ru/api/fbauth/?' || tmp[0]=='https://getlunch.ru/api/fbauth/?'){
-	            LoginFB.wwwref.close();
-	            var tmp=url_parser.get_args(tmp[1]);
-	            var data={token:tmp['access_token'],provider:'fb',fb_exp:tmp['expires_in']};
-	            if(user.code!='')data.code=user.code;
-	            $.ajax({
-					type: "POST",
-					async: false,
-					url: config.source+"/api/fbauth/",
-					data: data,
-					success: function(msg){
-						if(msg!='error'){
-							LoginUser();
-							user.setValues(JSON.parse(msg));
-							ymaps.ready(function () {
-								//mainView.loadPage('main.html');
-								$('.back').click();
-							});
-						}else{
-							forms.showMessage('Ошибка аутентификации', "error");
+	var LoginFB = function(){
+		try{
+			facebookConnectPlugin.login(["email","user_friends"], 
+				function (tmp) {
+					console.log(tmp);					
+					var data={token:tmp.authResponse.accessToken,provider:'fb',fb_exp:tmp.authResponse.expiresIn,user_id:tmp.authResponse.userID};
+					console.log(data);
+		            $.ajax({
+						type: "POST",
+						async: false,
+						url: config.source+"/api/fbauth/",
+						data: data,
+						success: function(msg){
+							if(msg!='error'){
+								console.log(msg);
+								LoginUser();
+								user.setValues(JSON.parse(msg));
+								ymaps.ready(function () {
+									//mainView.loadPage('main.html');
+									$('.back').click();
+								});
+							}else{
+								forms.showMessage('Ошибка аутентификации', "error");
+							}
 						}
-					}
-				});
-	        }
-	    }
-	};
+					});
+				}, function(e){console.log(e);}
+			);
+		}catch(e){console.log(e);}
+	}
 	var LogoutFB = function(){
 		$.ajax({
 			type: "POST",
@@ -197,6 +179,9 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		interval:0,
 		intervalCompass:0,
 		firstEnter:true,
+		firstMainLoad:true,
+		firstMainTimeout:0,
+		cardMultiRoute:'',
 		enablePanel: function() {
 			f7.allowPanelOpen = true;
 		},

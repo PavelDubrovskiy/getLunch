@@ -5,10 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline';  img-src *">
 	<title>GetLunch</title>
 	<link rel="stylesheet" href="css/fonts/fonts.css">
 	<link rel="stylesheet" href="css/icons/icons.css">
-	<link rel="stylesheet" href="lib/css/framework7.css">
+	<link rel="stylesheet" href="css/lib/framework7.min.css">
 	<link rel="stylesheet" href="css/app.css">
 </head>
 <body onload="onLoad()">
@@ -22,10 +23,10 @@
 			Поесть
 		</a>
 		
-		<!--<a class="b_sidebar_item close-panel" href="reminder.html">
+		<a class="b_sidebar_item close-panel" href="reminder.html">
 			<i class="icon icon-sidebar-bell"></i>
-			Напоминание
-		</a>-->
+			Пора есть
+		</a>
 		
 		<!--<a class="b_sidebar_item close-panel" href="favourite.html">
 			<i class="icon icon-sidebar-star"></i>
@@ -48,7 +49,7 @@
 
 	<!-- Попап поиска -->
 	<div class="popup tablet-fullscreen searchbar-popup">
-		<form class="address-search searchbar" data-search-list=".list-block-search" data-search-in=".item-title">
+		<form class="address-search searchbar">
 			<div class="searchbar-input">
 				<input class="p_main_search_input" type="search" placeholder="Поиск по адресу"><a href="#" class="searchbar-clear"></a>
 			</div><a href="#" class="searchbar-cancel-static p_main_search_close close-popup" data-popup=".searchbar-popup">Отменить</a>
@@ -205,10 +206,10 @@
 	<div class="popup-overlay"></div>
 	
 	<div class="views">
-		<div class="view view-main hidden-navbar">
+		<div class="view view-main">
 			
 			<!-- НАВИГАЦИОННАЯ ПАНЕЛЬ -->
-			<div class="navbar">
+			<div class="navbar navbar-hidden">
 				<div class="navbar-inner">
 				</div>
 			</div>
@@ -248,20 +249,28 @@
 	        try{
 	        	gaPlugin = window.plugins.gaPlugin;
 				gaPlugin.init(function(){}, function(){}, "UA-59280392-1", 60);
-			}catch(e){}
+				facebookConnectPlugin.browserInit(281560105368956);
+			}catch(e){}	
+			
+			
 			var f7 = document.createElement('script'),
-				ymaps = document.createElement('script'),
+				yandexmaps = document.createElement('script'),
 				requirejs = document.createElement('script')
 			;
 
-			f7.src = 'lib/framework7.js';
-			ymaps.src = 'http://api-maps.yandex.ru/2.1.16/?lang=ru_RU';
-			requirejs.src = 'lib/require.js';
+			f7.src = 'js/lib/framework7.min.js';
+			yandexmaps.src = 'http://api-maps.yandex.ru/2.1.26/?lang=ru_RU';
+			requirejs.src = 'js/lib/require.js';
 			requirejs.setAttribute('data-main','app');
 			
 			f7.onload = function(){
-				document.body.appendChild(ymaps);
-				document.body.appendChild(requirejs);
+				document.body.appendChild(yandexmaps);
+				
+				yandexmaps.onload = function() {
+					ymaps.ready( function() {
+						document.body.appendChild(requirejs);
+					});
+				}
 			};
 
 			document.body.appendChild(f7);
@@ -275,7 +284,3 @@
 	    }
     }
 </script>
-<!--<script type="text/javascript" src="lib/framework7.js"></script>
-<script src="http://api-maps.yandex.ru/2.1.16/?lang=ru_RU&load=Map,geoObject.addon.balloon,Placemark,GeoObjectCollection,templateLayoutFactory" type="text/javascript"></script>
-<script data-main="app" src="lib/require.js"></script>-->
-<!-- /scripts -->

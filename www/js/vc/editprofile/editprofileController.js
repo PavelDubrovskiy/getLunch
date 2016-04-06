@@ -38,7 +38,6 @@ define(["app","js/vc/editprofile/editprofileView", "js/utilities/forms","js/m/us
 	};
 	function exitToStart(){
 		localStorage.clear();
-		alert('exit');
 		document.location.href='index.html';
 	}
 	function loginFacebook (){

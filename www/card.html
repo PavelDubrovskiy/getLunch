@@ -1,20 +1,18 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="left sliding">
-			<a href="#" class="link icon-only back">
+			<a href="#" class="link icon-only back m_card_back">
 				<i class="icon icon-arrow-back"></i><span></span>
 			</a>
 		</div>
 		<div class="center header-wide p_card_header sliding"><span></span></div>
 		<div class="right sliding">
-			<!--<a href="#" class="link icon-only p_card_favourite_toggle">
-				<i class="icon icon-star"></i>
-			</a>-->
+			<!--<a href="#" class="link icon-only p_card_favourite_toggle"><i class="icon icon-star"></i></a>-->
 		</div>
 	</div>
 </div>
 <div class="pages navbar-through">
-	<div data-page="card" class="page page-full-fade">
+	<div data-page="card" class="page">
 		<div class="page-content" id="lunchPage">
 		
 		</div>
@@ -23,8 +21,25 @@
 				<span class="b_compass_arr"><i class="icon icon-geolocation-small"></i></span>
 				<span class="b_compass_tx">{{metres}} м</span>
 			</div>
+			<a href="#" class="m_card_reducemap st_hidden"></a>
 			<div id="cardMap" class="b_map m_xsmall">
 				<span class="preloader"></span>
+			</div>			
+			<a href="#" class="b_map_btn m_zoomin m_card_zoomin st_hidden">
+				<i class="icon icon-plus"></i>
+			</a>
+			<a href="#" class="b_map_btn m_zoomout m_card_zoomout st_hidden">
+				<i class="icon icon-minus"></i>
+			</a>
+			<a href="#" class="b_map_btn m_geolocation m_card_geolocation st_hidden">
+				<i class="icon icon-geolocation"></i>
+			</a>
+			<div class="m_map_center_top">
+				<a href="#" class="b_map_btn m_card_masstransit st_hidden st_checked"></a>
+				<a href="#" class="b_map_btn m_card_auto st_hidden"></a>				
+			</div>
+			<div class="m_map_center_bottom">
+				<a href="#" class="m_card_navigator st_hidden">Поехали</a>	
 			</div>
 			<div class="b_white-bg">
 				<div class="b_content-block b_cards_main-info">
@@ -102,9 +117,8 @@
 				{{/if}}
 				
 				<div class="b_content-block b_contact">
-					{{#if phone}}<div class="b_phone">{{phone}}</div>{{/if}}
+					{{#if phone}}<div class="b_phone" id="callSomeone">{{phone}}</div>{{/if}}
 					{{#if site}}
-							<!--{{#if phone}}<a href="#" class="button b_btn" id="callSomeone">Позвонить</a>{{/if}}-->
 							<a href="#" class="b_site" id="externalSite">{{site}}</a>
 					{{/if}}
 				</div>

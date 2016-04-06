@@ -6,6 +6,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	var interval = null;
 	var lunch = null;
 	var externalSite = null;
+	var mapFullscreen = false;
 	var bindings = [
 		// Управление избранным
 		{
@@ -40,7 +41,8 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	// Инициализация страницы
 	function init(query) {
-		var mapFullscreen = false;
+		localStorage.setItem('soughtUrl', 'card.html');
+		
 		var values={latitude:app.latitude, longitude:app.longitude, source:app.config.source, id:localStorage.getItem("currentId")};
 		
 		if(localStorage.getItem('lunch'+localStorage.getItem("currentId"))===null){
@@ -60,6 +62,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		lunch.metres=getDistance();		
 		lunch.mainSource=app.config.source;
 		externalSite=lunch.site;
+		$('.m_card_reducemap').css('visibility','hidden');
 		view.render({
 			bindings: bindings,
 			card:lunch
@@ -70,22 +73,15 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			initZoom: 17, offset: {top: 13, left: 0},
 			autoPanOffset: [20, 0, 0, 40]
 		});
-		
-		map.map.events.add('dblclick', function(e){
-			if(!mapFullscreen){
-				view.expandMap(e);
-				mapFullscreen = true;
-			}else{
-				view.reduceMap(e);
-				mapFullscreen = false;
-			}
+		//map.map.events.add('click', function(e){
+		$('#cardMap').click(function(){
+			controlReduceMap();
 		});
-		
 		if(mapFullscreen){
 			view.expandMap(map);
 		}
 		
-		initMap(lunch);
+		initMap();
 		
 		gallery = new Gallery({wrapper: '.b_gallery', items: 'a'});
 		//window.clearInterval(app.intervalCompass);
@@ -103,7 +99,9 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
 		
-		// Если расстояние от пользователя до кафе меньше 700 метров, показываем карту так, чтобы вместить точку пользователя и точку кафе, иначе показываем только кафе
+		map.objectManager.events.add('mouseenter', app.disablePanel);
+		map.objectManager.events.add('mouseleave', app.enablePanel);
+		
 		map.createMarks([{
 			type: 'Feature',
 			id: lunch.id,
@@ -120,31 +118,60 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 				iconImageHref: lunch.inactive === 'st_inactive' ? 'i/svg/geotag_inactive.svg' :'i/svg/geotag.svg'
 			}
 		}]);
-		/*console.log('lunch.latitude='+lunch.latitude+' lunch.longitude='+lunch.longitude);
-		console.log('app.latitude='+app.latitude+' app.longitude='+app.longitude);*/
+
+		if(lunch.longitude>app.longitude){
+			map.setBounds([
+				[lunch.latitude, app.longitude],
+				[app.latitude, lunch.longitude]
+			]);
+		}else{
+			map.setBounds([
+				[lunch.latitude, lunch.longitude],
+				[app.latitude, app.longitude]
+			]);
+		}
+		map.setUserPosition([app.latitude, app.longitude]);
+
+		createWay('masstransit');
 		
-		//if( lunch.metres < 450 ) {
-			//map.autoBoundsUser();
-			if(lunch.longitude>app.longitude){
-				map.setBounds([
-					[lunch.latitude, app.longitude],
-					[app.latitude, lunch.longitude]
-				]);
-			}else{
-				map.setBounds([
-					[lunch.latitude, lunch.longitude],
-					[app.latitude, app.longitude]
-				]);
-			}
-			map.setUserPosition([app.latitude, app.longitude]);
-		/*}else{
-			map.map.setCenter(
-				map.getOffset(
-					[lunch.latitude, lunch.longitude]
-				)
-			);
-			map.setUserPosition([app.latitude, app.longitude]);
-		}*/		
+		//Управление картой		
+		$('.b_map_btn.m_card_zoomin').click(function(){map.zoomIn()});
+		$('.b_map_btn.m_card_zoomout').click(function(){map.zoomOut()});
+		$('.b_map_btn.m_card_geolocation').click(function(){findMe();});
+		$('.m_card_masstransit').click(function(){
+			$('.m_card_auto').removeClass('st_checked');
+			$('.m_card_masstransit').addClass('st_checked');
+			$('.m_card_navigator').addClass('st_hidden');
+			createWay('masstransit');			
+		});
+		$('.m_card_auto').click(function(){
+			$('.m_card_masstransit').removeClass('st_checked');
+			$('.m_card_auto').addClass('st_checked');
+			$('.m_card_navigator').removeClass('st_hidden');
+			createWay('auto');			
+		});
+		$('.m_card_navigator').click(function(){
+			try{
+				if( device.platform == 'android' || device.platform == 'Android'){
+					navigator.startApp.set({
+							"action":"ru.yandex.yandexnavi.action.BUILD_ROUTE_ON_MAP"
+						}, {
+							'lat_from':app.latitude,
+							'lon_from':app.longitude,
+							'lat_to':lunch.latitude,
+							'lon_to':lunch.longitude
+						}
+					).start();
+				}else{
+					navigator.startApp.set("yandexnavi://build_route_on_map?lat_from="+app.latitude+"&lon_from="+app.longitude+"&lat_to="+lunch.latitude+"&lon_to="+lunch.longitude+"").start();
+				}
+			}catch(e){console.log(e);}
+			
+		});
+		$('.m_card_reducemap').click(function(){
+			controlReduceMap();
+		});
+		
 	}
 			
 	// Функция управления избранным
@@ -166,9 +193,74 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		}
 	}
 	function callSomeone(){
-		console.log('callSomeone ('+lunch.phone+');');
-		//navigator.callphone.call(function () {}, function (error) { showErrorDialog(errors.call); log(error); }, lunch.phone );
-		navigator.callphone.call(function () {}, function (error) {}, lunch.phone );
+		try{
+			navigator.startApp.start([["action", "CALL"], ["tel:"+lunch.phone]]);
+		}catch(e){console.log(e);}
+	}
+	function findMe() {
+		app.GAEvent('map', 'click', 'target');
+		map.setUserPosition([app.latitude, app.longitude], true);
+	}
+	function createWay(routingMode){
+		var routingMode=routingMode;
+		if(app.cardMultiRoute!='') map.map.geoObjects.remove(app.cardMultiRoute);
+		app.cardMultiRoute = new ymaps.multiRouter.MultiRoute({
+	        referencePoints: [
+	            [app.latitude, app.longitude],
+	            [lunch.latitude, lunch.longitude]
+	        ],
+	        params: {
+	            routingMode: routingMode
+	        }
+	    }, {
+	        boundsAutoApply: true,
+	    });
+		map.map.geoObjects.add(app.cardMultiRoute);
+	}
+	function controlReduceMap(){
+		if(!mapFullscreen){
+			$('.navbar').hide();
+			$('#lunchPage').css('padding-top','0');
+			view.expandMap(map);
+			mapFullscreen = true;
+			$('.b_compass').css('top','8px');
+			$('.m_card_auto').removeClass('st_hidden');
+			$('.m_card_masstransit').removeClass('st_hidden');
+			$('.b_map_btn.m_card_zoomin').removeClass('st_hidden');
+			$('.b_map_btn.m_card_zoomout').removeClass('st_hidden');
+			$('.b_map_btn.m_card_geolocation').removeClass('st_hidden');
+			$('.m_card_reducemap').removeClass('st_hidden');
+			if($('.m_card_auto').hasClass('st_checked')){
+				$('.m_card_navigator').removeClass('st_hidden');
+				createWay('auto');
+			}else{
+				createWay('masstransit');
+			}			
+		}else{
+			$('#lunchPage').css('padding-top','44px');
+			$('.navbar').show();
+			view.reduceMap(map);
+			mapFullscreen = false;
+			$('.b_compass').css('top','47px');
+			$('.m_card_auto').addClass('st_hidden');
+			$('.m_card_masstransit').addClass('st_hidden');
+			$('.b_map_btn.m_card_zoomin').addClass('st_hidden');
+			$('.b_map_btn.m_card_zoomout').addClass('st_hidden');
+			$('.b_map_btn.m_card_geolocation').addClass('st_hidden');
+			$('.m_card_navigator').addClass('st_hidden');
+			$('.m_card_reducemap').addClass('st_hidden');
+			if(lunch.longitude>app.longitude){
+				map.setBounds([
+					[lunch.latitude, app.longitude],
+					[app.latitude, lunch.longitude]
+				]);
+			}else{
+				map.setBounds([
+					[lunch.latitude, lunch.longitude],
+					[app.latitude, app.longitude]
+				]);
+			}
+		}
 	}
 	return {
 		init: init

@@ -8,6 +8,11 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	var userPosition=true;
 	var minZoom = 13;
 	
+	var search = app.f7.searchbar('.address-search', {
+		searchList: '.list-block-search',
+		searchIn: '.item-title'
+	});
+	
 	if(localStorage.getItem('sought')!==null){
 		sought=localStorage.getItem('sought').split('!__;__!');
 	}
@@ -30,19 +35,16 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			event: 'search change',
 			handler: searchHandler
 		},
-		
+		{
+			element: '.searchbar-clear',
+			event: 'click',
+			handler: clearHandler
+		},
 		// Управление избранным
 		{
 			element: '.p_main_favourite_toggle',
 			event: 'click',
 			handler: toggleFavouriteState
-		},
-		
-		// Выход из приложения
-		{
-			element: '.app_exit',
-			event: 'click',
-			handler: appExit
 		},
 		{
 			element: '#soughtList',
@@ -53,7 +55,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		{
 			element: '#submitFilter',
 			event: 'click',
-			handler: submitFilter,
+			handler: submitFilter
 		},
 		
 		//GoogleAnalitics
@@ -124,6 +126,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 
 	// Инициализация страницы
 	function init(query) {
+		localStorage.setItem('soughtUrl', 'main.html');
 		app.GAPage('/main/');
 		var filter=JSON.parse(localStorage.getItem('filter'));
 		/*$(document).on('pageBeforeRemove', function (e) {
@@ -147,7 +150,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		// Создание карты
 		map = new Map({
 			mapId: 'mainMap',
-			openBalloon: true
+			openBalloon: true,
+			initZoom: 18
 		});
 		
 		// Добавление подписки на события управления картой
@@ -186,7 +190,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				element: '.b_map_btn.m_findme',
 				event: 'click',
 				handler: findMe
-			}			
+			}
 		);
 		
 		map.map.events.add('dblclick', function(e){
@@ -206,9 +210,17 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		// Предотвращение открытия меню по свайпу при перетаскивании карты
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
+		
+		map.objectManager.events.add('mouseenter', app.disablePanel);
+		map.objectManager.events.add('mouseleave', app.enablePanel);
+		
 		var itemList={};
-		//getLunchBySquareCoords();
-		map.boundsChange(function(){userPosition=false;getLunchBySquareCoords();});
+		
+		getLunchBySquareCoords(219);
+		map.boundsChange(function() {
+			userPosition = false;
+			getLunchBySquareCoords(222);
+		});
 		geolocation();
 		//setTimeout(getNearestLunches, 400);
 		//setTimeout(getLunchBySquareCoords, 400);
@@ -234,20 +246,20 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 							app.latitude=position.coords.latitude;
 							app.longitude=position.coords.longitude;
 							//getNearestLunches();
-							getLunchBySquareCoords();
+							getLunchBySquareCoords(249);
 							if(userPosition==true && app.latitude!=0) map.setUserPosition([app.latitude, app.longitude], true);
 						}
-					}catch(e){}
+					}catch(e){console.log(e);}
 				}, 
 				function(){
 					console.log('geo fail from main');
-					getLunchBySquareCoords();
+					getLunchBySquareCoords(256);
 				}, 
 				{timeout: 9000, enableHighAccuracy: true}
 			);
 		}else{
 			//getNearestLunches();
-			getLunchBySquareCoords();
+			getLunchBySquareCoords(262);
 			map.setUserPosition([app.latitude, app.longitude], true);
 			if(map.map.getZoom() < minZoom) {
 				map.map.setZoom(minZoom+1);
@@ -271,6 +283,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	
 	function soughtClick() {
 		$('.p_main_search_input').val($(this).text());
+		search.container.addClass('searchbar-not-empty');
 		searchHandler();
 	}
 	// Поиск
@@ -290,20 +303,25 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				sought.unshift(searchInput);
 				localStorage.setItem('sought',sought.join('!__;__!'));
 				console.log(msg);
-				
-				var valuesItem={lunchList:msg.list,map:map};
-				view.attachLunches(valuesItem);
-				
-				$('.b_cards_item').off('click').on('click', setCurrent);
-				
-				app.firstEnter=false;
-				map.setBounds([msg.coords.coordsTL, msg.coords.coordsBR]);
+				if(msg.list.length!=0){
+					var valuesItem={lunchList:msg.list,map:map};
+					view.attachLunches(valuesItem);
+					
+					$('.b_cards_item').off('click').on('click', setCurrent);
+					
+					app.firstEnter=false;
+					map.setBounds([msg.coords.coordsTL, msg.coords.coordsBR]);
+				}
 				$(".p_main_search_close").click();
 			}
 		}
 	}
+	function clearHandler(){
+		searchInput='';
+	}
 	// Получение адресов по крайним точкам карты
-	function getLunchBySquareCoords(){
+	function getLunchBySquareCoords(line){
+		//console.log('line: '+line);
 		if(searchInput==''){
 			if(map.map.getZoom()>minZoom){
 				var filter=JSON.parse(localStorage.getItem('filter'));
@@ -327,6 +345,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				//map.geolocation(values);
 				
 				var lunchList=api.getLunchBySquareCoords(values);
+				if(app.firstMainTimeout!=0) window.clearTimeout(app.firstMainTimeout);
+				app.firstMainTimeout=window.setTimeout(function(){onBoundsChange()},3000);
 				var mainLunchesList=JSON.parse(localStorage.getItem('mainLunchesList'));
 				var isChangeInList=false;
 				var clearList=[];
@@ -434,11 +454,20 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		}
 	}
 	
-	// Выход из приложения
-	function appExit() {
-		window.close();
+	//Проверка на пустые значения
+	function onBoundsChange(){
+		//if(app.firstMainLoad){
+			var x=0;
+			$('#mainCardsList li').each(function(){
+				x++;
+			});
+			if(x==0){
+				$('.b_map_btn.m_zoomout').click();
+			}else{
+				app.firstMainLoad=false;
+			}
+		//}
 	}
-	
 	return {
 		init: init
 	};
